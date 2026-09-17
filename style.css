@@ -83,3 +83,144 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
   background:#6c657e88;
   box-shadow:0 7px #3d405caa;
 }
+
+
+/* =========================================================
+   Step 3-2 / v5.3.2
+   Night city refinement.
+   These selectors intentionally override only night-scene
+   background elements. Clock/calendar/pet layout is untouched.
+   ========================================================= */
+
+.night .city-far{
+  height:50%;
+  opacity:.78;
+  background:
+    repeating-linear-gradient(
+      to right,
+      transparent 0 18px,
+      rgba(244,207,151,.18) 18px 21px,
+      transparent 21px 34px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 15px,
+      rgba(244,207,151,.13) 15px 18px,
+      transparent 18px 27px
+    ),
+    #56566f;
+  clip-path:polygon(
+    0 58%,4% 58%,4% 39%,8% 39%,8% 53%,
+    12% 53%,12% 28%,17% 28%,17% 60%,
+    21% 60%,21% 43%,25% 43%,25% 20%,
+    30% 20%,30% 55%,34% 55%,34% 35%,
+    39% 35%,39% 62%,43% 62%,43% 25%,
+    48% 25%,48% 48%,52% 48%,52% 15%,
+    57% 15%,57% 57%,61% 57%,61% 31%,
+    66% 31%,66% 51%,70% 51%,70% 23%,
+    75% 23%,75% 60%,80% 60%,80% 38%,
+    85% 38%,85% 18%,89% 18%,89% 54%,
+    94% 54%,94% 32%,100% 32%,100% 100%,0 100%
+  );
+}
+
+.night .city-mid{
+  height:38%;
+  background:
+    repeating-linear-gradient(
+      to right,
+      transparent 0 25px,
+      rgba(247,203,125,.32) 25px 29px,
+      transparent 29px 43px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 18px,
+      rgba(247,203,125,.24) 18px 22px,
+      transparent 22px 32px
+    ),
+    #3b405a;
+  clip-path:polygon(
+    0 61%,5% 61%,5% 32%,10% 32%,10% 67%,
+    15% 67%,15% 44%,20% 44%,20% 22%,
+    25% 22%,25% 59%,30% 59%,30% 36%,
+    35% 36%,35% 70%,40% 70%,40% 28%,
+    45% 28%,45% 51%,50% 51%,50% 16%,
+    55% 16%,55% 63%,61% 63%,61% 39%,
+    66% 39%,66% 25%,71% 25%,71% 68%,
+    76% 68%,76% 34%,82% 34%,82% 56%,
+    87% 56%,87% 20%,92% 20%,92% 62%,
+    96% 62%,96% 40%,100% 40%,100% 100%,0 100%
+  );
+}
+
+.night .city-near{
+  height:27%;
+  background:
+    repeating-linear-gradient(
+      to right,
+      transparent 0 34px,
+      rgba(255,211,123,.68) 34px 39px,
+      transparent 39px 55px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 23px,
+      rgba(255,211,123,.56) 23px 28px,
+      transparent 28px 39px
+    ),
+    #252b47;
+  clip-path:polygon(
+    0 54%,5% 54%,5% 22%,11% 22%,11% 68%,
+    16% 68%,16% 39%,22% 39%,22% 16%,
+    28% 16%,28% 62%,34% 62%,34% 31%,
+    40% 31%,40% 72%,46% 72%,46% 24%,
+    52% 24%,52% 51%,58% 51%,58% 12%,
+    64% 12%,64% 65%,70% 65%,70% 35%,
+    76% 35%,76% 19%,82% 19%,82% 60%,
+    88% 60%,88% 29%,94% 29%,94% 49%,
+    100% 49%,100% 100%,0 100%
+  );
+}
+
+/* The old dot field made the lights look detached from buildings.
+   Building layers now own their window lights. */
+.night .city-lights{
+  opacity:0;
+}
+
+.night .rail{
+  bottom:18%;
+  height:3px;
+  background:rgba(127,116,145,.55);
+  box-shadow:
+    0 7px rgba(63,63,91,.78),
+    0 -2px rgba(221,184,155,.08);
+}
+
+/* Slight horizon glow to separate the skyline from the sky. */
+.night::before{
+  content:"";
+  position:absolute;
+  z-index:-6;
+  left:0;
+  right:0;
+  bottom:17%;
+  height:27%;
+  pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(129,82,111,.08) 38%,
+    rgba(183,103,112,.18) 72%,
+    rgba(220,135,119,.14) 100%
+  );
+}
+
+/* Development-only CSS refresh feedback. */
+.dev-refresh-status{
+  font-size:9px;
+  opacity:.85;
+  align-self:center;
+  white-space:nowrap;
+}
