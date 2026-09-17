@@ -1,0 +1,9 @@
+{
+  "name": "Pixel Desk Clock",
+  "short_name": "Desk Clock",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#303653",
+  "theme_color": "#303653",
+  "orientation": "landscape"
+}
