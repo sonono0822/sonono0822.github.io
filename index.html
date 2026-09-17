@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#313755">
+  <title>Pixel Desk Clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="world" id="world" data-period="auto">
+    <div class="sky-overlay"></div>
+    <div class="stars"></div>
+    <div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+
+    <main class="layout">
+      <section class="clock-area">
+        <p class="greeting" id="greeting">Good morning,<br>Have a nice day.</p>
+        <div class="clock" id="clock">00:00</div>
+        <div class="date" id="date"></div>
+
+        <div class="character-zone">
+          <div class="speech" id="speech">おつかれさま...</div>
+          <div class="character" id="character" aria-label="pixel character">
+            <div class="ear left"></div><div class="ear right"></div>
+            <div class="hood"></div><div class="face">
+              <i class="eye left"></i><i class="eye right"></i><i class="mouth"></i>
+            </div>
+            <div class="body"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="calendar-card" id="calendarCard">
+        <div class="calendar-head">
+          <button id="prev" aria-label="前月">‹</button>
+          <h1 id="month"></h1>
+          <button id="next" aria-label="次月">›</button>
+        </div>
+        <div class="week"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+        <div class="days" id="days"></div>
+        <div class="calendar-foot"><button id="today">TODAY</button><span>↑ 次月　↓ 前月</span></div>
+      </section>
+    </main>
+
+    <nav class="dev-controls">
+      <button data-scene="auto">AUTO</button><button data-scene="morning">朝</button>
+      <button data-scene="day">昼</button><button data-scene="evening">夕</button><button data-scene="night">夜</button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
