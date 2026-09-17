@@ -36,473 +36,246 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 @media(max-height:450px) and (orientation:landscape){.dashboard{padding:4vh 4vw 6vh;gap:2.5vw}.pixel-clock{margin-top:3vh;height:clamp(90px,28vh,125px)}.pixel-digit{width:clamp(54px,7.4vw,88px)}.date{margin-top:2vh}.calendar-panel{padding:1.2vw 1.4vw}.days{height:48vh}.pet-home{transform:scale(.72);transform-origin:bottom left;bottom:0}}
 @media(orientation:portrait){.dashboard{grid-template-columns:1fr;grid-template-rows:43% 57%;padding:3vh 5vw}.pixel-clock{margin-top:2vh;height:18vw}.pixel-digit{width:11vw}.date{margin-top:1vh}.calendar-panel{height:100%}.days{height:36vh}.pet-home{display:none}}
 
-/* Step 3 / v5.3: night-city visual refinement only.
-   Geometry and application layout remain unchanged. */
-.night .sky-stars{
-  opacity:.58;
-  background-image:
-    radial-gradient(circle at center,#fff0c8 0 1px,transparent 1.6px),
-    radial-gradient(circle at center,#d8d5e6 0 1px,transparent 1.5px);
-  background-size:63px 49px,97px 71px;
-  background-position:0 0,28px 17px;
-}
-.night .sun-moon{
-  top:13%;
-  right:24%;
-  width:50px;
-  height:50px;
-  background:#e8dfcf;
-  box-shadow:
-    -13px 6px 0 #171d3a,
-    0 0 18px #e8dfcf33;
-}
-.night .cloud{
-  opacity:.18;
-  background:#c7a9b3;
-  box-shadow:18px -8px #c7a9b3,40px 0 #c7a9b3;
-}
-.night .city-far{
-  background:#59556f;
-  opacity:.72;
-}
-.night .city-mid{
-  background:#3d405b;
-}
-.night .city-near{
-  background:#252a46;
-}
-.night .city-lights{
-  opacity:.82;
-  background-image:
-    radial-gradient(#f3c777 0 2px,transparent 2.4px),
-    radial-gradient(#d79b78 0 1.5px,transparent 2px);
-  background-size:30px 22px,47px 31px;
-  background-position:0 0,14px 8px;
-}
-.night .rail{
-  background:#6c657e88;
-  box-shadow:0 7px #3d405caa;
-}
-
 
 /* =========================================================
-   Step 3-2 / v5.3.2
-   Night city refinement.
-   These selectors intentionally override only night-scene
-   background elements. Clock/calendar/pet layout is untouched.
+   v5.5.0 / Step 3-6
+   NIGHT CITY — object-based implementation
+   One authoritative night-background section.
+   Clock/calendar/pet styles above are intentionally untouched.
    ========================================================= */
 
-.night .city-far{
-  height:50%;
-  opacity:.78;
-  background:
-    repeating-linear-gradient(
-      to right,
-      transparent 0 18px,
-      rgba(244,207,151,.18) 18px 21px,
-      transparent 21px 34px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0 15px,
-      rgba(244,207,151,.13) 15px 18px,
-      transparent 18px 27px
-    ),
-    #56566f;
-  clip-path:polygon(
-    0 58%,4% 58%,4% 39%,8% 39%,8% 53%,
-    12% 53%,12% 28%,17% 28%,17% 60%,
-    21% 60%,21% 43%,25% 43%,25% 20%,
-    30% 20%,30% 55%,34% 55%,34% 35%,
-    39% 35%,39% 62%,43% 62%,43% 25%,
-    48% 25%,48% 48%,52% 48%,52% 15%,
-    57% 15%,57% 57%,61% 57%,61% 31%,
-    66% 31%,66% 51%,70% 51%,70% 23%,
-    75% 23%,75% 60%,80% 60%,80% 38%,
-    85% 38%,85% 18%,89% 18%,89% 54%,
-    94% 54%,94% 32%,100% 32%,100% 100%,0 100%
-  );
+/* Hide the old polygon city only in NIGHT.
+   It remains available for the unfinished morning/day/evening scenes. */
+.night > .city,
+.night > .city-lights,
+.night > .rail{
+  display:none;
 }
 
-.night .city-mid{
-  height:38%;
-  background:
-    repeating-linear-gradient(
-      to right,
-      transparent 0 25px,
-      rgba(247,203,125,.32) 25px 29px,
-      transparent 29px 43px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0 18px,
-      rgba(247,203,125,.24) 18px 22px,
-      transparent 22px 32px
-    ),
-    #3b405a;
-  clip-path:polygon(
-    0 61%,5% 61%,5% 32%,10% 32%,10% 67%,
-    15% 67%,15% 44%,20% 44%,20% 22%,
-    25% 22%,25% 59%,30% 59%,30% 36%,
-    35% 36%,35% 70%,40% 70%,40% 28%,
-    45% 28%,45% 51%,50% 51%,50% 16%,
-    55% 16%,55% 63%,61% 63%,61% 39%,
-    66% 39%,66% 25%,71% 25%,71% 68%,
-    76% 68%,76% 34%,82% 34%,82% 56%,
-    87% 56%,87% 20%,92% 20%,92% 62%,
-    96% 62%,96% 40%,100% 40%,100% 100%,0 100%
-  );
-}
-
-.night .city-near{
-  height:27%;
-  background:
-    repeating-linear-gradient(
-      to right,
-      transparent 0 34px,
-      rgba(255,211,123,.68) 34px 39px,
-      transparent 39px 55px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0 23px,
-      rgba(255,211,123,.56) 23px 28px,
-      transparent 28px 39px
-    ),
-    #252b47;
-  clip-path:polygon(
-    0 54%,5% 54%,5% 22%,11% 22%,11% 68%,
-    16% 68%,16% 39%,22% 39%,22% 16%,
-    28% 16%,28% 62%,34% 62%,34% 31%,
-    40% 31%,40% 72%,46% 72%,46% 24%,
-    52% 24%,52% 51%,58% 51%,58% 12%,
-    64% 12%,64% 65%,70% 65%,70% 35%,
-    76% 35%,76% 19%,82% 19%,82% 60%,
-    88% 60%,88% 29%,94% 29%,94% 49%,
-    100% 49%,100% 100%,0 100%
-  );
-}
-
-/* The old dot field made the lights look detached from buildings.
-   Building layers now own their window lights. */
-.night .city-lights{
-  opacity:0;
-}
-
-.night .rail{
-  bottom:18%;
-  height:3px;
-  background:rgba(127,116,145,.55);
-  box-shadow:
-    0 7px rgba(63,63,91,.78),
-    0 -2px rgba(221,184,155,.08);
-}
-
-/* Slight horizon glow to separate the skyline from the sky. */
-.night::before{
-  content:"";
-  position:absolute;
-  z-index:-6;
-  left:0;
-  right:0;
-  bottom:17%;
-  height:27%;
-  pointer-events:none;
-  background:linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(129,82,111,.08) 38%,
-    rgba(183,103,112,.18) 72%,
-    rgba(220,135,119,.14) 100%
-  );
-}
-
-/* =========================================================
-   Step 3-3 / v5.3.3
-   Reference-locked night skyline.
-   Goal: replace the continuous "grid/fence" look with discrete
-   buildings whose windows exist only inside each building.
-   No clock/calendar/pet/application logic is changed.
-   ========================================================= */
-
-/* Shared rule: v5.3.2 polygon silhouettes are disabled only for night. */
-.night .city-far,
-.night .city-mid,
-.night .city-near{
-  clip-path:none;
-  opacity:1;
-}
-
-/* FAR CITY
-   Small, dense buildings = depth. Window layers are bounded rectangles,
-   so light never continues through the gaps between buildings. */
-.night .city-far{
-  height:35%;
-  background:
-    /* windows */
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px)  2%  64% / 5.5% 27% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 12%  48% / 4.5% 43% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 22%  58% / 6.0% 33% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 34%  42% / 4.0% 49% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 46%  55% / 5.0% 36% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 57%  37% / 4.2% 54% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 69%  52% / 6.2% 39% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 82%  45% / 4.8% 46% repeat,
-    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 93%  59% / 5.0% 32% repeat,
-
-    /* buildings */
-    linear-gradient(#51536b,#51536b)  2% 100% / 5.5% 36% no-repeat,
-    linear-gradient(#4c5068,#4c5068) 12% 100% / 4.5% 52% no-repeat,
-    linear-gradient(#55566e,#55566e) 22% 100% / 6.0% 42% no-repeat,
-    linear-gradient(#484d66,#484d66) 34% 100% / 4.0% 58% no-repeat,
-    linear-gradient(#55566e,#55566e) 46% 100% / 5.0% 45% no-repeat,
-    linear-gradient(#464b64,#464b64) 57% 100% / 4.2% 63% no-repeat,
-    linear-gradient(#53556d,#53556d) 69% 100% / 6.2% 48% no-repeat,
-    linear-gradient(#494e67,#494e67) 82% 100% / 4.8% 55% no-repeat,
-    linear-gradient(#55566e,#55566e) 93% 100% / 5.0% 41% no-repeat;
-  background-repeat:no-repeat;
-  filter:saturate(.82);
-}
-
-/* MID CITY
-   Fewer, clearer buildings like the reference skyline. */
-.night .city-mid{
-  height:29%;
-  background:
-    /* windows */
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px)  5%  56% / 6.5% 36% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 17%  34% / 5.2% 58% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 29%  49% / 7.0% 43% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 43%  25% / 5.0% 67% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 56%  45% / 6.5% 47% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 70%  30% / 5.3% 62% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 83%  52% / 7.0% 40% repeat,
-    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 95%  38% / 4.8% 54% repeat,
-
-    /* buildings */
-    linear-gradient(#383e59,#383e59)  5% 100% / 6.5% 45% no-repeat,
-    linear-gradient(#343a55,#343a55) 17% 100% / 5.2% 67% no-repeat,
-    linear-gradient(#3d425c,#3d425c) 29% 100% / 7.0% 52% no-repeat,
-    linear-gradient(#303750,#303750) 43% 100% / 5.0% 76% no-repeat,
-    linear-gradient(#3b405a,#3b405a) 56% 100% / 6.5% 56% no-repeat,
-    linear-gradient(#323852,#323852) 70% 100% / 5.3% 71% no-repeat,
-    linear-gradient(#3c415b,#3c415b) 83% 100% / 7.0% 49% no-repeat,
-    linear-gradient(#343a55,#343a55) 95% 100% / 4.8% 63% no-repeat;
-  background-repeat:no-repeat;
-}
-
-/* NEAR CITY
-   Strong silhouettes, but sparse warm windows.
-   This specifically removes the v5.3.2 yellow lattice. */
-.night .city-near{
-  height:22%;
-  background:
-    /* windows */
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px)  3%  44% / 8.0% 45% repeat,
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 16%  27% / 7.0% 62% repeat,
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 31%  40% / 9.0% 49% repeat,
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 48%  20% / 7.2% 69% repeat,
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 64%  36% / 8.5% 53% repeat,
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 81%  25% / 7.5% 64% repeat,
-    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 95%  43% / 7.0% 46% repeat,
-
-    /* buildings */
-    linear-gradient(#252b47,#252b47)  3% 100% / 8.0% 55% no-repeat,
-    linear-gradient(#202641,#202641) 16% 100% / 7.0% 72% no-repeat,
-    linear-gradient(#282e4a,#282e4a) 31% 100% / 9.0% 59% no-repeat,
-    linear-gradient(#1f253f,#1f253f) 48% 100% / 7.2% 79% no-repeat,
-    linear-gradient(#272d49,#272d49) 64% 100% / 8.5% 63% no-repeat,
-    linear-gradient(#202641,#202641) 81% 100% / 7.5% 74% no-repeat,
-    linear-gradient(#282e4a,#282e4a) 95% 100% / 7.0% 56% no-repeat;
-  background-repeat:no-repeat;
-}
-
-/* Keep the old global light field disabled. */
-.night .city-lights{opacity:0}
-
-/* Reference image has a horizontal balcony/rail, not a glowing grid. */
-.night .rail{
-  bottom:17.5%;
-  height:3px;
-  background:rgba(120,111,139,.62);
-  box-shadow:
-    0 6px rgba(53,56,82,.88),
-    0 -1px rgba(232,190,154,.09);
-}
-
-
-/* =========================================================
-   Step 3-5 / v5.4.0 — reference-locked NIGHT city
-   Visual target: dense layered skyline seen from a quiet
-   balcony/window, translated from the fixed reference into night.
-   Application geometry and character/calendar/clock are untouched.
-   ========================================================= */
-
-/* Deeper night with a restrained violet city glow at the horizon. */
 .night{
   background:
-    radial-gradient(circle at 68% 8%, rgba(255,241,194,.10) 0 2%, transparent 7%),
     linear-gradient(
       to bottom,
-      #10172f 0%,
-      #151c38 43%,
-      #252743 66%,
-      #55415a 83%,
-      #72505f 100%
+      #0f1730 0%,
+      #141c38 42%,
+      #242844 66%,
+      #493e56 82%,
+      #6c4b5c 100%
     );
 }
 
-/* Distant haze: this is intentionally subtle; the skyline remains readable. */
-.night::before{
-  content:"";
+.night .sky-stars{
+  opacity:.66;
+  background-image:
+    radial-gradient(circle,#fff0c8 0 1px,transparent 1.6px),
+    radial-gradient(circle,#c9c7d8 0 1px,transparent 1.5px);
+  background-size:63px 49px,97px 71px;
+  background-position:0 0,28px 17px;
+}
+
+.night .sun-moon{
+  top:10%;
+  right:20%;
+  width:44px;
+  height:44px;
+  background:#eee6cf;
+  box-shadow:-12px 5px 0 #141c38,0 0 20px #eee6cf24;
+}
+
+.night .cloud{
+  opacity:.10;
+  background:#b9a3b5;
+  box-shadow:18px -8px #b9a3b5,40px 0 #b9a3b5;
+}
+
+/* Entire city is behind the dashboard and independent of app UI. */
+.night-city{
+  display:none;
   position:absolute;
-  inset:auto 0 15% 0;
-  height:31%;
-  z-index:-7;
+  inset:0;
+  z-index:-5;
   pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 100%,
-      rgba(221,139,118,.19) 0%,
-      rgba(152,95,116,.13) 34%,
-      transparent 72%);
+  overflow:hidden;
 }
+.night .night-city{display:block}
 
-/* FAR LAYER — dense low-rise city, many tiny warm windows. */
-.night .city-far{
-  bottom:15%;
-  height:30%;
-  opacity:.82;
-  clip-path:none;
-  background:
-    radial-gradient(circle, rgba(238,187,123,.75) 0 1.2px, transparent 1.7px) 1% 92% / 3.8% 15% repeat,
-    radial-gradient(circle, rgba(226,171,112,.55) 0 1px, transparent 1.5px) 2% 78% / 4.6% 19% repeat,
-    linear-gradient(#4a4c65,#4a4c65) 0% 100% / 4% 38% no-repeat,
-    linear-gradient(#454962,#454962) 5% 100% / 5% 52% no-repeat,
-    linear-gradient(#505169,#505169) 11% 100% / 3% 31% no-repeat,
-    linear-gradient(#42465f,#42465f) 15% 100% / 5% 45% no-repeat,
-    linear-gradient(#505169,#505169) 21% 100% / 4% 58% no-repeat,
-    linear-gradient(#464a63,#464a63) 26% 100% / 6% 35% no-repeat,
-    linear-gradient(#4e5068,#4e5068) 33% 100% / 4% 49% no-repeat,
-    linear-gradient(#41455e,#41455e) 38% 100% / 5% 64% no-repeat,
-    linear-gradient(#4c4e67,#4c4e67) 44% 100% / 6% 39% no-repeat,
-    linear-gradient(#444860,#444860) 51% 100% / 3% 55% no-repeat,
-    linear-gradient(#505169,#505169) 55% 100% / 5% 34% no-repeat,
-    linear-gradient(#41455e,#41455e) 61% 100% / 4% 68% no-repeat,
-    linear-gradient(#4c4e67,#4c4e67) 66% 100% / 6% 43% no-repeat,
-    linear-gradient(#454961,#454961) 73% 100% / 4% 57% no-repeat,
-    linear-gradient(#505169,#505169) 78% 100% / 5% 36% no-repeat,
-    linear-gradient(#40445d,#40445d) 84% 100% / 4% 62% no-repeat,
-    linear-gradient(#4d4f68,#4d4f68) 89% 100% / 6% 46% no-repeat,
-    linear-gradient(#454961,#454961) 96% 100% / 4% 55% no-repeat;
-  filter:none;
-}
-
-/* MID LAYER — recognisable individual buildings with uneven roof lines. */
-.night .city-mid{
-  bottom:14%;
-  height:27%;
-  opacity:1;
-  clip-path:none;
-  background:
-    radial-gradient(circle, #e7b56f 0 1.5px, transparent 2px) 3% 75% / 5% 18% repeat,
-    radial-gradient(circle, rgba(234,181,111,.72) 0 1.3px, transparent 1.9px) 7% 88% / 6% 17% repeat,
-    linear-gradient(#343a55,#343a55) 1% 100% / 7% 49% no-repeat,
-    linear-gradient(#303650,#303650) 10% 100% / 5% 72% no-repeat,
-    linear-gradient(#383e58,#383e58) 17% 100% / 8% 57% no-repeat,
-    linear-gradient(#2f354f,#2f354f) 27% 100% / 6% 82% no-repeat,
-    linear-gradient(#383e58,#383e58) 35% 100% / 9% 46% no-repeat,
-    linear-gradient(#303650,#303650) 46% 100% / 5% 66% no-repeat,
-    linear-gradient(#3a405a,#3a405a) 53% 100% / 8% 53% no-repeat,
-    linear-gradient(#2e344e,#2e344e) 63% 100% / 6% 78% no-repeat,
-    linear-gradient(#393f59,#393f59) 71% 100% / 9% 48% no-repeat,
-    linear-gradient(#303650,#303650) 82% 100% / 5% 69% no-repeat,
-    linear-gradient(#373d57,#373d57) 89% 100% / 9% 55% no-repeat;
-}
-
-/* NEAR LAYER — dark foreground blocks; windows remain sparse so the
-   foreground does not turn into the old yellow lattice. */
-.night .city-near{
-  bottom:12.5%;
-  height:22%;
-  opacity:1;
-  clip-path:none;
-  background:
-    radial-gradient(circle, #efbd70 0 2px, transparent 2.6px) 4% 72% / 8% 25% repeat,
-    linear-gradient(#202742,#202742) 2% 100% / 9% 57% no-repeat,
-    linear-gradient(#1c233e,#1c233e) 14% 100% / 8% 81% no-repeat,
-    linear-gradient(#242b47,#242b47) 25% 100% / 11% 63% no-repeat,
-    linear-gradient(#1c233e,#1c233e) 39% 100% / 8% 88% no-repeat,
-    linear-gradient(#242b47,#242b47) 50% 100% / 10% 56% no-repeat,
-    linear-gradient(#1d243f,#1d243f) 63% 100% / 8% 76% no-repeat,
-    linear-gradient(#252c48,#252c48) 74% 100% / 11% 61% no-repeat,
-    linear-gradient(#1c233e,#1c233e) 88% 100% / 9% 83% no-repeat;
-}
-
-/* Landmark silhouette inspired by the reference's varied skyline.
-   Built from CSS only; no new image asset required. */
-.night .city-mid::before{
-  content:"";
+.city-glow{
   position:absolute;
-  left:67%;
-  bottom:0;
-  width:7px;
-  height:74%;
-  background:#2c324c;
-  box-shadow:
-    -5px 13px 0 -2px #2c324c,
-     5px 13px 0 -2px #2c324c;
-  clip-path:polygon(43% 0,57% 0,62% 18%,76% 34%,64% 34%,72% 58%,100% 100%,0 100%,28% 58%,36% 34%,24% 34%,38% 18%);
-  opacity:.95;
-}
-
-/* Rooftop aerial to break up the rectangular silhouette. */
-.night .city-mid::after{
-  content:"";
-  position:absolute;
-  left:27.8%;
-  bottom:81%;
-  width:2px;
-  height:9%;
-  background:#303650;
-  box-shadow:0 -7px 0 -0.5px #303650;
-}
-
-/* No detached global dot-lights. */
-.night .city-lights{
-  opacity:0;
-}
-
-/* Balcony / window ledge: horizontal framing only, never a full grid. */
-.night .rail{
   left:0;
   right:0;
   bottom:12%;
-  height:4px;
-  background:#53546b;
-  box-shadow:
-    0 8px 0 #292f4b,
-    0 -2px 0 rgba(199,153,142,.16);
+  height:34%;
+  background:
+    radial-gradient(ellipse at 50% 100%,
+      rgba(222,139,116,.25) 0%,
+      rgba(148,91,113,.15) 37%,
+      transparent 73%);
 }
 
-.night .rail::before{
-  content:"";
+/* A skyline is a container of actual independent buildings. */
+.skyline{
   position:absolute;
   left:0;
   right:0;
-  top:12px;
+  bottom:14%;
+}
+.building{
+  position:absolute;
+  left:var(--x);
+  bottom:0;
+  width:var(--w);
+  height:var(--h);
+}
+.windows{
+  position:absolute;
+  inset:12% 16% 10%;
+  display:grid;
+  grid-template-columns:repeat(var(--cols),1fr);
+  grid-template-rows:repeat(var(--rows),1fr);
+  gap:clamp(3px,.55vw,8px);
+}
+.win{
+  align-self:center;
+  justify-self:center;
+  width:clamp(2px,.32vw,5px);
+  height:clamp(3px,.48vw,7px);
+  background:transparent;
+}
+.win.on{
+  background:#e5b36f;
+  box-shadow:0 0 4px rgba(229,179,111,.18);
+}
+
+/* Far city: dense and hazy, like the reference's distant blocks. */
+.skyline-far{
+  height:29%;
+  opacity:.64;
+  filter:saturate(.75);
+}
+.far-building{
+  background:#515269;
+  box-shadow:inset -3px 0 rgba(28,32,54,.18);
+}
+.far-building:nth-child(3n+1){background:#494d65}
+.far-building:nth-child(4n+2){background:#58566c}
+.far-building:nth-child(5n){border-top:2px solid rgba(119,105,127,.28)}
+.far-building .win.on{
+  width:2px;
   height:3px;
-  background:#3a4059;
-  box-shadow:0 7px 0 rgba(25,31,52,.9);
+  background:#d49f69;
+  opacity:.7;
 }
 
-/* A quiet foreground ledge like the reference image. */
-.night .rail::after{
+/* Mid city: readable individual silhouettes. */
+.skyline-mid{
+  height:25%;
+  opacity:.94;
+}
+.mid-building{
+  background:#343a55;
+  border-top:2px solid rgba(87,84,109,.45);
+  box-shadow:inset -4px 0 rgba(20,25,45,.18);
+}
+.mid-building:nth-child(3n){background:#3b4059}
+.mid-building:nth-child(4n+1){background:#303650}
+.mid-building:nth-child(5n+2)::before{
   content:"";
+  position:absolute;
+  left:18%;
+  top:-7%;
+  width:64%;
+  height:7%;
+  background:#2d334d;
+}
+.mid-building:nth-child(6n+3)::after{
+  content:"";
+  position:absolute;
+  left:48%;
+  bottom:100%;
+  width:2px;
+  height:10%;
+  background:#303650;
+}
+.mid-building .win.on{background:#e7ad68}
+
+/* Landmark: a restrained tower silhouette to break the roof line. */
+.landmark-tower{
+  position:absolute;
+  left:67%;
+  bottom:0;
+  width:34px;
+  height:88%;
+}
+.landmark-tower::before{
+  content:"";
+  position:absolute;
+  left:15px;
+  top:0;
+  width:4px;
+  height:100%;
+  background:#252c47;
+  clip-path:polygon(40% 0,60% 0,68% 20%,82% 44%,66% 44%,78% 70%,100% 100%,0 100%,22% 70%,34% 44%,18% 44%,32% 20%);
+}
+.landmark-tower::after{
+  content:"";
+  position:absolute;
+  left:8px;
+  bottom:0;
+  width:18px;
+  height:5px;
+  background:#252c47;
+}
+.landmark-tower i{
+  position:absolute;
+  left:10px;
+  width:14px;
+  height:2px;
+  background:#5c5367;
+}
+.landmark-tower i:nth-child(1){bottom:24%}
+.landmark-tower i:nth-child(2){bottom:44%}
+.landmark-tower i:nth-child(3){bottom:64%}
+
+/* Near city: darker and larger, with deliberately sparse windows. */
+.skyline-near{
+  height:19%;
+  bottom:12.5%;
+}
+.near-building{
+  background:#202742;
+  border-top:3px solid rgba(61,62,87,.72);
+  box-shadow:inset -5px 0 rgba(13,18,36,.24);
+}
+.near-building:nth-child(2n){background:#252b47}
+.near-building:nth-child(3n+1){background:#1d243f}
+.near-building .windows{inset:17% 18% 12%}
+.near-building .win.on{
+  background:#efbb70;
+  opacity:.88;
+}
+
+/* Horizontal foreground framing — no yellow lattice. */
+.balcony{
   position:absolute;
   left:0;
   right:0;
-  top:22px;
-  height:42px;
-  background:linear-gradient(to bottom,#252b45,#1e243c);
-  border-top:2px solid rgba(117,105,126,.55);
+  bottom:0;
+  height:14%;
+  background:linear-gradient(to bottom,#252b45 0%,#1d233b 100%);
+  border-top:3px solid #55566d;
+  box-shadow:0 -5px 0 rgba(37,40,65,.7);
 }
+.balcony-top,
+.balcony-lower{
+  position:absolute;
+  left:0;
+  right:0;
+  height:3px;
+  background:#777084;
+  opacity:.55;
+}
+.balcony-top{top:12%}
+.balcony-lower{top:31%;background:#3c425b;opacity:.8}
+
+/* Keep the character visually above the foreground ledge. */
+.night .pet-home{z-index:1}
