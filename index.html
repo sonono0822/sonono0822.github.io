@@ -9,8 +9,8 @@
   <meta name="apple-mobile-web-app-title" content="Pixel Clock">
   <title>Pixel Desk Clock</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css?v=5.6.0">
-  <link rel="stylesheet" href="room.css?v=5.6.0">
+  <link rel="stylesheet" href="style.css?v=5.6.1">
+  <link rel="stylesheet" href="room.css?v=5.6.1">
 </head>
 <body>
 <div class="world evening" id="world">
@@ -313,6 +313,8 @@
     <div class="window-lintel"></div>
     <div class="window-sill"></div>
     <div class="sill-lamplight"></div>
+    <div class="sill-grain"></div>
+    <div class="object-contact-shadows"></div>
 
     <!-- Pixel foliage and a ceramic pot; flat rectangular edges match the city. -->
     <svg class="room-object room-plant" viewBox="0 0 80 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
@@ -326,6 +328,12 @@
       <path fill="#b09796" d="M27 158h5v13h-5z"/>
       <path fill="#4a455d" d="M50 158h7v15h-7z"/>
       <path fill="#22263b" d="M20 176h46v4H20z"/>
+      <!-- Smaller leaf tips, veins and reflected lamplight on the pot's right edge. -->
+      <path fill="#7b866a" d="M61 29h4v7h-4zM35 41h3v8h-3zM24 70h8v3h-8zM59 81h8v3h-8zM22 104h9v3h-9zM23 130h7v3h-7z"/>
+      <path fill="#52664f" d="M40 112h8v-7h8v-8h9v10h-6v7H48v7h-8zM35 66h7v-7h7v9h-6v5h-8z"/>
+      <path fill="#b89a86" d="M54 149h7v4h-7zM54 158h3v13h-3z"/>
+      <path fill="#8c7887" d="M35 159h10v2H35zM35 168h8v2h-8z"/>
+      <path fill="#38354a" d="M28 173h29v3H28z"/>
     </svg>
 
     <!-- A steady warm lamp, without flicker or additional animation. -->
@@ -345,6 +353,11 @@
       <path fill="#97808a" d="M12 48h3v73h-3zm-2 79h64v4H10z"/>
       <path fill="#25283d" d="M8 123h68v10h5v9H3v-9h5z"/>
       <path fill="#696071" d="M12 126h60v4H12zm-4 10h68v3H8z"/>
+      <!-- Metal catches warm light; the glass reflection stays sharply pixelated. -->
+      <path fill="#d2aa87" d="M20 51h2v23h-2zM44 83h2v30h-2zM21 119h40v2H21zM14 127h20v2H14z"/>
+      <path fill="#ffeac1" opacity=".45" d="M24 55h4v16h-4zM24 84h3v11h-3z"/>
+      <path fill="#8c7a80" d="M26 30h12v2H26zM18 39h17v2H18zM63 126h6v2h-6z"/>
+      <path fill="#b5967b" d="M15 48h3v3h-3zM65 48h3v3h-3zM15 119h3v3h-3zM65 119h3v3h-3z"/>
     </svg>
 
     <!-- Stacked cloth-bound books with small spine marks, no UI controls. -->
@@ -361,6 +374,13 @@
         <path d="M119 57h4v4h-4zm8 0h4v4h-4zm-12 6h4v4h-4zm16 0h4v4h-4zm-10 0h8v7h-8z"/>
       </g>
       <path fill="#6a5a70" d="M6 68h162v3H6zM13 43h143v3H13zM24 18h139v3H24z"/>
+      <!-- Cloth bands, paper edges and a short fabric bookmark. -->
+      <path fill="#c4a69a" d="M39 7h3v11h-3zM31 32h3v10h-3zM23 57h3v10h-3z"/>
+      <path fill="#8c7a83" d="M153 9h6v1h-6zM153 13h6v1h-6zM144 34h8v1h-8zM144 38h8v1h-8zM155 59h9v1h-9zM155 63h9v1h-9z"/>
+      <path fill="#9b6572" d="M111 21h6v14l-3-3-3 3z"/>
+      <path fill="#d0af9a" d="M25 8h4v9h-4zM14 32h4v10h-4zM7 57h4v10H7z"/>
+      <defs><linearGradient id="book-lamplight" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#f3bc7e" stop-opacity=".3"/><stop offset=".65" stop-color="#f3bc7e" stop-opacity="0"/></linearGradient></defs>
+      <path fill="url(#book-lamplight)" d="M6 53h162v18H6zM13 28h143v18H13zM24 4h139v17H24z"/>
     </svg>
   </div>
 

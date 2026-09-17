@@ -1,4 +1,4 @@
-/* Step 3: indoor foreground. Independent from the skyline and dashboard.
+/* Step 3-2: indoor foreground. Independent from the skyline and dashboard.
    The sill's upper plane runs from 86% to 93%, matching the pet's footing.
    All decoration is non-interactive and stays behind the dashboard. */
 .room-interior {
@@ -10,20 +10,20 @@
 }
 .room-interior .window-jamb {
   position:absolute;top:0;bottom:14%;width:1.2%;
-  background:#393a50;border-inline:2px solid #24283e;
-  box-shadow:inset 3px 0 #75677a,inset -3px 0 #505069;
+  background:linear-gradient(90deg,#343449,#4c455b 45%,#343449);border-inline:2px solid #24283e;
+  box-shadow:inset 3px 0 #75677a,inset -3px 0 #505069,4px 0 0 #20243840;
 }
 .room-interior .window-jamb-left {left:0}
 .room-interior .window-jamb-right {right:0;box-shadow:inset -3px 0 #9c7982,inset 3px 0 #505069}
 .room-interior .window-lintel {position:absolute;left:0;right:0;top:0;height:1.1%;background:#39394d;border-bottom:2px solid #696078;box-shadow:0 3px #252a413b}
 .room-interior .window-sill {
   position:absolute;left:0;right:0;bottom:0;height:14%;
-  background:#353449;border-top:3px solid #af9095;
+  background:linear-gradient(#3b374d,#2e2e43);border-top:3px solid #af9095;
   box-shadow:0 -3px #464257;
 }
 .room-interior .window-sill::before {
   content:"";position:absolute;left:0;right:0;top:0;height:50%;
-  background:linear-gradient(#766879 0 18%,#62596f 18% 78%,#95808a 78% 88%,#51495e 88%);
+  background:linear-gradient(#867182 0 12%,#6c5d73 12% 72%,#a58a91 72% 80%,#756376 80% 88%,#484258 88%);
   border-bottom:3px solid #24273d;
 }
 .room-interior .window-sill::after {
@@ -32,9 +32,13 @@
   border-top:2px solid #77708440;
 }
 .room-interior .sill-lamplight {
-  position:absolute;left:0;bottom:7.5%;width:24%;height:6%;
-  background:radial-gradient(ellipse at 36% 65%,#e6b27b48,transparent 72%);
+  position:absolute;left:0;bottom:7.3%;width:29%;height:6.2%;
+  background:radial-gradient(ellipse at 31% 65%,#f2c08d80 0%,#dcaa7852 22%,#d19b6830 44%,transparent 73%);
 }
+/* Sparse surface marks and short cast shadows share the established sill plane. */
+.room-interior .sill-grain {position:absolute;left:0;right:0;bottom:7.9%;height:3%;opacity:.35;background:linear-gradient(90deg,transparent 2%,#c9a18d 2% 6%,transparent 6% 16%,#c9a18d 16% 24%,transparent 24% 35%,#9b8390 35% 40%,transparent 40% 57%,#9b8390 57% 66%,transparent 66%);background-size:100% 1px;background-repeat:no-repeat;background-position:0 70%}
+.room-interior .object-contact-shadows {position:absolute;left:0;bottom:6.8%;width:29%;height:1.1%;background:#20223680;clip-path:polygon(3% 25%,21% 25%,21% 45%,44% 45%,44% 10%,97% 10%,100% 100%,3% 100%)}
+.room-interior .window-jamb-left::after {content:"";position:absolute;left:2px;right:0;bottom:0;height:22%;background:linear-gradient(transparent,#d7a17a45)}
 .room-interior .room-object {position:absolute;display:block;overflow:visible}
 .room-interior .room-plant {left:-.6%;bottom:7%;width:7.4%;height:31%}
 .room-interior .room-lantern {left:5.3%;bottom:7%;width:7.8%;height:24%}
