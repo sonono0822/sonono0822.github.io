@@ -100,8 +100,4 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .landmark-tower i:nth-child(3) {bottom:76%;left:33%;width:34%}
 .night-city .tower-lantern {position:absolute;left:38%;bottom:77%;width:25%;height:5%;background:#b4a4a2;border:1px solid #39415c;box-shadow:inset -3px 0 #6c6b85}
 .night-city .tower-brace {position:absolute;left:22%;bottom:16%;width:56%;height:31%;background:#71728a;clip-path:polygon(0 0,9% 0,100% 94%,100% 100%,91% 100%,0 6%,0 0,100% 0,100% 6%,9% 100%,0 100%,0 94%,91% 0)}
-.night-city .balcony {position:absolute;left:0;right:0;bottom:0;height:14%;background:linear-gradient(#3c3e57,#292f48);border-top:3px solid #888091;box-shadow:0 -4px #4d4c66,0 -7px #a185902e}
-.night-city .balcony-top,.night-city .balcony-lower {position:absolute;left:0;right:0;height:3px}
-.night-city .balcony-top {top:12%;background:#68647c}
-.night-city .balcony-lower {top:31%;background:#232c44;box-shadow:0 2px #88809424}
 .night .pet-home {z-index:1}

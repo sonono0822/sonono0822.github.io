@@ -1,0 +1,47 @@
+/* Step 3: indoor foreground. Independent from the skyline and dashboard.
+   The sill's upper plane runs from 86% to 93%, matching the pet's footing.
+   All decoration is non-interactive and stays behind the dashboard. */
+.room-interior {
+  --room-ink:#25283d;
+  --room-edge:#777084;
+  --room-surface:#746476;
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  overflow:hidden;
+}
+.room-interior .window-jamb {
+  position:absolute;top:0;bottom:14%;width:1.2%;
+  background:#393a50;border-inline:2px solid #24283e;
+  box-shadow:inset 3px 0 #75677a,inset -3px 0 #505069;
+}
+.room-interior .window-jamb-left {left:0}
+.room-interior .window-jamb-right {right:0;box-shadow:inset -3px 0 #9c7982,inset 3px 0 #505069}
+.room-interior .window-lintel {position:absolute;left:0;right:0;top:0;height:1.1%;background:#39394d;border-bottom:2px solid #696078;box-shadow:0 3px #252a413b}
+.room-interior .window-sill {
+  position:absolute;left:0;right:0;bottom:0;height:14%;
+  background:#353449;border-top:3px solid #af9095;
+  box-shadow:0 -3px #464257;
+}
+.room-interior .window-sill::before {
+  content:"";position:absolute;left:0;right:0;top:0;height:50%;
+  background:linear-gradient(#766879 0 18%,#62596f 18% 78%,#95808a 78% 88%,#51495e 88%);
+  border-bottom:3px solid #24273d;
+}
+.room-interior .window-sill::after {
+  content:"";position:absolute;left:0;right:0;bottom:0;height:43%;
+  background:linear-gradient(90deg,transparent 5%,#211f322b 5% 5.3%,transparent 5.3% 46%,#211f322b 46% 46.3%,transparent 46.3% 94%,#211f322b 94% 94.3%,transparent 94.3%);
+  border-top:2px solid #77708440;
+}
+.room-interior .sill-lamplight {
+  position:absolute;left:0;bottom:7.5%;width:24%;height:6%;
+  background:radial-gradient(ellipse at 36% 65%,#e6b27b48,transparent 72%);
+}
+.room-interior .room-object {position:absolute;display:block;overflow:visible}
+.room-interior .room-plant {left:-.6%;bottom:7%;width:7.4%;height:31%}
+.room-interior .room-lantern {left:5.3%;bottom:7%;width:7.8%;height:24%}
+.room-interior .room-books {left:13.4%;bottom:7%;width:14.8%;height:12%}
+/* Keep ornaments modest in stacked portrait layout; calendar stays in front. */
+@media(orientation:portrait) {
+  .room-interior .room-plant {height:18%;width:10%}
+  .room-interior .room-lantern {height:12%;width:10%}
+  .room-interior .room-books {height:6%;width:20%;left:17%}
+}
