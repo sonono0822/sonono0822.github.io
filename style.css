@@ -27,7 +27,7 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 @media(orientation:portrait){.dashboard{grid-template-columns:1fr;grid-template-rows:43% 57%;padding:3vh 5vw}.pixel-clock{margin-top:2vh;height:18vw}.pixel-digit{width:11vw}.date{margin-top:1vh}.calendar-panel{height:100%}.days{height:36vh}.pet-home{display:none}}
 
 
-/* Night scene — v5.5.3. All scenery rules are owned by this section.
+/* Night scene — v5.5.4. All scenery rules are owned by this section.
    Static building objects keep scenery independent of clock/calendar logic. */
 .night {background:linear-gradient(#252d4c 0%,#343b5a 44%,#514761 68%,#786071 88%,#49445e 100%)}
 .night > .city,.night > .city-lights,.night > .rail {display:none}
@@ -47,11 +47,11 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night .night-city {display:block}
 .night-city .city-glow {position:absolute;inset:47% 0 14%;background:radial-gradient(ellipse at 42% 80%,#be8b8e30,transparent 70%)}
 /* Low-contrast stepped cloud silhouettes, behind all city layers.
-   Kept near the horizon and side gaps to preserve the clock's quiet sky. */
+   Kept outside the clock and date region; the central cloud starts beyond 44% width. */
 .night-city .night-cloud {position:absolute;pointer-events:none;background:#a39ab4;opacity:.14;clip-path:polygon(0 78%,9% 78%,9% 61%,19% 61%,19% 43%,29% 43%,29% 19%,39% 19%,39% 0,49% 0,49% 16%,58% 16%,58% 38%,69% 38%,69% 52%,82% 52%,82% 72%,94% 72%,94% 87%,100% 87%,100% 100%,0 100%)}
 .night-city .night-cloud::after {content:"";position:absolute;left:0;right:0;bottom:0;height:17%;background:#c2a4b2;opacity:.45}
-.night-city .night-cloud-left {left:-7%;top:53%;width:26%;height:8%}
-.night-city .night-cloud-center {left:43%;top:46%;width:18%;height:6%;opacity:.11}
+.night-city .night-cloud-left {left:-10%;top:61%;width:18%;height:5%}
+.night-city .night-cloud-center {left:45%;top:57%;width:13%;height:4%;opacity:.09}
 .night-city .night-cloud-right {right:-5%;top:37%;width:25%;height:9%;opacity:.1}
 .night-city .skyline {position:absolute;left:0;right:0;bottom:14%;isolation:isolate}
 .night-city .building {position:absolute;left:var(--x);bottom:0;width:var(--w);height:var(--h);box-shadow:inset -3px 0 #111b304d,inset 2px 0 #d0bac018}
