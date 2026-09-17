@@ -217,29 +217,7 @@ function bindEvents() {
   // AUTO / 朝 / 昼 / 夕 / 夜 all resolve to the same night scene in v5.1.
   document.querySelectorAll("[data-scene]").forEach((button) => {
     button.addEventListener("click", applyNightScene);
-  });
-
-  const refreshCssButton = document.querySelector("#refreshCss");
-  const refreshCssStatus = document.querySelector("#refreshCssStatus");
-
-  if (refreshCssButton) {
-    refreshCssButton.addEventListener("click", () => {
-      const stylesheet = document.querySelector('link[rel="stylesheet"]');
-      if (!stylesheet) return;
-
-      const url = new URL(stylesheet.href, window.location.href);
-      url.searchParams.set("dev", Date.now().toString());
-      stylesheet.href = url.toString();
-
-      if (refreshCssStatus) {
-        refreshCssStatus.textContent = "更新中…";
-        window.setTimeout(() => {
-          refreshCssStatus.textContent = "更新済";
-        }, 700);
-      }
-    });
-  }
-}
+  });}
 
 function init() {
   assertRequiredElements();

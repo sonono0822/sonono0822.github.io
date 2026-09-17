@@ -217,15 +217,6 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
   );
 }
 
-/* Development-only CSS refresh feedback. */
-.dev-refresh-status{
-  font-size:9px;
-  opacity:.85;
-  align-self:center;
-  white-space:nowrap;
-}
-
-
 /* =========================================================
    Step 3-3 / v5.3.3
    Reference-locked night skyline.
@@ -337,4 +328,181 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
   box-shadow:
     0 6px rgba(53,56,82,.88),
     0 -1px rgba(232,190,154,.09);
+}
+
+
+/* =========================================================
+   Step 3-5 / v5.4.0 — reference-locked NIGHT city
+   Visual target: dense layered skyline seen from a quiet
+   balcony/window, translated from the fixed reference into night.
+   Application geometry and character/calendar/clock are untouched.
+   ========================================================= */
+
+/* Deeper night with a restrained violet city glow at the horizon. */
+.night{
+  background:
+    radial-gradient(circle at 68% 8%, rgba(255,241,194,.10) 0 2%, transparent 7%),
+    linear-gradient(
+      to bottom,
+      #10172f 0%,
+      #151c38 43%,
+      #252743 66%,
+      #55415a 83%,
+      #72505f 100%
+    );
+}
+
+/* Distant haze: this is intentionally subtle; the skyline remains readable. */
+.night::before{
+  content:"";
+  position:absolute;
+  inset:auto 0 15% 0;
+  height:31%;
+  z-index:-7;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 100%,
+      rgba(221,139,118,.19) 0%,
+      rgba(152,95,116,.13) 34%,
+      transparent 72%);
+}
+
+/* FAR LAYER — dense low-rise city, many tiny warm windows. */
+.night .city-far{
+  bottom:15%;
+  height:30%;
+  opacity:.82;
+  clip-path:none;
+  background:
+    radial-gradient(circle, rgba(238,187,123,.75) 0 1.2px, transparent 1.7px) 1% 92% / 3.8% 15% repeat,
+    radial-gradient(circle, rgba(226,171,112,.55) 0 1px, transparent 1.5px) 2% 78% / 4.6% 19% repeat,
+    linear-gradient(#4a4c65,#4a4c65) 0% 100% / 4% 38% no-repeat,
+    linear-gradient(#454962,#454962) 5% 100% / 5% 52% no-repeat,
+    linear-gradient(#505169,#505169) 11% 100% / 3% 31% no-repeat,
+    linear-gradient(#42465f,#42465f) 15% 100% / 5% 45% no-repeat,
+    linear-gradient(#505169,#505169) 21% 100% / 4% 58% no-repeat,
+    linear-gradient(#464a63,#464a63) 26% 100% / 6% 35% no-repeat,
+    linear-gradient(#4e5068,#4e5068) 33% 100% / 4% 49% no-repeat,
+    linear-gradient(#41455e,#41455e) 38% 100% / 5% 64% no-repeat,
+    linear-gradient(#4c4e67,#4c4e67) 44% 100% / 6% 39% no-repeat,
+    linear-gradient(#444860,#444860) 51% 100% / 3% 55% no-repeat,
+    linear-gradient(#505169,#505169) 55% 100% / 5% 34% no-repeat,
+    linear-gradient(#41455e,#41455e) 61% 100% / 4% 68% no-repeat,
+    linear-gradient(#4c4e67,#4c4e67) 66% 100% / 6% 43% no-repeat,
+    linear-gradient(#454961,#454961) 73% 100% / 4% 57% no-repeat,
+    linear-gradient(#505169,#505169) 78% 100% / 5% 36% no-repeat,
+    linear-gradient(#40445d,#40445d) 84% 100% / 4% 62% no-repeat,
+    linear-gradient(#4d4f68,#4d4f68) 89% 100% / 6% 46% no-repeat,
+    linear-gradient(#454961,#454961) 96% 100% / 4% 55% no-repeat;
+  filter:none;
+}
+
+/* MID LAYER — recognisable individual buildings with uneven roof lines. */
+.night .city-mid{
+  bottom:14%;
+  height:27%;
+  opacity:1;
+  clip-path:none;
+  background:
+    radial-gradient(circle, #e7b56f 0 1.5px, transparent 2px) 3% 75% / 5% 18% repeat,
+    radial-gradient(circle, rgba(234,181,111,.72) 0 1.3px, transparent 1.9px) 7% 88% / 6% 17% repeat,
+    linear-gradient(#343a55,#343a55) 1% 100% / 7% 49% no-repeat,
+    linear-gradient(#303650,#303650) 10% 100% / 5% 72% no-repeat,
+    linear-gradient(#383e58,#383e58) 17% 100% / 8% 57% no-repeat,
+    linear-gradient(#2f354f,#2f354f) 27% 100% / 6% 82% no-repeat,
+    linear-gradient(#383e58,#383e58) 35% 100% / 9% 46% no-repeat,
+    linear-gradient(#303650,#303650) 46% 100% / 5% 66% no-repeat,
+    linear-gradient(#3a405a,#3a405a) 53% 100% / 8% 53% no-repeat,
+    linear-gradient(#2e344e,#2e344e) 63% 100% / 6% 78% no-repeat,
+    linear-gradient(#393f59,#393f59) 71% 100% / 9% 48% no-repeat,
+    linear-gradient(#303650,#303650) 82% 100% / 5% 69% no-repeat,
+    linear-gradient(#373d57,#373d57) 89% 100% / 9% 55% no-repeat;
+}
+
+/* NEAR LAYER — dark foreground blocks; windows remain sparse so the
+   foreground does not turn into the old yellow lattice. */
+.night .city-near{
+  bottom:12.5%;
+  height:22%;
+  opacity:1;
+  clip-path:none;
+  background:
+    radial-gradient(circle, #efbd70 0 2px, transparent 2.6px) 4% 72% / 8% 25% repeat,
+    linear-gradient(#202742,#202742) 2% 100% / 9% 57% no-repeat,
+    linear-gradient(#1c233e,#1c233e) 14% 100% / 8% 81% no-repeat,
+    linear-gradient(#242b47,#242b47) 25% 100% / 11% 63% no-repeat,
+    linear-gradient(#1c233e,#1c233e) 39% 100% / 8% 88% no-repeat,
+    linear-gradient(#242b47,#242b47) 50% 100% / 10% 56% no-repeat,
+    linear-gradient(#1d243f,#1d243f) 63% 100% / 8% 76% no-repeat,
+    linear-gradient(#252c48,#252c48) 74% 100% / 11% 61% no-repeat,
+    linear-gradient(#1c233e,#1c233e) 88% 100% / 9% 83% no-repeat;
+}
+
+/* Landmark silhouette inspired by the reference's varied skyline.
+   Built from CSS only; no new image asset required. */
+.night .city-mid::before{
+  content:"";
+  position:absolute;
+  left:67%;
+  bottom:0;
+  width:7px;
+  height:74%;
+  background:#2c324c;
+  box-shadow:
+    -5px 13px 0 -2px #2c324c,
+     5px 13px 0 -2px #2c324c;
+  clip-path:polygon(43% 0,57% 0,62% 18%,76% 34%,64% 34%,72% 58%,100% 100%,0 100%,28% 58%,36% 34%,24% 34%,38% 18%);
+  opacity:.95;
+}
+
+/* Rooftop aerial to break up the rectangular silhouette. */
+.night .city-mid::after{
+  content:"";
+  position:absolute;
+  left:27.8%;
+  bottom:81%;
+  width:2px;
+  height:9%;
+  background:#303650;
+  box-shadow:0 -7px 0 -0.5px #303650;
+}
+
+/* No detached global dot-lights. */
+.night .city-lights{
+  opacity:0;
+}
+
+/* Balcony / window ledge: horizontal framing only, never a full grid. */
+.night .rail{
+  left:0;
+  right:0;
+  bottom:12%;
+  height:4px;
+  background:#53546b;
+  box-shadow:
+    0 8px 0 #292f4b,
+    0 -2px 0 rgba(199,153,142,.16);
+}
+
+.night .rail::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:12px;
+  height:3px;
+  background:#3a4059;
+  box-shadow:0 7px 0 rgba(25,31,52,.9);
+}
+
+/* A quiet foreground ledge like the reference image. */
+.night .rail::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:22px;
+  height:42px;
+  background:linear-gradient(to bottom,#252b45,#1e243c);
+  border-top:2px solid rgba(117,105,126,.55);
 }
