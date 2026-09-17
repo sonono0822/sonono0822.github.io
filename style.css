@@ -224,3 +224,117 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
   align-self:center;
   white-space:nowrap;
 }
+
+
+/* =========================================================
+   Step 3-3 / v5.3.3
+   Reference-locked night skyline.
+   Goal: replace the continuous "grid/fence" look with discrete
+   buildings whose windows exist only inside each building.
+   No clock/calendar/pet/application logic is changed.
+   ========================================================= */
+
+/* Shared rule: v5.3.2 polygon silhouettes are disabled only for night. */
+.night .city-far,
+.night .city-mid,
+.night .city-near{
+  clip-path:none;
+  opacity:1;
+}
+
+/* FAR CITY
+   Small, dense buildings = depth. Window layers are bounded rectangles,
+   so light never continues through the gaps between buildings. */
+.night .city-far{
+  height:35%;
+  background:
+    /* windows */
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px)  2%  64% / 5.5% 27% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 12%  48% / 4.5% 43% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 22%  58% / 6.0% 33% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 34%  42% / 4.0% 49% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 46%  55% / 5.0% 36% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 57%  37% / 4.2% 54% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 69%  52% / 6.2% 39% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 82%  45% / 4.8% 46% repeat,
+    radial-gradient(circle,#d8a977 0 1.3px,transparent 1.8px) 93%  59% / 5.0% 32% repeat,
+
+    /* buildings */
+    linear-gradient(#51536b,#51536b)  2% 100% / 5.5% 36% no-repeat,
+    linear-gradient(#4c5068,#4c5068) 12% 100% / 4.5% 52% no-repeat,
+    linear-gradient(#55566e,#55566e) 22% 100% / 6.0% 42% no-repeat,
+    linear-gradient(#484d66,#484d66) 34% 100% / 4.0% 58% no-repeat,
+    linear-gradient(#55566e,#55566e) 46% 100% / 5.0% 45% no-repeat,
+    linear-gradient(#464b64,#464b64) 57% 100% / 4.2% 63% no-repeat,
+    linear-gradient(#53556d,#53556d) 69% 100% / 6.2% 48% no-repeat,
+    linear-gradient(#494e67,#494e67) 82% 100% / 4.8% 55% no-repeat,
+    linear-gradient(#55566e,#55566e) 93% 100% / 5.0% 41% no-repeat;
+  background-repeat:no-repeat;
+  filter:saturate(.82);
+}
+
+/* MID CITY
+   Fewer, clearer buildings like the reference skyline. */
+.night .city-mid{
+  height:29%;
+  background:
+    /* windows */
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px)  5%  56% / 6.5% 36% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 17%  34% / 5.2% 58% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 29%  49% / 7.0% 43% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 43%  25% / 5.0% 67% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 56%  45% / 6.5% 47% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 70%  30% / 5.3% 62% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 83%  52% / 7.0% 40% repeat,
+    radial-gradient(circle,#e8b878 0 1.7px,transparent 2.2px) 95%  38% / 4.8% 54% repeat,
+
+    /* buildings */
+    linear-gradient(#383e59,#383e59)  5% 100% / 6.5% 45% no-repeat,
+    linear-gradient(#343a55,#343a55) 17% 100% / 5.2% 67% no-repeat,
+    linear-gradient(#3d425c,#3d425c) 29% 100% / 7.0% 52% no-repeat,
+    linear-gradient(#303750,#303750) 43% 100% / 5.0% 76% no-repeat,
+    linear-gradient(#3b405a,#3b405a) 56% 100% / 6.5% 56% no-repeat,
+    linear-gradient(#323852,#323852) 70% 100% / 5.3% 71% no-repeat,
+    linear-gradient(#3c415b,#3c415b) 83% 100% / 7.0% 49% no-repeat,
+    linear-gradient(#343a55,#343a55) 95% 100% / 4.8% 63% no-repeat;
+  background-repeat:no-repeat;
+}
+
+/* NEAR CITY
+   Strong silhouettes, but sparse warm windows.
+   This specifically removes the v5.3.2 yellow lattice. */
+.night .city-near{
+  height:22%;
+  background:
+    /* windows */
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px)  3%  44% / 8.0% 45% repeat,
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 16%  27% / 7.0% 62% repeat,
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 31%  40% / 9.0% 49% repeat,
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 48%  20% / 7.2% 69% repeat,
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 64%  36% / 8.5% 53% repeat,
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 81%  25% / 7.5% 64% repeat,
+    radial-gradient(circle,#f0c27c 0 2px,transparent 2.5px) 95%  43% / 7.0% 46% repeat,
+
+    /* buildings */
+    linear-gradient(#252b47,#252b47)  3% 100% / 8.0% 55% no-repeat,
+    linear-gradient(#202641,#202641) 16% 100% / 7.0% 72% no-repeat,
+    linear-gradient(#282e4a,#282e4a) 31% 100% / 9.0% 59% no-repeat,
+    linear-gradient(#1f253f,#1f253f) 48% 100% / 7.2% 79% no-repeat,
+    linear-gradient(#272d49,#272d49) 64% 100% / 8.5% 63% no-repeat,
+    linear-gradient(#202641,#202641) 81% 100% / 7.5% 74% no-repeat,
+    linear-gradient(#282e4a,#282e4a) 95% 100% / 7.0% 56% no-repeat;
+  background-repeat:no-repeat;
+}
+
+/* Keep the old global light field disabled. */
+.night .city-lights{opacity:0}
+
+/* Reference image has a horizontal balcony/rail, not a glowing grid. */
+.night .rail{
+  bottom:17.5%;
+  height:3px;
+  background:rgba(120,111,139,.62);
+  box-shadow:
+    0 6px rgba(53,56,82,.88),
+    0 -1px rgba(232,190,154,.09);
+}
