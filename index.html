@@ -1,1 +1,58 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#303653"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Desk Clock"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css"><title>Pixel Desk Clock</title></head><body><div class="world" id="world"><div class="stars"></div><div class="orb"></div><div class="cloud a"></div><div class="cloud b"></div><div class="city"></div><main><section class="clock-zone"><div id="greeting"></div><div id="clock">00:00</div><div id="date"></div><div class="petzone"><div id="speech">おつかれさま...</div><img id="pet" src="character.jpeg"></div></section><section class="calendar" id="calendar"><header><button id="prev">‹</button><h1 id="month"></h1><button id="next">›</button></header><div class="week"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div><div id="days"></div><footer><button id="today">TODAY</button><span>↑ 次月　↓ 前月</span></footer></section></main><nav class="dev"><button data-scene="auto">AUTO</button><button data-scene="morning">朝</button><button data-scene="day">昼</button><button data-scene="evening">夕</button><button data-scene="night">夜</button></nav></div><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#3a3d62">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pixel Clock">
+  <title>Pixel Desk Clock</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="world evening" id="world">
+  <div class="stars"></div>
+  <div class="sun-moon"></div>
+  <div class="cloud cloud1"></div><div class="cloud cloud2"></div>
+  <div class="far-city"></div><div class="near-city"></div><div class="lights"></div>
+  <div class="rail"></div>
+
+  <main class="dashboard">
+    <section class="clock-side">
+      <div class="greeting" id="greeting">Good evening,<br><span>おつかれさま。</span></div>
+      <div class="clock" id="clock">00:00</div>
+      <div class="date" id="date"></div>
+
+      <div class="pet-home" id="petHome">
+        <div class="bubble" id="bubble">おつかれさま...</div>
+        <div class="pet" id="pet" aria-label="小さなドットキャラクター">
+          <div class="pet-ear ear-l"></div><div class="pet-ear ear-r"></div>
+          <div class="pet-hood"></div>
+          <div class="pet-face"><i class="eye eye-l"></i><i class="eye eye-r"></i><i class="mouth"></i></div>
+          <div class="pet-body"><i class="ribbon"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendar-panel" id="calendarPanel">
+      <header class="cal-head">
+        <button id="prev" aria-label="前月">‹</button>
+        <h1 id="month"></h1>
+        <button id="next" aria-label="次月">›</button>
+      </header>
+      <div class="week"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+      <div class="days" id="days"></div>
+      <footer><button id="today">TODAY</button><span>↑ NEXT　↓ PREV</span></footer>
+    </section>
+  </main>
+
+  <nav class="scene-test" aria-label="背景テスト">
+    <button data-scene="auto">AUTO</button><button data-scene="morning">朝</button>
+    <button data-scene="day">昼</button><button data-scene="evening">夕</button><button data-scene="night">夜</button>
+  </nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
