@@ -1,0 +1,23 @@
+
+/* Step 8-2: static architectural and atmospheric detail, using blended palette values. */
+.night-city .mid-building,.night-city .near-building{box-shadow:inset -4px 0 #111b3059,inset 2px 0 #edddce26}
+.facade-detail{position:absolute;inset:3% 0 0;pointer-events:none;opacity:.65}
+.facade-0{background:repeating-linear-gradient(0deg,transparent 0 17px,#e9dacc18 17px 18px,#15203925 18px 20px)}
+.facade-1{background:linear-gradient(90deg,transparent 27%,#e9dacc18 27% 30%,transparent 30% 69%,#15203936 69% 74%,transparent 74%)}
+.facade-2{background:repeating-linear-gradient(0deg,transparent 0 23px,#15203940 23px 25px)}
+.night-city .mid-building .win,.night-city .near-building .win{box-shadow:1px 1px 0 #17203766}
+.night-city .mid-building .win.on:nth-child(5n),.night-city .near-building .win.on:nth-child(5n){box-shadow:1px 1px 0 #17203766,inset 0 -1px #76556b80}
+.roof-vent{position:absolute;bottom:100%;left:66%;width:17%;height:7%;min-height:4px;background:var(--mid);border-top:1px solid var(--roof);border-right:2px solid #1a22384d}
+.roof-vent::after{content:"";position:absolute;inset:1px 2px;background:repeating-linear-gradient(0deg,transparent 0 2px,#17223855 2px 3px)}
+.roof-aerial{position:absolute;left:25%;bottom:100%;width:1px;height:9%;min-height:5px;background:var(--roof);opacity:.7}
+.roof-aerial::after{content:"";position:absolute;left:-3px;top:2px;width:7px;height:1px;background:inherit}
+.night-city .skyline-far::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,var(--horizon));opacity:.13;pointer-events:none}
+.night-city .city-glow{background:radial-gradient(ellipse at 44% 80%,var(--horizon),transparent 70%);opacity:.16}
+.night-city .landmark-tower .tower-lantern{background:var(--window);box-shadow:inset -2px 0 #4b4f6870}
+.sky-detail-stars{position:absolute;inset:0;z-index:-7;opacity:var(--stars,0);pointer-events:none}
+.sky-detail-stars i{position:absolute;width:var(--spark-size);height:var(--spark-size);background:#f9e5be;clip-path:polygon(40% 0,60% 0,60% 40%,100% 40%,100% 60%,60% 60%,60% 100%,40% 100%,40% 60%,0 60%,0 40%,40% 40%)}
+.sky-wisps{position:absolute;inset:0;z-index:-6;opacity:var(--cloud-opacity,.2);pointer-events:none}
+.sky-wisps i{position:absolute;height:3px;background:var(--cloud-light);opacity:.35;clip-path:polygon(0 60%,12% 60%,12% 25%,39% 25%,39% 0,54% 0,54% 30%,78% 30%,78% 60%,100% 60%,100% 100%,0 100%)}
+.sky-wisps i:nth-child(1){left:2%;top:44%;width:9%}
+.sky-wisps i:nth-child(2){left:46%;top:38%;width:8%}
+.sky-wisps i:nth-child(3){right:1%;top:49%;width:6%}
