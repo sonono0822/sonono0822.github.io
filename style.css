@@ -19,7 +19,7 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .pixel-clock{display:flex;align-items:center;justify-content:center;width:82%;margin-top:6vh;height:clamp(104px,13vw,180px)}
 
 
-.clock-face{display:block;width:100%;height:100%;fill:#fff0d9;filter:drop-shadow(2px 3px 0 #292a4938)}
+.clock-face{display:block;width:75%;height:75%;fill:#fff0d9;filter:drop-shadow(2px 3px 0 #292a4938)}
 .date{width:79%;margin-top:3.6vh;text-align:center;font-size:clamp(13px,1.8vw,25px);font-weight:bold;letter-spacing:.03em;text-shadow:2px 2px var(--shadow)}
 .calendar-panel{align-self:center;min-width:0;padding:1.65vw 1.8vw 1.4vw;background:var(--panel);border:2px solid #fff0cfd8;box-shadow:6px 6px #24243eaa;backdrop-filter:blur(2px);touch-action:none}.cal-head{display:grid;grid-template-columns:40px 1fr 40px;align-items:center}.cal-head h1{margin:.15em;text-align:center;font-size:clamp(20px,2.55vw,35px);letter-spacing:.08em}.cal-head button{height:38px;font-size:25px}
 .week,.days{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}.week{margin:1.1vh 0 .7vh;font-size:clamp(10px,1.1vw,16px)}.week span:first-child{color:var(--pink)}.week span:last-child{color:var(--blue)}.days{height:46vh;grid-template-rows:repeat(6,1fr);border-left:1px dotted #ffffff4b;border-top:1px dotted #ffffff4b}.day-cell{display:grid;place-items:center;border-right:1px dotted #ffffff4b;border-bottom:1px dotted #ffffff4b;font-size:clamp(12px,1.42vw,20px)}.day-cell.out{opacity:.22}.day-cell.sun{color:var(--pink)}.day-cell.sat{color:var(--blue)}.day-cell.today{width:72%;height:72%;margin:auto;border:2px solid var(--cream);background:#ffffff10;box-shadow:3px 3px #24243e}.calendar-panel footer{display:flex;justify-content:space-between;align-items:center;margin-top:1vh;font-size:9px}.calendar-panel footer button{padding:5px 9px}
@@ -101,4 +101,5 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .landmark-tower i:nth-child(3) {bottom:76%;left:33%;width:34%}
 .night-city .tower-lantern {position:absolute;left:38%;bottom:77%;width:25%;height:5%;background:#b4a4a2;border:1px solid #39415c;box-shadow:inset -3px 0 #6c6b85}
 .night-city .tower-brace {position:absolute;left:22%;bottom:16%;width:56%;height:31%;background:#71728a;clip-path:polygon(0 0,9% 0,100% 94%,100% 100%,91% 100%,0 6%,0 0,100% 0,100% 6%,9% 100%,0 100%,0 94%,91% 0)}
+
 
