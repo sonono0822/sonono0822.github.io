@@ -1,11 +1,8 @@
 
 /* Step 9-1: animate children so time-of-day opacity remains on the parent.
    No layout-property animation, filters or per-frame JavaScript. */
-.sky-detail-stars i{animation:star-glimmer 6.7s ease-in-out infinite;opacity:.65}
-.sky-detail-stars i:nth-child(2n){animation-duration:8.3s;animation-delay:-2.7s}
-.sky-detail-stars i:nth-child(3n){animation-duration:5.9s;animation-delay:-4.3s}
-.sky-detail-stars i:nth-child(4n){animation-duration:9.1s;animation-delay:-1.4s}
-@keyframes star-glimmer{0%,100%{opacity:.3}42%{opacity:.6}60%{opacity:1}75%{opacity:.55}}
+/* v6.8.6: only two randomly chosen stars animate at once. */
+.sky-detail-stars i{opacity:.28}
 /* v6.8.5: drift fully across the viewport with transform only.
    Full cycles include the cloud's width; visible edge-to-edge travel is 2–3 min.
    Original positions remain the reduced-motion fallback. */
@@ -36,7 +33,7 @@ html[data-scene-paused="true"] .cloud-pixels,
 html[data-scene-paused="true"] .sky-wisps i{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){
   .sky-detail-stars i,.night-cloud .cloud-pixels,.sky-wisps i{animation:none;transform:none}
-  .sky-detail-stars i{opacity:.7}
+  .sky-detail-stars i{opacity:.45}
   .night-cloud .cloud-pixels{opacity:1}
   .sky-wisps i{opacity:.35}
 }
