@@ -119,6 +119,59 @@ function applyNightScene() {
   elements.bubble.textContent = "ねむい... Zzz";
 }
 
+// Calendar glyphs are separate from the large clock: narrow, readable 5x7 strokes.
+const CALENDAR_GLYPHS = Object.freeze({
+  "0":["01110","10001","10011","10101","11001","10001","01110"],
+  "1":["00100","01100","00100","00100","00100","00100","01110"],
+  "2":["01110","10001","00001","00010","00100","01000","11111"],
+  "3":["11110","00001","00001","01110","00001","00001","11110"],
+  "4":["00010","00110","01010","10010","11111","00010","00010"],
+  "5":["11111","10000","10000","11110","00001","00001","11110"],
+  "6":["01110","10000","10000","11110","10001","10001","01110"],
+  "7":["11111","00001","00010","00100","01000","01000","01000"],
+  "8":["01110","10001","10001","01110","10001","10001","01110"],
+  "9":["01110","10001","10001","01111","00001","00001","01110"],
+  ".":["00000","00000","00000","00000","00000","00110","00110"],
+  "S":["01111","10000","10000","01110","00001","00001","11110"],
+  "U":["10001","10001","10001","10001","10001","10001","01110"],
+  "N":["10001","11001","11001","10101","10011","10011","10001"],
+  "M":["10001","11011","10101","10101","10001","10001","10001"],
+  "O":["01110","10001","10001","10001","10001","10001","01110"],
+  "T":["11111","00100","00100","00100","00100","00100","00100"],
+  "E":["11111","10000","10000","11110","10000","10000","11111"],
+  "W":["10001","10001","10001","10101","10101","11011","10001"],
+  "D":["11110","10001","10001","10001","10001","10001","11110"],
+  "H":["10001","10001","10001","11111","10001","10001","10001"],
+  "F":["11111","10000","10000","11110","10000","10000","10000"],
+  "R":["11110","10001","10001","11110","10100","10010","10001"],
+  "I":["01110","00100","00100","00100","00100","00100","01110"],
+  "A":["01110","10001","10001","11111","10001","10001","10001"]
+});
+
+function calendarText(value) {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns,"svg");
+  svg.setAttribute("viewBox",`0 0 ${value.length * 6 - 1} 7`);
+  svg.setAttribute("class","calendar-pixels");
+  svg.setAttribute("role","img");
+  svg.setAttribute("aria-label",value);
+  svg.setAttribute("focusable","false");
+  svg.setAttribute("shape-rendering","crispEdges");
+  let data = "";
+  [...value].forEach((char,index) => {
+    const rows = CALENDAR_GLYPHS[char];
+    if (!rows) throw new Error(`Unsupported calendar glyph: ${char}`);
+    rows.forEach((row,y) => {
+      for(let x=0;x<5;x++) if(row[x]==="1") data+=`M${index*6+x} ${y}h1v1h-1z`;
+    });
+  });
+  const path = document.createElementNS(ns,"path");
+  path.setAttribute("d",data);
+  svg.appendChild(path);
+  return svg;
+}
+
+
 function renderCalendar() {
   const year = state.view.getFullYear();
   const monthIndex = state.view.getMonth();
@@ -128,8 +181,11 @@ function renderCalendar() {
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const daysInPreviousMonth = new Date(year, monthIndex, 0).getDate();
 
-  elements.month.textContent =
-    `${year}.${String(monthIndex + 1).padStart(2, "0")}`;
+  elements.month.replaceChildren(calendarText(
+    `${year}.${String(monthIndex + 1).padStart(2, "0")}`));
+  document.querySelectorAll(".week span").forEach((day, index) => {
+    day.replaceChildren(calendarText(["SUN","MON","TUE","WED","THU","FRI","SAT"][index]));
+  });
 
   const fragment = document.createDocumentFragment();
 
@@ -153,7 +209,7 @@ function renderCalendar() {
     const cellDate = new Date(year, actualMonth, dayNumber);
     const cell = document.createElement("div");
     cell.className = "day-cell";
-    cell.textContent = String(dayNumber);
+    cell.appendChild(calendarText(String(dayNumber)));
 
     if (outsideCurrentMonth) {
       cell.classList.add("out");
