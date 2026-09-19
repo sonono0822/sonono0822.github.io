@@ -180,6 +180,8 @@ function renderCalendar() {
   const firstWeekday = new Date(year, monthIndex, 1).getDay();
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const daysInPreviousMonth = new Date(year, monthIndex, 0).getDate();
+  const weekCount = Math.ceil((firstWeekday + daysInMonth) / 7);
+  elements.days.style.setProperty("--calendar-weeks", String(weekCount));
 
   elements.month.replaceChildren(calendarText(
     `${year}.${String(monthIndex + 1).padStart(2, "0")}`));
@@ -189,7 +191,7 @@ function renderCalendar() {
 
   const fragment = document.createDocumentFragment();
 
-  for (let index = 0; index < 42; index++) {
+  for (let index = 0; index < weekCount * 7; index++) {
     let dayNumber;
     let actualMonth = monthIndex;
     let outsideCurrentMonth = false;
@@ -221,6 +223,28 @@ function renderCalendar() {
 
     if (cellDate.toDateString() === today.toDateString()) {
       cell.classList.add("today");
+      cell.setAttribute("aria-current", "date");
+      const ns = "http://www.w3.org/2000/svg";
+      const frame = document.createElementNS(ns, "svg");
+      frame.setAttribute("class", "today-frame");
+      frame.setAttribute("viewBox", "0 0 100 100");
+      frame.setAttribute("preserveAspectRatio", "none");
+      frame.setAttribute("aria-hidden", "true");
+      frame.setAttribute("focusable", "false");
+      const outline = document.createElementNS(ns, "path");
+      outline.setAttribute("d", "M14 3H86V8H92V14H97V86H92V92H86V97H14V92H8V86H3V14H8V8H14Z");
+      outline.setAttribute("vector-effect", "non-scaling-stroke");
+      frame.appendChild(outline);
+      cell.appendChild(frame);
+      const star = document.createElementNS(ns, "svg");
+      star.setAttribute("class", "today-star");
+      star.setAttribute("viewBox", "0 0 7 7");
+      star.setAttribute("aria-hidden", "true");
+      star.setAttribute("focusable", "false");
+      const shape = document.createElementNS(ns, "path");
+      shape.setAttribute("d", "M3 0H4V2H5V3H7V4H5V5H4V7H3V5H2V4H0V3H2V2H3Z");
+      star.appendChild(shape);
+      cell.appendChild(star);
     }
 
     fragment.appendChild(cell);
