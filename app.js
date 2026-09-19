@@ -213,7 +213,8 @@ function renderCalendar() {
 
     if (outsideCurrentMonth) {
       cell.classList.add("out");
-    } else if (cellDate.getDay() === 0) {
+    } else if (cellDate.getDay() === 0 ||
+      (typeof JAPAN_HOLIDAYS !== "undefined" && JAPAN_HOLIDAYS.has(cellDate))) {
       cell.classList.add("sun");
     } else if (cellDate.getDay() === 6) {
       cell.classList.add("sat");
