@@ -293,14 +293,196 @@ function sceneForTime(now) {
   if (hour >= 16 && hour < 19) return "evening";
   return "night";
 }
-function syncScene() {
-  const scene = state.sceneMode === "auto" ? sceneForTime(new Date()) : state.sceneMode;
-  if (scene !== state.activeScene) applyScene(scene);
+
+// Palette values mirror scenes.css; CSS remains the manual-preview fallback.
+const SCENE_PALETTES = {
+  "night": {
+    "sky-top": "#111a38",
+    "sky-mid": "#293554",
+    "sky-low": "#55506b",
+    "horizon": "#8b6b7b",
+    "far": "#545575",
+    "far-alt": "#626080",
+    "mid": "#343f5d",
+    "mid-alt": "#41455f",
+    "near": "#222c45",
+    "roof": "#7d7890",
+    "window": "#edbf88",
+    "window-dim": "#9390ab",
+    "window-opacity": ".9",
+    "cloud": "#7d7fa3",
+    "cloud-light": "#a29abb",
+    "cloud-opacity": ".15",
+    "panel-top": "#41435e",
+    "panel-bottom": "#343851",
+    "sill": "#756376",
+    "lamp-opacity": "1",
+    "stars": ".65",
+    "sun-opacity": "0",
+    "moon-opacity": "1",
+    "sun-top": "12",
+    "sun-left": "51",
+    "sun-size": "4",
+    "lantern-saturation": "1"
+  },
+  "morning": {
+    "sky-top": "#668bbe",
+    "sky-mid": "#a7a4cb",
+    "sky-low": "#e4abb4",
+    "horizon": "#ffd49c",
+    "far": "#a49ab6",
+    "far-alt": "#b3a0b8",
+    "mid": "#737e9d",
+    "mid-alt": "#8987a3",
+    "near": "#515d7d",
+    "roof": "#c0adb9",
+    "window": "#ffd7aa",
+    "window-dim": "#a6aec6",
+    "window-opacity": ".55",
+    "cloud": "#f5c1ba",
+    "cloud-light": "#ffe0ba",
+    "cloud-opacity": ".65",
+    "panel-top": "#535975",
+    "panel-bottom": "#454b67",
+    "sill": "#b09a9d",
+    "lamp-opacity": ".55",
+    "stars": "0",
+    "sun-opacity": "1",
+    "moon-opacity": "0",
+    "sun-top": "59",
+    "sun-left": "44",
+    "sun-size": "5",
+    "lantern-saturation": ".8"
+  },
+  "lateMorning": {
+    "sky-top": "#78b8e8",
+    "sky-mid": "#a0d3ee",
+    "sky-low": "#cce7ef",
+    "horizon": "#f0e7cf",
+    "far": "#99b4c9",
+    "far-alt": "#abc2d2",
+    "mid": "#6b89ab",
+    "mid-alt": "#819bb7",
+    "near": "#4a6386",
+    "roof": "#bbcad4",
+    "window": "#d9dfc9",
+    "window-dim": "#91abc0",
+    "window-opacity": ".4",
+    "cloud": "#f8efdc",
+    "cloud-light": "#fff8e7",
+    "cloud-opacity": ".85",
+    "panel-top": "#4b607c",
+    "panel-bottom": "#3c506b",
+    "sill": "#b4a9a9",
+    "lamp-opacity": ".28",
+    "stars": "0",
+    "sun-opacity": "1",
+    "moon-opacity": "0",
+    "sun-top": "12",
+    "sun-left": "51",
+    "sun-size": "4",
+    "lantern-saturation": ".65"
+  },
+  "day": {
+    "sky-top": "#367ed0",
+    "sky-mid": "#589ee0",
+    "sky-low": "#a2cdec",
+    "horizon": "#f0e7cf",
+    "far": "#99b4c9",
+    "far-alt": "#abc2d2",
+    "mid": "#6b89ab",
+    "mid-alt": "#819bb7",
+    "near": "#4a6386",
+    "roof": "#bbcad4",
+    "window": "#d9dfc9",
+    "window-dim": "#91abc0",
+    "window-opacity": ".4",
+    "cloud": "#f8efdc",
+    "cloud-light": "#fff8e7",
+    "cloud-opacity": ".85",
+    "panel-top": "#4b607c",
+    "panel-bottom": "#3c506b",
+    "sill": "#b4a9a9",
+    "lamp-opacity": ".28",
+    "stars": "0",
+    "sun-opacity": "1",
+    "moon-opacity": "0",
+    "sun-top": "12",
+    "sun-left": "51",
+    "sun-size": "4",
+    "lantern-saturation": ".65"
+  },
+  "evening": {
+    "sky-top": "#484569",
+    "sky-mid": "#925d85",
+    "sky-low": "#d77887",
+    "horizon": "#ffb26e",
+    "far": "#a47a94",
+    "far-alt": "#b98499",
+    "mid": "#655c7b",
+    "mid-alt": "#7b607d",
+    "near": "#3e405f",
+    "roof": "#bd8d9d",
+    "window": "#ffcb8c",
+    "window-dim": "#b899b0",
+    "window-opacity": ".95",
+    "cloud": "#d893a7",
+    "cloud-light": "#ffc299",
+    "cloud-opacity": ".48",
+    "panel-top": "#554962",
+    "panel-bottom": "#443d58",
+    "sill": "#ad828e",
+    "lamp-opacity": ".9",
+    "stars": ".18",
+    "sun-opacity": "1",
+    "moon-opacity": "0",
+    "sun-top": "59",
+    "sun-left": "44",
+    "sun-size": "5",
+    "lantern-saturation": "1"
+  }
+};
+const SCENE_BOUNDARIES = [
+  [300,"night","morning"], [480,"morning","lateMorning"],
+  [720,"lateMorning","day"], [960,"day","evening"], [1140,"evening","night"]
+];
+let lastPaletteKey = "";
+function blendForTime(now) {
+  const minute = now.getHours()*60 + now.getMinutes() + now.getSeconds()/60;
+  for (const [boundary,from,to] of SCENE_BOUNDARIES) {
+    if (minute >= boundary-15 && minute <= boundary+15) {
+      const t = (minute-boundary+15)/30;
+      return {from,to,amount:t*t*(3-2*t)};
+    }
+  }
+  const scene = sceneForTime(now);
+  return {from:scene,to:scene,amount:0};
 }
+function mixPaletteValue(a,b,t) {
+  if (a.startsWith("#")) {
+    const rgb = [1,3,5].map(i => Math.round(parseInt(a.slice(i,i+2),16)*(1-t)+parseInt(b.slice(i,i+2),16)*t));
+    return "rgb("+rgb.join(",")+")";
+  }
+  return String(Number(a)*(1-t)+Number(b)*t);
+}
+function syncScene(force = false) {
+  const now = new Date();
+  const scene = state.sceneMode === "auto" ? sceneForTime(now) : state.sceneMode;
+  if (scene !== state.activeScene) applyScene(scene);
+  const blend = state.sceneMode === "auto" ? blendForTime(now) : {from:scene,to:scene,amount:0};
+  const key = state.sceneMode + ":" + blend.from + ":" + blend.to + ":" +
+    (blend.from === blend.to ? "fixed" : Math.floor(now.getTime()/10000));
+  if (!force && key === lastPaletteKey) return;
+  lastPaletteKey = key;
+  for (const name of Object.keys(SCENE_PALETTES[blend.from])) {
+    elements.world.style.setProperty("--"+name, mixPaletteValue(SCENE_PALETTES[blend.from][name],SCENE_PALETTES[blend.to][name],blend.amount));
+  }
+}
+
 function selectScene(mode) {
   if (mode !== "auto" && !Object.prototype.hasOwnProperty.call(SCENE_COPY, mode)) return;
   state.sceneMode = mode;
-  syncScene();
+  syncScene(true);
   document.querySelectorAll("[data-scene]").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.getAttribute("data-scene") === mode));
   });
@@ -360,9 +542,9 @@ function init() {
   bindEvents();
   window.setInterval(refreshDisplay, 1000);
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) refreshDisplay();
+    if (!document.hidden) { refreshDisplay(); syncScene(true); }
   });
-  window.addEventListener("pageshow", refreshDisplay);
+  window.addEventListener("pageshow", () => { refreshDisplay(); syncScene(true); });
 }
 
 try {

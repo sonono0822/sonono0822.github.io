@@ -37,3 +37,10 @@
 .world[data-time-scene="lateMorning"] .sun-moon::after{display:none}
 .world[data-time-scene="lateMorning"] .room-lantern{filter:brightness(.92) saturate(.65)}
 .world[data-time-scene="lateMorning"] .greeting{text-shadow:1px 1px #3e536d,0 1px 3px #3e536d}
+
+/* Step 6-3: independent sun/moon layers avoid an opaque cutout or abrupt swap. */
+.world.night[data-time-scene] .sun-moon{inset:0;width:100%;height:100%;max-width:none;max-height:none;border-radius:0;background:none;box-shadow:none}
+.world.night[data-time-scene] .sun-moon::after{display:none}
+.scene-sun{position:absolute;left:calc(var(--sun-left,51)*1%);top:calc(var(--sun-top,12)*1%);width:calc(var(--sun-size,4)*1vw);height:calc(var(--sun-size,4)*1vw);max-width:70px;max-height:70px;border-radius:50%;background:#fff0be;box-shadow:0 0 22px #ffedb34d;opacity:var(--sun-opacity,0)}
+.scene-moon{position:absolute;left:53%;top:15%;width:clamp(20px,5.5vh,40px);height:clamp(20px,5.5vh,40px);fill:#fff0be;opacity:var(--moon-opacity,1)}
+.world.night[data-time-scene] .room-lantern{filter:saturate(var(--lantern-saturation,1))}
