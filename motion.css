@@ -6,22 +6,31 @@
 .sky-detail-stars i:nth-child(3n){animation-duration:5.9s;animation-delay:-4.3s}
 .sky-detail-stars i:nth-child(4n){animation-duration:9.1s;animation-delay:-1.4s}
 @keyframes star-glimmer{0%,100%{opacity:.3}42%{opacity:.6}60%{opacity:1}75%{opacity:.55}}
-/* Small local drift avoids carrying clouds across the clock or date.
-   Fade at wrap-around prevents a visible jump; negative phases stagger clouds. */
-.night-cloud .cloud-pixels{animation:cloud-stream 110s linear infinite;animation-delay:-28s}
-.night-cloud-center .cloud-pixels{animation-duration:145s;animation-delay:-72s}
-.night-cloud-right .cloud-pixels{animation-duration:125s;animation-delay:-43s}
-@keyframes cloud-stream{
-  0%{transform:translateX(-12%);opacity:0}
-  12%{opacity:.85}
-  45%{opacity:1}
-  85%{opacity:.85}
-  100%{transform:translateX(12%);opacity:0}
+/* v6.8.5: drift fully across the viewport with transform only.
+   Full cycles include the cloud's width; visible edge-to-edge travel is 2–3 min.
+   Original positions remain the reduced-motion fallback. */
+@media(prefers-reduced-motion:no-preference){
+  .world[data-time-scene] .night-city .night-cloud{left:0;right:auto}
+  /* Keep full-width travel clear of the clock and date. */
+  .world[data-time-scene] .night-city .night-cloud-left{top:60%}
+  .world[data-time-scene] .night-city .night-cloud-center{top:54%}
+  .world[data-time-scene] .night-city .night-cloud-right{top:2%;opacity:calc(var(--cloud-opacity) * .25)}
+  .sky-wisps i:nth-child(n){left:0;right:auto}
 }
-.sky-wisps i{animation:wisp-stream 155s linear infinite;animation-delay:-35s}
+.night-cloud .cloud-pixels{animation:cloud-stream 180s linear infinite;animation-delay:-35s}
+.night-cloud-center .cloud-pixels{animation-duration:195s;animation-delay:-100s}
+.night-cloud-right .cloud-pixels{animation-duration:210s;animation-delay:-175s}
+@keyframes cloud-stream{
+  0%{transform:translateX(calc(-100% - 2vw));opacity:0}
+  8%{opacity:.85}
+  45%{opacity:1}
+  92%{opacity:.85}
+  100%{transform:translateX(102vw);opacity:0}
+}
+.sky-wisps i{animation:wisp-stream 165s linear infinite;animation-delay:-35s}
 .sky-wisps i:nth-child(2){animation-duration:180s;animation-delay:-91s}
-.sky-wisps i:nth-child(3){animation-duration:140s;animation-delay:-65s}
-@keyframes wisp-stream{0%{transform:translateX(-10%);opacity:0}20%,75%{opacity:.35}100%{transform:translateX(10%);opacity:0}}
+.sky-wisps i:nth-child(3){animation-duration:175s;animation-delay:-140s}
+@keyframes wisp-stream{0%{transform:translateX(calc(-100% - 2vw));opacity:0}8%,92%{opacity:.35}100%{transform:translateX(102vw);opacity:0}}
 html[data-scene-paused="true"] .sky-detail-stars i,
 html[data-scene-paused="true"] .cloud-pixels,
 html[data-scene-paused="true"] .sky-wisps i{animation-play-state:paused}
@@ -31,3 +40,4 @@ html[data-scene-paused="true"] .sky-wisps i{animation-play-state:paused}
   .night-cloud .cloud-pixels{opacity:1}
   .sky-wisps i{opacity:.35}
 }
+
