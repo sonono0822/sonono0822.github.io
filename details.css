@@ -21,3 +21,17 @@
 .sky-wisps i:nth-child(1){left:2%;top:44%;width:9%}
 .sky-wisps i:nth-child(2){left:46%;top:38%;width:8%}
 .sky-wisps i:nth-child(3){right:1%;top:49%;width:6%}
+
+/* Step 8-3: a river corridor between the middle and foreground buildings.
+   Static shapes reuse palette variables, including the ten-second AUTO blend. */
+.night-city .river-corridor{position:absolute;left:10%;right:0;bottom:14%;height:15%;pointer-events:none}
+.river-corridor svg{display:block;width:100%;height:100%}
+.river-water{fill:var(--mid)}
+.river-tint{fill:var(--sky-mid);opacity:.45}
+.river-reflections{fill:var(--window);opacity:var(--window-opacity)}
+.river-bank{fill:var(--near)}
+.bridge-deck{fill:var(--near)}
+.bridge-edge{fill:var(--roof);opacity:.7}
+.bridge-rail{fill:none;stroke:var(--mid);stroke-width:1;vector-effect:non-scaling-stroke}
+.bridge-lamp-post{fill:none;stroke:var(--roof);stroke-width:1;vector-effect:non-scaling-stroke}
+.bridge-light{fill:var(--window);opacity:var(--window-opacity)}
