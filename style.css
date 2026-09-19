@@ -142,3 +142,7 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .calendar-motto .footer-pixels{height:clamp(7px,.65vw,9px)}
 }
 @media(max-height:450px) and (orientation:landscape){.dashboard{padding-top:4vh;padding-bottom:6vh}}
+
+/* v6.8.2: retain the main clock width; extend only its right-side seconds. */
+.pixel-clock{width:100%;justify-content:flex-start}
+.clock-face{width:82.53%;margin-left:10.25%;flex-shrink:0}

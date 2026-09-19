@@ -7,21 +7,7 @@ const CONFIG = Object.freeze({
   wheelCooldown: 450
 });
 
-// Seven-by-nine glyphs: connected strokes and stepped corners, no font dependency.
-const DIGITS = Object.freeze({
-  "0":["0111110","1111111","1100011","1100011","1100011","1100011","1100011","1111111","0111110"],
-  "1":["0001100","0011100","0111100","0001100","0001100","0001100","0001100","0111110","0111110"],
-  "2":["0111110","1111111","1100011","0000011","0001110","0011100","0110000","1111111","1111111"],
-  "3":["0111110","1111111","0000011","0000011","0011110","0000011","0000011","1111111","0111110"],
-  "4":["0000110","0001110","0011110","0110110","1100110","1111111","1111111","0000110","0000110"],
-  "5":["1111111","1111111","1100000","1100000","1111110","0000011","0000011","1111111","0111110"],
-  "6":["0011110","0111110","1100000","1100000","1111110","1100011","1100011","1111111","0111110"],
-  "7":["1111111","1111111","0000011","0000110","0001100","0011000","0011000","0110000","0110000"],
-  "8":["0111110","1100011","1100011","1111111","0111110","1100011","1100011","1111111","0111110"],
-  "9":["0111110","1111111","1100011","1100011","0111111","0000011","0000011","0111110","0111100"]
-});
-
-
+// Clock and calendar share the same 5x7 digit patterns below.
 const $ = (selector) => document.querySelector(selector);
 
 const elements = {
@@ -59,43 +45,47 @@ function assertRequiredElements() {
   }
 }
 
+// Keep six paths alive; only changed digits receive a new path value.
+let clockDigitPaths = null;
+let previousClockDigits = "";
+function clockDigitData(char) {
+  return CALENDAR_GLYPHS[char].map((row, y) => {
+    let data = "";
+    for (let x = 0; x < row.length; x++) {
+      if (row[x] === "1") data += `M${x} ${y}h1v1h-1z`;
+    }
+    return data;
+  }).join("");
+}
 function renderClock(value) {
   if (state.lastTime === value) return;
   const ns = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("viewBox", "0 0 35 9");
-  svg.setAttribute("class", "clock-face");
-  svg.setAttribute("aria-hidden", "true");
-  svg.setAttribute("focusable", "false");
-  // Run-length rectangles avoid seams between neighboring lit pixels.
-  function block(x, y, width, height) {
-    const rect = document.createElementNS(ns, "rect");
-    for (const [name, number] of Object.entries({x,y,width,height})) {
-      rect.setAttribute(name, String(number));
-    }
-    svg.appendChild(rect);
-  }
-  const positions = [0, 8, 16, 20, 28];
-  [...value].forEach((char, index) => {
-    if (char === ":") {
-      block(positions[index], 2, 2, 2);
-      block(positions[index], 6, 2, 2);
-      return;
-    }
-    const pattern = DIGITS[char];
-    if (!pattern) throw new Error(`Unsupported clock digit: ${char}`);
-    pattern.forEach((row, y) => {
-      let start = -1;
-      for (let x = 0; x <= row.length; x++) {
-        if (row[x] === "1" && start < 0) start = x;
-        if (row[x] !== "1" && start >= 0) {
-          block(positions[index] + start, y, x - start, 1);
-          start = -1;
-        }
-      }
+  if (!clockDigitPaths) {
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 33.55 7");
+    svg.setAttribute("class", "clock-face");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    svg.setAttribute("shape-rendering", "crispEdges");
+    clockDigitPaths = [0, 6, 14, 20, 27.5, 30.8].map((x, index) => {
+      const path = document.createElementNS(ns, "path");
+      path.setAttribute("transform", index < 4
+        ? `translate(${x} 0)` : `translate(${x} 3.15) scale(.55)`);
+      svg.appendChild(path);
+      return path;
     });
+    const colon = document.createElementNS(ns, "path");
+    colon.setAttribute("d", "M12 2h1v1h-1zM12 4h1v1h-1z");
+    svg.appendChild(colon);
+    elements.clock.replaceChildren(svg);
+  }
+  const digits = value.replaceAll(":", "");
+  [...digits].forEach((char, index) => {
+    if (char !== previousClockDigits[index]) {
+      clockDigitPaths[index].setAttribute("d", clockDigitData(char));
+    }
   });
-  elements.clock.replaceChildren(svg);
+  previousClockDigits = digits;
   elements.clock.setAttribute("aria-label", `現在時刻 ${value}`);
   state.lastTime = value;
 }
@@ -107,7 +97,8 @@ function updateClockAndDate() {
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
 
-  renderClock(`${hh}:${mm}`);
+  const ss = String(now.getSeconds()).padStart(2, "0");
+  renderClock(`${hh}:${mm}:${ss}`);
   const dateText = `${now.getFullYear()}年 ${now.getMonth()+1}月 ${now.getDate()}日（${weekdays[now.getDay()]}）`;
   if (state.lastDate !== dateText) {
     elements.date.textContent = dateText;
@@ -127,7 +118,7 @@ function applyNightScene() {
   elements.bubble.textContent = "ねむい... Zzz";
 }
 
-// Calendar glyphs are separate from the large clock: narrow, readable 5x7 strokes.
+// Shared clock/calendar glyphs: narrow, readable 5x7 strokes.
 const CALENDAR_GLYPHS = Object.freeze({
   "0":["01110","10001","10011","10101","11001","10001","01110"],
   "1":["00100","01100","00100","00100","00100","00100","01110"],
