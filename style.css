@@ -131,3 +131,6 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .footer-sprig{width:clamp(13px,1.7vw,24px);height:auto;fill:currentColor;flex-shrink:0}
 @media(max-height:450px) and (orientation:landscape){.days{height:42vh}}
 @media(orientation:portrait){.days{height:30vh}.calendar-panel footer.calendar-footer{gap:3vw}.calendar-note{padding-left:3vw}}
+
+/* Step 5-4: shrink visible TODAY artwork, retaining its touch target. */
+.calendar-return .today-button-art{position:absolute;inset:0;display:grid;place-items:center;padding:12px 16px;transform:scale(.8);transform-origin:left center;pointer-events:none}
