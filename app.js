@@ -42,6 +42,7 @@ const initialNow = new Date();
 const state = {
   view: new Date(initialNow.getFullYear(), initialNow.getMonth(), 1),
   lastTime: "",
+  lastDate: "",
   touchY: null,
   sceneMode: "auto",
   activeScene: null,
@@ -107,8 +108,13 @@ function updateClockAndDate() {
   const mm = String(now.getMinutes()).padStart(2, "0");
 
   renderClock(`${hh}:${mm}`);
-  elements.date.textContent =
-    `${now.getFullYear()}年 ${now.getMonth()+1}月 ${now.getDate()}日（${weekdays[now.getDay()]}）`;
+  const dateText = `${now.getFullYear()}年 ${now.getMonth()+1}月 ${now.getDate()}日（${weekdays[now.getDay()]}）`;
+  if (state.lastDate !== dateText) {
+    elements.date.textContent = dateText;
+    // Refresh today's marker at midnight, preserving the browsed month.
+    if (state.lastDate !== "") renderCalendar();
+    state.lastDate = dateText;
+  }
 }
 
 /**
@@ -492,6 +498,30 @@ function refreshDisplay() {
   syncScene();
 }
 
+// One pending timer only; recalculate from wall time so delays do not accumulate.
+let displayTimer = null;
+function stopDisplayUpdates() {
+  if (displayTimer !== null) window.clearTimeout(displayTimer);
+  displayTimer = null;
+}
+function scheduleDisplayUpdate() {
+  stopDisplayUpdates();
+  if (document.hidden) return;
+  displayTimer = window.setTimeout(() => {
+    displayTimer = null;
+    if (document.hidden) return;
+    refreshDisplay();
+    scheduleDisplayUpdate();
+  }, 1000 - (Date.now() % 1000));
+}
+function resumeDisplayUpdates() {
+  stopDisplayUpdates();
+  if (document.hidden) return;
+  refreshDisplay();
+  syncScene(true);
+  scheduleDisplayUpdate();
+}
+
 function bindEvents() {
   elements.prev.addEventListener("click", () => moveMonth(-1));
   elements.next.addEventListener("click", () => moveMonth(1));
@@ -540,11 +570,13 @@ function init() {
   renderCalendar();
   updateClockAndDate();
   bindEvents();
-  window.setInterval(refreshDisplay, 1000);
+  scheduleDisplayUpdate();
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) { refreshDisplay(); syncScene(true); }
+    if (document.hidden) stopDisplayUpdates();
+    else resumeDisplayUpdates();
   });
-  window.addEventListener("pageshow", () => { refreshDisplay(); syncScene(true); });
+  window.addEventListener("pagehide", stopDisplayUpdates);
+  window.addEventListener("pageshow", resumeDisplayUpdates);
 }
 
 try {
