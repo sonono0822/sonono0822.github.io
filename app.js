@@ -263,6 +263,7 @@ function moveMonth(delta) {
 
 const SCENE_COPY = Object.freeze({
   morning: ["Good morning,", "おはよう…"],
+  lateMorning: ["Good morning,", "おはよう…"],
   day: ["Good afternoon,", "ひと休みしよう"],
   evening: ["Good evening,", "おつかれさま…"],
   night: ["Good night,", "ねむい... Zzz"],
@@ -284,7 +285,8 @@ function applyScene(scene) {
 function sceneForTime(now) {
   const hour = now.getHours();
   if (hour >= 5 && hour < 9) return "morning";
-  if (hour >= 9 && hour < 16) return "day";
+  if (hour >= 9 && hour < 12) return "lateMorning";
+  if (hour >= 12 && hour < 16) return "day";
   if (hour >= 16 && hour < 19) return "evening";
   if (hour >= 19 && hour < 23) return "night";
   return "deepNight";
@@ -451,11 +453,44 @@ const SCENE_PALETTES = {
     "rest-window-factor": "0",
     "street-light-opacity": ".7",
     "lantern-brightness": ".96"
+  },
+  "lateMorning": {
+    "sky-top": "#78b8e8",
+    "sky-mid": "#a0d3ee",
+    "sky-low": "#cce7ef",
+    "horizon": "#f0e7cf",
+    "far": "#99b4c9",
+    "far-alt": "#abc2d2",
+    "mid": "#6b89ab",
+    "mid-alt": "#819bb7",
+    "near": "#4a6386",
+    "roof": "#bbcad4",
+    "window": "#d9dfc9",
+    "window-dim": "#91abc0",
+    "window-opacity": ".08",
+    "cloud": "#f8efdc",
+    "cloud-light": "#fff8e7",
+    "cloud-opacity": ".85",
+    "panel-top": "#4b607c",
+    "panel-bottom": "#3c506b",
+    "sill": "#b4a9a9",
+    "lamp-opacity": ".28",
+    "stars": "0",
+    "sun-opacity": "1",
+    "moon-opacity": "0",
+    "sun-top": "12",
+    "sun-left": "51",
+    "sun-size": "4",
+    "lantern-saturation": ".65",
+    "rest-window-factor": ".08",
+    "street-light-opacity": ".12",
+    "lantern-brightness": ".92"
   }
 };
 // Each transition blends for 15 minutes on either side of the boundary.
 const SCENE_BOUNDARIES = [
-  [300,"deepNight","morning"], [540,"morning","day"],
+  [300,"deepNight","morning"], [540,"morning","lateMorning"],
+  [720,"lateMorning","day"],
   [960,"day","evening"], [1140,"evening","night"], [1380,"night","deepNight"]
 ];
 let lastPaletteKey = "";
