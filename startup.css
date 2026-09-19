@@ -1,0 +1,7 @@
+/* v6.8.9: one short entrance, independent of the world's screen drift. */
+html{background:#343858}
+body{animation:startup-fade .75s ease-out backwards}
+@keyframes startup-fade{from{opacity:0}to{opacity:1}}
+html[data-scene-paused="true"] body{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){body{animation:none;opacity:1}}
+
