@@ -112,3 +112,22 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .tower-brace {position:absolute;left:22%;bottom:16%;width:56%;height:31%;background:#71728a;clip-path:polygon(0 0,9% 0,100% 94%,100% 100%,91% 100%,0 6%,0 0,100% 0,100% 6%,9% 100%,0 100%,0 94%,91% 0)}
 
 
+
+/* Step 5-3: shared today motif and quiet calendar footer. */
+.days{height:40vh}
+.calendar-panel footer.calendar-footer{display:grid;grid-template-columns:1fr 1fr;gap:1.5vw;height:calc(6vh + 29px);margin-top:1vh;align-items:center}
+.calendar-return{display:flex;align-items:center;height:100%}
+.calendar-panel .calendar-return button{position:relative;display:grid;place-items:center;border:0;background:transparent;width:clamp(76px,8vw,112px);height:clamp(40px,7vh,52px);padding:12px 16px;cursor:pointer}
+.calendar-return .today-frame{inset:3%;width:94%;height:94%}
+.calendar-return .today-star{left:10%;top:13%}
+.footer-pixels{display:block;fill:currentColor;width:auto;height:clamp(7px,.75vw,10px);max-width:100%;flex-shrink:0}
+.calendar-return .footer-pixels{height:clamp(8px,.85vw,12px)}
+.calendar-return button:focus-visible{outline:2px solid var(--cream);outline-offset:2px}
+.calendar-return button:hover .today-frame path{fill:#fff0cf14}
+.calendar-return button:active .today-frame path{fill:#fff0cf24}
+.calendar-note{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1vw,14px);height:85%;min-width:0;border-left:1px solid #eddec780;padding-left:1.3vw;color:#eddec7}
+.calendar-motto{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(4px,.7vh,7px);min-width:0}
+.footer-paw{width:clamp(10px,1.2vw,17px);height:auto;fill:currentColor;flex-shrink:0;align-self:center;opacity:.85}
+.footer-sprig{width:clamp(13px,1.7vw,24px);height:auto;fill:currentColor;flex-shrink:0}
+@media(max-height:450px) and (orientation:landscape){.days{height:42vh}}
+@media(orientation:portrait){.days{height:30vh}.calendar-panel footer.calendar-footer{gap:3vw}.calendar-note{padding-left:3vw}}
