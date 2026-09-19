@@ -93,6 +93,7 @@ function renderClock(value) {
 
 function updateClockAndDate() {
   const now = new Date();
+  if (typeof SEASONS !== "undefined") SEASONS.sync(now);
   const weekdays = ["日","月","火","水","木","金","土"];
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
