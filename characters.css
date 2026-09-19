@@ -28,3 +28,7 @@
 /* Preserve the existing portrait policy: the calendar uses the lower area. */
 @media(orientation:portrait) {.window-companions {display:none}}
 
+
+/* Step 7-1: seated mug pose and compact sleeping cat. */
+.window-companions .companion-character{left:0;bottom:-4%;width:44%;height:100%}
+.window-companions .companion-cat{left:47%;bottom:-2%;width:48%;height:48%}
