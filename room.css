@@ -49,3 +49,7 @@
   .room-interior .room-lantern {height:12%;width:10%}
   .room-interior .room-books {height:6%;width:20%;left:17%}
 }
+
+/* Small right-hand plant sits in the reserved 8vw room margin. */
+.room-interior .room-plant-right{right:1.5%;bottom:7%;width:5.2%;height:27%}
+@media(orientation:portrait){.room-interior .room-plant-right{display:none}}

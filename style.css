@@ -134,3 +134,11 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 
 /* Step 5-4: shrink visible TODAY artwork, retaining its touch target. */
 .calendar-return .today-button-art{position:absolute;inset:0;display:grid;place-items:center;padding:12px 16px;transform:scale(.8);transform-origin:left center;pointer-events:none}
+
+/* Step 5-5: tracks plus gap fit inside the padded landscape viewport. */
+@media(orientation:landscape){
+.dashboard{grid-template-columns:minmax(0,50fr) minmax(0,36fr);gap:2vw;padding:6vh 8vw 7vh 4vw}
+.calendar-note{gap:clamp(5px,.6vw,9px);padding-left:1vw}
+.calendar-motto .footer-pixels{height:clamp(7px,.65vw,9px)}
+}
+@media(max-height:450px) and (orientation:landscape){.dashboard{padding-top:4vh;padding-bottom:6vh}}
