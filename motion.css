@@ -1,0 +1,33 @@
+
+/* Step 9-1: animate children so time-of-day opacity remains on the parent.
+   No layout-property animation, filters or per-frame JavaScript. */
+.sky-detail-stars i{animation:star-glimmer 6.7s ease-in-out infinite;opacity:.65}
+.sky-detail-stars i:nth-child(2n){animation-duration:8.3s;animation-delay:-2.7s}
+.sky-detail-stars i:nth-child(3n){animation-duration:5.9s;animation-delay:-4.3s}
+.sky-detail-stars i:nth-child(4n){animation-duration:9.1s;animation-delay:-1.4s}
+@keyframes star-glimmer{0%,100%{opacity:.3}42%{opacity:.6}60%{opacity:1}75%{opacity:.55}}
+/* Small local drift avoids carrying clouds across the clock or date.
+   Fade at wrap-around prevents a visible jump; negative phases stagger clouds. */
+.night-cloud .cloud-pixels{animation:cloud-stream 110s linear infinite;animation-delay:-28s}
+.night-cloud-center .cloud-pixels{animation-duration:145s;animation-delay:-72s}
+.night-cloud-right .cloud-pixels{animation-duration:125s;animation-delay:-43s}
+@keyframes cloud-stream{
+  0%{transform:translateX(-12%);opacity:0}
+  12%{opacity:.85}
+  45%{opacity:1}
+  85%{opacity:.85}
+  100%{transform:translateX(12%);opacity:0}
+}
+.sky-wisps i{animation:wisp-stream 155s linear infinite;animation-delay:-35s}
+.sky-wisps i:nth-child(2){animation-duration:180s;animation-delay:-91s}
+.sky-wisps i:nth-child(3){animation-duration:140s;animation-delay:-65s}
+@keyframes wisp-stream{0%{transform:translateX(-10%);opacity:0}20%,75%{opacity:.35}100%{transform:translateX(10%);opacity:0}}
+html[data-scene-paused="true"] .sky-detail-stars i,
+html[data-scene-paused="true"] .cloud-pixels,
+html[data-scene-paused="true"] .sky-wisps i{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  .sky-detail-stars i,.night-cloud .cloud-pixels,.sky-wisps i{animation:none;transform:none}
+  .sky-detail-stars i{opacity:.7}
+  .night-cloud .cloud-pixels{opacity:1}
+  .sky-wisps i{opacity:.35}
+}

@@ -1,0 +1,5 @@
+Tool: built-in image_gen. Use case: background-extraction.
+Character: preserve reference seated chibi holding cream mug, black/white bangs, red eyes, gray fluffy cat-eared hood and outfit, red neck accent. No shoes. Chunky pixel art. Remove city, railing and floor. Full silhouette, transparent background, tight framing.
+Cat: preserve reference sleeping pose facing left, closed eyes, white muzzle/paws, gray-lavender patches, pink ears and curled tail. Remove city, ledge, text and character fragments. Chunky pixel art, transparent background, tight framing.
+
+6.3.1 edit (built-in image_gen): remove only lower-left animal-haunch/tail-shaped gray lobe; replace with transparency. Compact human seated silhouette, sleeves holding mug, legs tucked underneath; no tail, paws, shoes or added feet. Preserve face, hair, hood, ears, red accent, hands, mug, palette, canvas and pixel style.
