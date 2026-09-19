@@ -262,6 +262,24 @@ function moveMonth(delta) {
   renderCalendar();
 }
 
+
+const SCENE_COPY = Object.freeze({
+  morning: ["Good morning,", "おはよう…"],
+  day: ["Good afternoon,", "ひと休みしよう"],
+  evening: ["Good evening,", "おつかれさま…"],
+  night: ["Good night,", "ねむい... Zzz"]
+});
+function applyScene(scene) {
+  if (!Object.prototype.hasOwnProperty.call(SCENE_COPY, scene)) return;
+  applyNightScene();
+  elements.world.setAttribute("data-time-scene", scene);
+  elements.greeting.innerHTML = elements.greeting.innerHTML.replace("Good night,", SCENE_COPY[scene][0]);
+  elements.bubble.textContent = SCENE_COPY[scene][1];
+  document.querySelectorAll("[data-scene]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.getAttribute("data-scene") === scene));
+  });
+}
+
 function bindEvents() {
   elements.prev.addEventListener("click", () => moveMonth(-1));
   elements.next.addEventListener("click", () => moveMonth(1));
@@ -299,15 +317,14 @@ function bindEvents() {
     }
   }, { passive: false });
 
-  // Keep v5's existing development buttons harmless during the night-only phase.
-  // AUTO / 朝 / 昼 / 夕 / 夜 all resolve to the same night scene in v5.1.
   document.querySelectorAll("[data-scene]").forEach((button) => {
-    button.addEventListener("click", applyNightScene);
-  });}
+    button.addEventListener("click", () => applyScene(button.getAttribute("data-scene")));
+  });
+}
 
 function init() {
   assertRequiredElements();
-  applyNightScene();
+  applyScene("night");
   renderCalendar();
   updateClockAndDate();
   bindEvents();
