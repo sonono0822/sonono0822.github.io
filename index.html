@@ -9,8 +9,9 @@
   <meta name="apple-mobile-web-app-title" content="Pixel Clock">
   <title>Pixel Desk Clock</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css?v=5.6.1">
-  <link rel="stylesheet" href="room.css?v=5.6.1">
+  <link rel="stylesheet" href="style.css?v=5.7.0">
+  <link rel="stylesheet" href="room.css?v=5.7.0">
+  <link rel="stylesheet" href="characters.css?v=5.7.0">
 </head>
 <body>
 <div class="world evening" id="world">
@@ -390,14 +391,7 @@
       <div class="greeting" id="greeting"></div>
       <div class="pixel-clock" id="pixelClock" aria-label="現在時刻"></div>
       <div class="date" id="date"></div>
-      <div class="pet-home" id="petHome">
-        <div class="bubble" id="bubble"></div>
-        <div class="pet" aria-hidden="true">
-          <i class="ear left"></i><i class="ear right"></i><i class="hood"></i>
-          <i class="face"></i><i class="eye left"></i><i class="eye right"></i>
-          <i class="body"></i><i class="ribbon"></i>
-        </div>
-      </div>
+
     </section>
 
     <section class="calendar-panel" id="calendarPanel">
@@ -410,6 +404,13 @@
     </section>
   </main>
 
+  <!-- The existing bubble id is retained for app.js. Decorative companions do not capture taps. -->
+  <div class="window-companions" id="petHome" aria-hidden="true">
+    <div class="companion-bubble" id="bubble"></div>
+    <img class="companion companion-character" src="assets/character.png" alt="" draggable="false">
+    <img class="companion companion-cat" src="assets/sleeping-cat.png" alt="" draggable="false">
+    <span class="sleep-marks">z<br>窶越</span>
+  </div>
   <details class="dev-panel"><summary>◆</summary><div>
     <button data-scene="auto">AUTO</button><button data-scene="morning">朝</button>
     <button data-scene="day">昼</button><button data-scene="evening">夕</button><button data-scene="night">夜</button>
