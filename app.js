@@ -320,9 +320,9 @@ const SCENE_PALETTES = {
     "stars": ".65",
     "sun-opacity": "0",
     "moon-opacity": "1",
-    "sun-top": "12",
-    "sun-left": "51",
-    "sun-size": "4",
+    "sun-top": "59",
+    "sun-left": "44",
+    "sun-size": "5",
     "lantern-saturation": "1"
   },
   "morning": {
