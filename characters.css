@@ -23,10 +23,7 @@
   font-size:clamp(7px,.72vw,10px);white-space:nowrap;
 }
 .window-companions .sleep-marks {
-  position:absolute;left:89%;bottom:41%;color:#e6ddce;
-  font-size:clamp(8px,1vw,14px);line-height:1.4;
-  font-family:"Courier New",ui-monospace,monospace;
-  text-shadow:1px 1px #292a49;
+  position:absolute;left:85%;bottom:44%;width:clamp(10px,1.4vw,20px);height:clamp(18px,4.5vh,30px);fill:#e6ddce;
 }
 /* Preserve the existing portrait policy: the calendar uses the lower area. */
 @media(orientation:portrait) {.window-companions {display:none}}

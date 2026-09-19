@@ -1,28 +1,26 @@
 "use strict";
 
-/**
- * Pixel Desk Clock v5.1
- * Scope: JavaScript initialization regression fix only.
- * HTML/CSS/design are intentionally unchanged from v5.
- */
+/** Pixel Desk Clock — connected pixel clock renderer, v5.8.0. */
 
 const CONFIG = Object.freeze({
   swipeThreshold: 35,
   wheelCooldown: 450
 });
 
+// Seven-by-nine glyphs: connected strokes and stepped corners, no font dependency.
 const DIGITS = Object.freeze({
-  "0":["11111","10001","10001","10001","10001","10001","11111"],
-  "1":["00100","01100","00100","00100","00100","00100","01110"],
-  "2":["11111","00001","00001","11111","10000","10000","11111"],
-  "3":["11111","00001","00001","01111","00001","00001","11111"],
-  "4":["10001","10001","10001","11111","00001","00001","00001"],
-  "5":["11111","10000","10000","11111","00001","00001","11111"],
-  "6":["11111","10000","10000","11111","10001","10001","11111"],
-  "7":["11111","00001","00010","00100","01000","01000","01000"],
-  "8":["11111","10001","10001","11111","10001","10001","11111"],
-  "9":["11111","10001","10001","11111","00001","00001","11111"]
+  "0":["0111110","1111111","1100011","1100011","1100011","1100011","1100011","1111111","0111110"],
+  "1":["0001100","0011100","0111100","0001100","0001100","0001100","0001100","0111110","0111110"],
+  "2":["0111110","1111111","1100011","0000011","0001110","0011100","0110000","1111111","1111111"],
+  "3":["0111110","1111111","0000011","0000011","0011110","0000011","0000011","1111111","0111110"],
+  "4":["0000110","0001110","0011110","0110110","1100110","1111111","1111111","0000110","0000110"],
+  "5":["1111111","1111111","1100000","1100000","1111110","0000011","0000011","1111111","0111110"],
+  "6":["0011110","0111110","1100000","1100000","1111110","1100011","1100011","1111111","0111110"],
+  "7":["1111111","1111111","0000011","0000110","0001100","0011000","0011000","0110000","0110000"],
+  "8":["0111110","1100011","1100011","1111111","0111110","1100011","1100011","1111111","0111110"],
+  "9":["0111110","1111111","1100011","1100011","0111111","0000011","0000011","0111110","0111100"]
 });
+
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -58,39 +56,47 @@ function assertRequiredElements() {
   }
 }
 
-function createDigit(char) {
-  const pattern = DIGITS[char];
-  if (!pattern) throw new Error(`Unsupported clock digit: ${char}`);
-
-  const digit = document.createElement("span");
-  digit.className = "pixel-digit";
-
-  for (const bit of pattern.join("")) {
-    const pixel = document.createElement("i");
-    pixel.className = bit === "1" ? "pixel on" : "pixel";
-    digit.appendChild(pixel);
-  }
-  return digit;
-}
-
-function createColon() {
-  const colon = document.createElement("span");
-  colon.className = "pixel-colon";
-  colon.append(document.createElement("i"), document.createElement("i"));
-  return colon;
-}
-
 function renderClock(value) {
   if (state.lastTime === value) return;
-
-  const fragment = document.createDocumentFragment();
-  for (const char of value) {
-    fragment.appendChild(char === ":" ? createColon() : createDigit(char));
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 35 9");
+  svg.setAttribute("class", "clock-face");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  // Run-length rectangles avoid seams between neighboring lit pixels.
+  function block(x, y, width, height) {
+    const rect = document.createElementNS(ns, "rect");
+    for (const [name, number] of Object.entries({x,y,width,height})) {
+      rect.setAttribute(name, String(number));
+    }
+    svg.appendChild(rect);
   }
-
-  elements.clock.replaceChildren(fragment);
+  const positions = [0, 8, 16, 20, 28];
+  [...value].forEach((char, index) => {
+    if (char === ":") {
+      block(positions[index], 2, 2, 2);
+      block(positions[index], 6, 2, 2);
+      return;
+    }
+    const pattern = DIGITS[char];
+    if (!pattern) throw new Error(`Unsupported clock digit: ${char}`);
+    pattern.forEach((row, y) => {
+      let start = -1;
+      for (let x = 0; x <= row.length; x++) {
+        if (row[x] === "1" && start < 0) start = x;
+        if (row[x] !== "1" && start >= 0) {
+          block(positions[index] + start, y, x - start, 1);
+          start = -1;
+        }
+      }
+    });
+  });
+  elements.clock.replaceChildren(svg);
+  elements.clock.setAttribute("aria-label", `現在時刻 ${value}`);
   state.lastTime = value;
 }
+
 
 function updateClockAndDate() {
   const now = new Date();
