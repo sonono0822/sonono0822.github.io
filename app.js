@@ -43,6 +43,8 @@ const state = {
   view: new Date(initialNow.getFullYear(), initialNow.getMonth(), 1),
   lastTime: "",
   touchY: null,
+  sceneMode: "auto",
+  activeScene: null,
   lastWheel: 0
 };
 
@@ -265,6 +267,7 @@ function moveMonth(delta) {
 
 const SCENE_COPY = Object.freeze({
   morning: ["Good morning,", "おはよう…"],
+  lateMorning: ["Good morning,", "おはよう…"],
   day: ["Good afternoon,", "ひと休みしよう"],
   evening: ["Good evening,", "おつかれさま…"],
   night: ["Good night,", "ねむい... Zzz"]
@@ -272,12 +275,39 @@ const SCENE_COPY = Object.freeze({
 function applyScene(scene) {
   if (!Object.prototype.hasOwnProperty.call(SCENE_COPY, scene)) return;
   applyNightScene();
+  state.activeScene = scene;
   elements.world.setAttribute("data-time-scene", scene);
   elements.greeting.innerHTML = elements.greeting.innerHTML.replace("Good night,", SCENE_COPY[scene][0]);
   elements.bubble.textContent = SCENE_COPY[scene][1];
   document.querySelectorAll("[data-scene]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.getAttribute("data-scene") === scene));
+    button.setAttribute("aria-pressed", String(button.getAttribute("data-scene") === state.sceneMode));
   });
+}
+
+
+function sceneForTime(now) {
+  const hour = now.getHours();
+  if (hour >= 5 && hour < 8) return "morning";
+  if (hour >= 8 && hour < 12) return "lateMorning";
+  if (hour >= 12 && hour < 16) return "day";
+  if (hour >= 16 && hour < 19) return "evening";
+  return "night";
+}
+function syncScene() {
+  const scene = state.sceneMode === "auto" ? sceneForTime(new Date()) : state.sceneMode;
+  if (scene !== state.activeScene) applyScene(scene);
+}
+function selectScene(mode) {
+  if (mode !== "auto" && !Object.prototype.hasOwnProperty.call(SCENE_COPY, mode)) return;
+  state.sceneMode = mode;
+  syncScene();
+  document.querySelectorAll("[data-scene]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.getAttribute("data-scene") === mode));
+  });
+}
+function refreshDisplay() {
+  updateClockAndDate();
+  syncScene();
 }
 
 function bindEvents() {
@@ -318,17 +348,21 @@ function bindEvents() {
   }, { passive: false });
 
   document.querySelectorAll("[data-scene]").forEach((button) => {
-    button.addEventListener("click", () => applyScene(button.getAttribute("data-scene")));
+    button.addEventListener("click", () => selectScene(button.getAttribute("data-scene")));
   });
 }
 
 function init() {
   assertRequiredElements();
-  applyScene("night");
+  selectScene("auto");
   renderCalendar();
   updateClockAndDate();
   bindEvents();
-  window.setInterval(updateClockAndDate, 1000);
+  window.setInterval(refreshDisplay, 1000);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) refreshDisplay();
+  });
+  window.addEventListener("pageshow", refreshDisplay);
 }
 
 try {
