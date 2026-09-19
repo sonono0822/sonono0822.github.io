@@ -109,8 +109,7 @@ function updateClockAndDate() {
 }
 
 /**
- * v5.1 deliberately fixes the scene to night.
- * Other time-of-day backgrounds remain in CSS untouched for later work.
+ * Keep the shared night-scene geometry; time palettes provide its colors.
  */
 function applyNightScene() {
   elements.world.className = "world night";
@@ -264,10 +263,10 @@ function moveMonth(delta) {
 
 const SCENE_COPY = Object.freeze({
   morning: ["Good morning,", "おはよう…"],
-  lateMorning: ["Good morning,", "おはよう…"],
   day: ["Good afternoon,", "ひと休みしよう"],
   evening: ["Good evening,", "おつかれさま…"],
-  night: ["Good night,", "ねむい... Zzz"]
+  night: ["Good night,", "ねむい... Zzz"],
+  deepNight: ["Good night,", "ねむい... Zzz"]
 });
 function applyScene(scene) {
   if (!Object.prototype.hasOwnProperty.call(SCENE_COPY, scene)) return;
@@ -284,11 +283,11 @@ function applyScene(scene) {
 
 function sceneForTime(now) {
   const hour = now.getHours();
-  if (hour >= 5 && hour < 8) return "morning";
-  if (hour >= 8 && hour < 12) return "lateMorning";
-  if (hour >= 12 && hour < 16) return "day";
+  if (hour >= 5 && hour < 9) return "morning";
+  if (hour >= 9 && hour < 16) return "day";
   if (hour >= 16 && hour < 19) return "evening";
-  return "night";
+  if (hour >= 19 && hour < 23) return "night";
+  return "deepNight";
 }
 
 // Palette values mirror scenes.css; CSS remains the manual-preview fallback.
@@ -320,7 +319,10 @@ const SCENE_PALETTES = {
     "sun-top": "59",
     "sun-left": "44",
     "sun-size": "5",
-    "lantern-saturation": "1"
+    "lantern-saturation": "1",
+    "rest-window-factor": "1",
+    "street-light-opacity": "1",
+    "lantern-brightness": "1"
   },
   "morning": {
     "sky-top": "#668bbe",
@@ -335,7 +337,7 @@ const SCENE_PALETTES = {
     "roof": "#c0adb9",
     "window": "#ffd7aa",
     "window-dim": "#a6aec6",
-    "window-opacity": ".55",
+    "window-opacity": ".28",
     "cloud": "#f5c1ba",
     "cloud-light": "#ffe0ba",
     "cloud-opacity": ".65",
@@ -349,36 +351,10 @@ const SCENE_PALETTES = {
     "sun-top": "59",
     "sun-left": "44",
     "sun-size": "5",
-    "lantern-saturation": ".8"
-  },
-  "lateMorning": {
-    "sky-top": "#78b8e8",
-    "sky-mid": "#a0d3ee",
-    "sky-low": "#cce7ef",
-    "horizon": "#f0e7cf",
-    "far": "#99b4c9",
-    "far-alt": "#abc2d2",
-    "mid": "#6b89ab",
-    "mid-alt": "#819bb7",
-    "near": "#4a6386",
-    "roof": "#bbcad4",
-    "window": "#d9dfc9",
-    "window-dim": "#91abc0",
-    "window-opacity": ".4",
-    "cloud": "#f8efdc",
-    "cloud-light": "#fff8e7",
-    "cloud-opacity": ".85",
-    "panel-top": "#4b607c",
-    "panel-bottom": "#3c506b",
-    "sill": "#b4a9a9",
-    "lamp-opacity": ".28",
-    "stars": "0",
-    "sun-opacity": "1",
-    "moon-opacity": "0",
-    "sun-top": "12",
-    "sun-left": "51",
-    "sun-size": "4",
-    "lantern-saturation": ".65"
+    "lantern-saturation": ".8",
+    "rest-window-factor": ".18",
+    "street-light-opacity": ".35",
+    "lantern-brightness": ".94"
   },
   "day": {
     "sky-top": "#367ed0",
@@ -393,7 +369,7 @@ const SCENE_PALETTES = {
     "roof": "#bbcad4",
     "window": "#d9dfc9",
     "window-dim": "#91abc0",
-    "window-opacity": ".4",
+    "window-opacity": ".08",
     "cloud": "#f8efdc",
     "cloud-light": "#fff8e7",
     "cloud-opacity": ".85",
@@ -407,7 +383,10 @@ const SCENE_PALETTES = {
     "sun-top": "12",
     "sun-left": "51",
     "sun-size": "4",
-    "lantern-saturation": ".65"
+    "lantern-saturation": ".65",
+    "rest-window-factor": ".08",
+    "street-light-opacity": ".12",
+    "lantern-brightness": ".92"
   },
   "evening": {
     "sky-top": "#484569",
@@ -422,7 +401,7 @@ const SCENE_PALETTES = {
     "roof": "#bd8d9d",
     "window": "#ffcb8c",
     "window-dim": "#b899b0",
-    "window-opacity": ".95",
+    "window-opacity": ".75",
     "cloud": "#d893a7",
     "cloud-light": "#ffc299",
     "cloud-opacity": ".48",
@@ -436,12 +415,48 @@ const SCENE_PALETTES = {
     "sun-top": "59",
     "sun-left": "44",
     "sun-size": "5",
-    "lantern-saturation": "1"
+    "lantern-saturation": "1",
+    "rest-window-factor": ".6",
+    "street-light-opacity": ".8",
+    "lantern-brightness": ".98"
+  },
+  "deepNight": {
+    "sky-top": "#10172e",
+    "sky-mid": "#222d46",
+    "sky-low": "#41425b",
+    "horizon": "#675469",
+    "far": "#444863",
+    "far-alt": "#50536d",
+    "mid": "#2d3650",
+    "mid-alt": "#373c54",
+    "near": "#202940",
+    "roof": "#686780",
+    "window": "#edbf88",
+    "window-dim": "#9390ab",
+    "window-opacity": ".6",
+    "cloud": "#7d7fa3",
+    "cloud-light": "#a29abb",
+    "cloud-opacity": ".15",
+    "panel-top": "#41435e",
+    "panel-bottom": "#343851",
+    "sill": "#675c70",
+    "lamp-opacity": ".72",
+    "stars": ".65",
+    "sun-opacity": "0",
+    "moon-opacity": "1",
+    "sun-top": "59",
+    "sun-left": "44",
+    "sun-size": "5",
+    "lantern-saturation": "1",
+    "rest-window-factor": "0",
+    "street-light-opacity": ".7",
+    "lantern-brightness": ".96"
   }
 };
+// Each transition blends for 15 minutes on either side of the boundary.
 const SCENE_BOUNDARIES = [
-  [300,"night","morning"], [480,"morning","lateMorning"],
-  [720,"lateMorning","day"], [960,"day","evening"], [1140,"evening","night"]
+  [300,"deepNight","morning"], [540,"morning","day"],
+  [960,"day","evening"], [1140,"evening","night"], [1380,"night","deepNight"]
 ];
 let lastPaletteKey = "";
 function blendForTime(now) {

@@ -1,9 +1,9 @@
+.world.night[data-time-scene="night"]{--sky-top:#111a38;--sky-mid:#293554;--sky-low:#55506b;--horizon:#8b6b7b;--far:#545575;--far-alt:#626080;--mid:#343f5d;--mid-alt:#41455f;--near:#222c45;--roof:#7d7890;--window:#edbf88;--window-dim:#9390ab;--window-opacity:.9;--cloud:#7d7fa3;--cloud-light:#a29abb;--cloud-opacity:.15;--panel-top:#41435e;--panel-bottom:#343851;--sill:#756376;--lamp-opacity:1;--stars:.65;--sun-opacity:0;--moon-opacity:1;--sun-top:59;--sun-left:44;--sun-size:5;--lantern-saturation:1;--rest-window-factor:1;--street-light-opacity:1;--lantern-brightness:1}
+.world.night[data-time-scene="morning"]{--sky-top:#668bbe;--sky-mid:#a7a4cb;--sky-low:#e4abb4;--horizon:#ffd49c;--far:#a49ab6;--far-alt:#b3a0b8;--mid:#737e9d;--mid-alt:#8987a3;--near:#515d7d;--roof:#c0adb9;--window:#ffd7aa;--window-dim:#a6aec6;--window-opacity:.28;--cloud:#f5c1ba;--cloud-light:#ffe0ba;--cloud-opacity:.65;--panel-top:#535975;--panel-bottom:#454b67;--sill:#b09a9d;--lamp-opacity:.55;--stars:0;--sun-opacity:1;--moon-opacity:0;--sun-top:59;--sun-left:44;--sun-size:5;--lantern-saturation:.8;--rest-window-factor:.18;--street-light-opacity:.35;--lantern-brightness:.94}
+.world.night[data-time-scene="day"]{--sky-top:#367ed0;--sky-mid:#589ee0;--sky-low:#a2cdec;--horizon:#f0e7cf;--far:#99b4c9;--far-alt:#abc2d2;--mid:#6b89ab;--mid-alt:#819bb7;--near:#4a6386;--roof:#bbcad4;--window:#d9dfc9;--window-dim:#91abc0;--window-opacity:.08;--cloud:#f8efdc;--cloud-light:#fff8e7;--cloud-opacity:.85;--panel-top:#4b607c;--panel-bottom:#3c506b;--sill:#b4a9a9;--lamp-opacity:.28;--stars:0;--sun-opacity:1;--moon-opacity:0;--sun-top:12;--sun-left:51;--sun-size:4;--lantern-saturation:.65;--rest-window-factor:.08;--street-light-opacity:.12;--lantern-brightness:.92}
+.world.night[data-time-scene="evening"]{--sky-top:#484569;--sky-mid:#925d85;--sky-low:#d77887;--horizon:#ffb26e;--far:#a47a94;--far-alt:#b98499;--mid:#655c7b;--mid-alt:#7b607d;--near:#3e405f;--roof:#bd8d9d;--window:#ffcb8c;--window-dim:#b899b0;--window-opacity:.75;--cloud:#d893a7;--cloud-light:#ffc299;--cloud-opacity:.48;--panel-top:#554962;--panel-bottom:#443d58;--sill:#ad828e;--lamp-opacity:.9;--stars:.18;--sun-opacity:1;--moon-opacity:0;--sun-top:59;--sun-left:44;--sun-size:5;--lantern-saturation:1;--rest-window-factor:.6;--street-light-opacity:.8;--lantern-brightness:.98}
+.world.night[data-time-scene="deepNight"]{--sky-top:#10172e;--sky-mid:#222d46;--sky-low:#41425b;--horizon:#675469;--far:#444863;--far-alt:#50536d;--mid:#2d3650;--mid-alt:#373c54;--near:#202940;--roof:#686780;--window:#edbf88;--window-dim:#9390ab;--window-opacity:.6;--cloud:#7d7fa3;--cloud-light:#a29abb;--cloud-opacity:.15;--panel-top:#41435e;--panel-bottom:#343851;--sill:#675c70;--lamp-opacity:.72;--stars:.65;--sun-opacity:0;--moon-opacity:1;--sun-top:59;--sun-left:44;--sun-size:5;--lantern-saturation:1;--rest-window-factor:0;--street-light-opacity:.7;--lantern-brightness:.96}
 /* Step 6-1: static palettes, shared city geometry. */
-.world.night[data-time-scene="night"]{--sky-top:#111a38;--sky-mid:#293554;--sky-low:#55506b;--horizon:#8b6b7b;--far:#545575;--far-alt:#626080;--mid:#343f5d;--mid-alt:#41455f;--near:#222c45;--roof:#7d7890;--window:#edbf88;--window-dim:#9390ab;--window-opacity:.9;--cloud:#7d7fa3;--cloud-light:#a29abb;--cloud-opacity:.15;--panel-top:#41435e;--panel-bottom:#343851;--sill:#756376;--lamp-opacity:1;--stars:.65;}
-.world.night[data-time-scene="morning"]{--sky-top:#668bbe;--sky-mid:#a7a4cb;--sky-low:#e4abb4;--horizon:#ffd49c;--far:#a49ab6;--far-alt:#b3a0b8;--mid:#737e9d;--mid-alt:#8987a3;--near:#515d7d;--roof:#c0adb9;--window:#ffd7aa;--window-dim:#a6aec6;--window-opacity:.55;--cloud:#f5c1ba;--cloud-light:#ffe0ba;--cloud-opacity:.65;--panel-top:#535975;--panel-bottom:#454b67;--sill:#b09a9d;--lamp-opacity:.55;--stars:0;}
-.world.night[data-time-scene="lateMorning"]{--sky-top:#78b8e8;--sky-mid:#a0d3ee;--sky-low:#cce7ef;--horizon:#f0e7cf;--far:#99b4c9;--far-alt:#abc2d2;--mid:#6b89ab;--mid-alt:#819bb7;--near:#4a6386;--roof:#bbcad4;--window:#d9dfc9;--window-dim:#91abc0;--window-opacity:.4;--cloud:#f8efdc;--cloud-light:#fff8e7;--cloud-opacity:.85;--panel-top:#4b607c;--panel-bottom:#3c506b;--sill:#b4a9a9;--lamp-opacity:.28;--stars:0;}
-.world.night[data-time-scene="day"]{--sky-top:#367ed0;--sky-mid:#589ee0;--sky-low:#a2cdec;--horizon:#f0e7cf;--far:#99b4c9;--far-alt:#abc2d2;--mid:#6b89ab;--mid-alt:#819bb7;--near:#4a6386;--roof:#bbcad4;--window:#d9dfc9;--window-dim:#91abc0;--window-opacity:.4;--cloud:#f8efdc;--cloud-light:#fff8e7;--cloud-opacity:.85;--panel-top:#4b607c;--panel-bottom:#3c506b;--sill:#b4a9a9;--lamp-opacity:.28;--stars:0;}
-.world.night[data-time-scene="evening"]{--sky-top:#484569;--sky-mid:#925d85;--sky-low:#d77887;--horizon:#ffb26e;--far:#a47a94;--far-alt:#b98499;--mid:#655c7b;--mid-alt:#7b607d;--near:#3e405f;--roof:#bd8d9d;--window:#ffcb8c;--window-dim:#b899b0;--window-opacity:.95;--cloud:#d893a7;--cloud-light:#ffc299;--cloud-opacity:.48;--panel-top:#554962;--panel-bottom:#443d58;--sill:#ad828e;--lamp-opacity:.9;--stars:.18;}
 .world.night[data-time-scene]{background:linear-gradient(var(--sky-top),var(--sky-mid) 44%,var(--sky-low) 68%,var(--horizon) 88%,var(--sky-low))}
 .world[data-time-scene] .sky-stars{opacity:var(--stars)}
 .world[data-time-scene] .calendar-panel::before{background:linear-gradient(135deg,var(--panel-top),var(--panel-bottom))}
@@ -32,12 +32,6 @@
 .world[data-time-scene="morning"] .greeting,.world[data-time-scene="day"] .greeting{text-shadow:1px 1px #3e536d,0 1px 3px #3e536d}
 .dev-panel button[aria-pressed="true"]{background:#777087;color:#fff0cf;border-color:#fff0cf}
 
-/* 08–12: pale blue sky; 12–16: saturated afternoon blue. */
-.world[data-time-scene="lateMorning"] .sun-moon{left:51%;top:12%;width:4vw;height:4vw;box-shadow:0 0 22px #ffedb34d}
-.world[data-time-scene="lateMorning"] .sun-moon::after{display:none}
-.world[data-time-scene="lateMorning"] .room-lantern{filter:brightness(.92) saturate(.65)}
-.world[data-time-scene="lateMorning"] .greeting{text-shadow:1px 1px #3e536d,0 1px 3px #3e536d}
-
 /* Step 6-3: independent sun/moon layers avoid an opaque cutout or abrupt swap. */
 .world.night[data-time-scene] .sun-moon{inset:0;width:100%;height:100%;max-width:none;max-height:none;border-radius:0;background:none;box-shadow:none}
 .world.night[data-time-scene] .sun-moon::after{display:none}
@@ -56,3 +50,9 @@
 .world[data-time-scene] .night-city .night-cloud-left{left:-8%;top:48%;width:22%;height:10%}
 .world[data-time-scene] .night-city .night-cloud-center{left:44%;top:42%;width:12%;height:7%}
 .world[data-time-scene] .night-city .night-cloud-right{right:-6%;top:24%;width:24%;height:13%}
+
+/* v6.8.3: selected windows fade out at bedtime; no extra elements or timers. */
+.world[data-time-scene] .night-city .windows .win.on:nth-child(3n+1){opacity:calc(var(--window-opacity) * var(--rest-window-factor))}
+.world[data-time-scene] .bridge-light,
+.world[data-time-scene] .night-city .landmark-tower .tower-lantern{opacity:var(--street-light-opacity)}
+.world.night[data-time-scene] .room-lantern{filter:brightness(var(--lantern-brightness)) saturate(var(--lantern-saturation,1))}
