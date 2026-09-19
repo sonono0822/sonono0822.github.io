@@ -44,3 +44,15 @@
 .scene-sun{position:absolute;left:calc(var(--sun-left,51)*1%);top:calc(var(--sun-top,12)*1%);width:calc(var(--sun-size,4)*1vw);height:calc(var(--sun-size,4)*1vw);max-width:70px;max-height:70px;border-radius:50%;background:#fff0be;box-shadow:0 0 22px #ffedb34d;opacity:var(--sun-opacity,0)}
 .scene-moon{position:absolute;left:53%;top:15%;width:clamp(20px,5.5vh,40px);height:clamp(20px,5.5vh,40px);fill:#fff0be;opacity:var(--moon-opacity,1)}
 .world.night[data-time-scene] .room-lantern{filter:saturate(var(--lantern-saturation,1))}
+
+/* Step 8-1: small cloud contours and three tones follow the existing palette blend. */
+.world[data-time-scene] .night-city .night-cloud{background:none;clip-path:none}
+.world[data-time-scene] .night-city .night-cloud::after{display:none}
+.cloud-pixels{display:block;width:100%;height:100%;overflow:visible}
+.cloud-body{fill:var(--cloud)}
+.cloud-highlight{fill:var(--cloud-light);opacity:.65}
+.cloud-shade{fill:var(--sky-mid);opacity:.22}
+.cloud-fragments{fill:var(--cloud);opacity:.55}
+.world[data-time-scene] .night-city .night-cloud-left{left:-8%;top:48%;width:22%;height:10%}
+.world[data-time-scene] .night-city .night-cloud-center{left:44%;top:42%;width:12%;height:7%}
+.world[data-time-scene] .night-city .night-cloud-right{right:-6%;top:24%;width:24%;height:13%}

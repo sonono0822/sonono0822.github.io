@@ -9,10 +9,10 @@
   <meta name="apple-mobile-web-app-title" content="Pixel Clock">
   <title>Pixel Desk Clock</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css?v=6.3.0">
-  <link rel="stylesheet" href="room.css?v=6.3.0">
-  <link rel="stylesheet" href="characters.css?v=6.3.0">
-<link rel="stylesheet" href="scenes.css?v=6.3.0">
+  <link rel="stylesheet" href="style.css?v=6.4.0">
+  <link rel="stylesheet" href="room.css?v=6.4.0">
+  <link rel="stylesheet" href="characters.css?v=6.4.0">
+<link rel="stylesheet" href="scenes.css?v=6.4.0">
 </head>
 <body>
 <div class="world evening" id="world">
@@ -21,9 +21,9 @@
 
   <div class="night-city" aria-hidden="true">
     <div class="city-glow"></div>
-    <div class="night-cloud night-cloud-left"></div>
-    <div class="night-cloud night-cloud-center"></div>
-    <div class="night-cloud night-cloud-right"></div>
+    <div class="night-cloud night-cloud-left"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 24H8V20H13V17H19V12H23V14H29V8H34V11H40V6H46V10H50V8H55V13H61V12H67V17H75V15H81V19H88V17H94V22H102V24H109V27H118V29H124V32H112V34H101V32H90V35H77V33H66V35H53V32H43V34H31V31H20V33H11V29H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
+    <div class="night-cloud night-cloud-center"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 29H10V26H18V23H27V25H35V20H42V17H48V19H54V12H60V9H64V12H69V10H75V15H82V13H87V20H94V18H100V24H110V26H119V29H128V32H116V34H103V32H91V35H79V32H64V34H49V32H35V34H23V31H10V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
+    <div class="night-cloud night-cloud-right"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 27H7V21H15V23H22V17H28V13H35V16H40V8H46V10H52V5H57V9H63V7H70V13H78V11H85V17H93V15H99V22H107V20H113V26H122V29H128V34H117V32H107V36H94V33H80V35H69V32H56V35H44V32H32V35H18V31H7V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
     <div class="skyline skyline-far">
       <div class="building far-building roof-utility" style="--x:-1.0%;--w:2.2%;--h:56%;--cols:3;--rows:6">
         <div class="windows"><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
@@ -413,8 +413,8 @@
   <!-- The existing bubble id is retained for app.js. Decorative companions do not capture taps. -->
   <div class="window-companions" id="petHome" aria-hidden="true">
     <div class="companion-bubble" id="bubble"></div>
-    <img class="companion companion-character" src="assets/character.png?v=6.3.1" alt="" draggable="false">
-    <img class="companion companion-cat" src="assets/sleeping-cat.png?v=6.3.0" alt="" draggable="false">
+    <img class="companion companion-character" src="assets/character.png?v=6.4.0" alt="" draggable="false">
+    <img class="companion companion-cat" src="assets/sleeping-cat.png?v=6.4.0" alt="" draggable="false">
     <svg class="sleep-marks" viewBox="0 0 20 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M11 0h9v2h-2v2h-2v2h4v2h-9V6h2V4h2V2h-4zM5 12h9v2h-2v2h-2v2h4v2H5v-2h2v-2h2v-2H5zM0 24h7v2H5v2H3v2h4v2H0v-2h2v-2h2v-2H0z"/></svg>
   </div>
   <details class="dev-panel"><summary aria-label="背景の時間帯を選ぶ">◆</summary><div>
@@ -422,5 +422,5 @@
     <button data-scene="lateMorning">午前</button><button data-scene="day">午後</button><button data-scene="evening">夕</button><button data-scene="night">夜</button>
   </div></details>
 </div>
-<script src="app.js?v=6.3.0"></script>
+<script src="app.js?v=6.4.0"></script>
 </body></html>

@@ -32,3 +32,17 @@
 /* Step 7-1: seated mug pose and compact sleeping cat. */
 .window-companions .companion-character{left:0;bottom:-4%;width:44%;height:100%}
 .window-companions .companion-cat{left:47%;bottom:-2%;width:48%;height:48%}
+
+/* Step 7-2: stepped speech balloon, pointing toward the seated character. */
+.window-companions .companion-bubble{
+  top:25%;right:100%;isolation:isolate;
+  padding:8px 11px;border:0;background:transparent;box-shadow:none;
+  color:#3b354a;font-size:clamp(9px,.82vw,12px);font-weight:600;line-height:1.4;
+  filter:drop-shadow(2px 3px 0 #25243d55);
+}
+.companion-bubble::before,.companion-bubble::after{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  clip-path:polygon(6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,100% 3px,100% calc(100% - 12px),calc(100% - 4px) calc(100% - 12px),calc(100% - 4px) calc(100% - 9px),85% calc(100% - 9px),85% 100%,78% calc(100% - 3px),78% calc(100% - 9px),6px calc(100% - 9px),6px calc(100% - 12px),0 calc(100% - 12px),0 3px,6px 3px);
+}
+.companion-bubble::before{inset:0 0 -9px;background:#817487}
+.companion-bubble::after{inset:1px 1px -7px;background:linear-gradient(#fff3df,#e8d7c7)}
