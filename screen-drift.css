@@ -1,0 +1,16 @@
+/* v6.8.8: hold for almost 20 minutes, then move 1px over 8 seconds.
+   Eight small steps form a 160-minute loop; no JavaScript timer is added. */
+.world{animation:screen-drift 9600s linear infinite}
+@keyframes screen-drift{
+  0%,12.416667%{transform:translate(0px,0px)}
+  12.5%,24.916667%{transform:translate(1px,0px)}
+  25%,37.416667%{transform:translate(1px,1px)}
+  37.5%,49.916667%{transform:translate(0px,1px)}
+  50%,62.416667%{transform:translate(-1px,1px)}
+  62.5%,74.916667%{transform:translate(-1px,0px)}
+  75%,87.416667%{transform:translate(-1px,-1px)}
+  87.5%,99.916667%{transform:translate(0px,-1px)}
+  100%{transform:translate(0,0)}
+}
+html[data-scene-paused="true"] .world{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.world{animation:none;transform:none}}
