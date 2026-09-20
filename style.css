@@ -100,6 +100,30 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .building.form-terraced::after {content:"";position:absolute;bottom:122%;left:30%;width:42%;height:9%;background:inherit;border-top:1px solid #aaa0ad55}
 .night-city .building.form-slender {width:calc(var(--w) * .8);box-shadow:inset -5px 0 #111b304d,inset 2px 0 #d0bac026}
 .night-city .building.form-slender::before {content:"";position:absolute;bottom:100%;left:42%;width:16%;height:12%;background:#616780;border-top:2px solid #b5a4b455;box-shadow:none}
+/* v6.8.30 skyline pass: break up repeated silhouettes and window rhythms without
+   adding scenery, animation, or another compositing layer. */
+.night-city .skyline-far .building:nth-child(5n+2){width:calc(var(--w) * .82)}
+.night-city .skyline-far .building:nth-child(7n+4){width:calc(var(--w) * 1.12)}
+.night-city .skyline-far .building:nth-child(6n+1) .windows{inset:16% 23% 7%;column-gap:28%;row-gap:13%}
+.night-city .skyline-far .building:nth-child(6n+3) .windows{inset:9% 14% 10%;column-gap:13%;row-gap:16%}
+.night-city .skyline-far .roof-stepped:nth-child(4n+1)::before{left:9%;width:48%;height:18%}
+.night-city .skyline-far .roof-stepped:nth-child(4n+3)::before{left:31%;width:58%;height:9%}
+.night-city .skyline-far .roof-utility:nth-child(odd)::before{left:53%;width:27%;height:8%;box-shadow:-5px -2px color-mix(in srgb,var(--roof) 52%,transparent)}
+
+.night-city .skyline-mid .building:nth-child(4n+1){box-shadow:inset -6px 0 #111b3059,inset 2px 0 #edddce26}
+.night-city .skyline-mid .building:nth-child(4n+2){box-shadow:inset -3px 0 #111b304d,inset 4px 0 #edddce21}
+.night-city .skyline-mid .building:nth-child(5n+2) .windows{inset:17% 11% 8%;column-gap:25%;row-gap:7%}
+.night-city .skyline-mid .building:nth-child(5n+4) .windows{inset:9% 24% 11%;column-gap:12%;row-gap:15%}
+.night-city .skyline-mid .roof-stepped:nth-child(3n+1)::before{left:8%;width:54%;height:17%}
+.night-city .skyline-mid .roof-stepped:nth-child(3n+2)::before{left:28%;width:64%;height:9%}
+.night-city .skyline-mid .roof-utility:nth-child(even)::before{left:58%;width:25%;height:8%;box-shadow:-6px -2px color-mix(in srgb,var(--roof) 48%,transparent)}
+.night-city .skyline-near .building:nth-child(4n+1){box-shadow:inset -8px 0 #111b3066,inset 3px 0 #edddce24}
+.night-city .skyline-near .building:nth-child(4n+3){box-shadow:inset -4px 0 #111b3059,inset 1px 0 #edddce33}
+.night-city .skyline-near .building:nth-child(5n+1) .windows{inset:14% 12% 9%;column-gap:27%;row-gap:8%}
+.night-city .skyline-near .building:nth-child(5n+3) .windows{inset:10% 25% 7%;column-gap:10%;row-gap:17%}
+.night-city .skyline-near .roof-stepped:nth-child(odd)::before{left:10%;width:56%;height:18%}
+.night-city .skyline-near .roof-stepped:nth-child(even)::before{left:35%;width:54%;height:10%}
+.night-city .skyline-near .roof-utility:nth-child(3n+1)::before{left:55%;width:31%;height:8%;box-shadow:-7px -2px color-mix(in srgb,var(--mid) 58%,transparent)}
 /* Landmark sits in the open sky left of the panel. Roofs nearby are deliberately lower. */
 .night-city .landmark-tower {position:absolute;left:51%;bottom:0;width:4.8vw;height:118%;color:#202d49;z-index:1}
 .night-city .landmark-tower::before {content:"";position:absolute;inset:0;background:currentColor;clip-path:polygon(48% 0,52% 0,54% 14%,61% 17%,58% 24%,62% 51%,73% 72%,94% 100%,73% 100%,51% 63%,29% 100%,8% 100%,29% 71%,39% 51%,43% 24%,37% 17%,46% 14%)}
