@@ -33,11 +33,11 @@
       pointer-events:none;
     }
   </style>
-  <link rel="stylesheet" href="weather.css?v=6.8.17">
+  <link rel="stylesheet" href="weather.css?v=6.8.18">
 </head>
 <body>
 <div class="world evening" id="world">
-  <span class="html-version" aria-label="HTML version 6.8.17">HTML v6.8.17</span>
+  <span class="html-version" aria-label="HTML version 6.8.18">HTML v6.8.18</span>
   <div class="sky-stars"></div><div class="sky-detail-stars" aria-hidden="true"><i style="left:32%;top:8%;--spark-size:5px"></i><i style="left:44%;top:6%;--spark-size:3px"></i><i style="left:49%;top:31%;--spark-size:5px"></i><i style="left:6%;top:40%;--spark-size:3px"></i><i style="left:17%;top:55%;--spark-size:5px"></i><i style="left:95%;top:13%;--spark-size:3px"></i><i style="left:97%;top:40%;--spark-size:5px"></i><i style="left:24%;top:7%;--spark-size:3px"></i><i style="left:53%;top:38%;--spark-size:3px"></i><i style="left:3%;top:57%;--spark-size:3px"></i><i style="left:98%;top:25%;--spark-size:3px"></i></div><div class="sky-wisps" aria-hidden="true"><i></i><i></i><i></i></div><div class="sun-moon" aria-hidden="true"><span class="scene-sun"></span><svg class="scene-moon" viewBox="0 0 40 40" focusable="false"><path d="M23 2A18 18 0 1 1 7 32A18 18 0 0 0 23 2Z"/></svg></div>
   
 
@@ -332,6 +332,8 @@
   <div class="city city-far"></div><div class="city city-mid"></div><div class="city city-near"></div>
   <div class="city-lights"></div><div class="rail"></div>
 
+  <!-- Rain is behind all indoor objects and clipped above the sill. -->
+  <div class="weather-rain" aria-hidden="true"><i style="left:4%;--rain-duration:1.45s;--rain-delay:-0.23s"></i><i style="left:12%;--rain-duration:1.62s;--rain-delay:-0.62s"></i><i style="left:19%;--rain-duration:1.79s;--rain-delay:-1.01s"></i><i style="left:27%;--rain-duration:1.96s;--rain-delay:-1.40s"></i><i style="left:33%;--rain-duration:2.13s;--rain-delay:-1.79s"></i><i style="left:41%;--rain-duration:1.45s;--rain-delay:-2.18s"></i><i style="left:48%;--rain-duration:1.62s;--rain-delay:-2.57s"></i><i style="left:55%;--rain-duration:1.79s;--rain-delay:-2.96s"></i><i style="left:63%;--rain-duration:1.96s;--rain-delay:-3.35s"></i><i style="left:69%;--rain-duration:2.13s;--rain-delay:-3.74s"></i><i style="left:76%;--rain-duration:1.45s;--rain-delay:-4.13s"></i><i style="left:83%;--rain-duration:1.62s;--rain-delay:-4.52s"></i><i style="left:90%;--rain-duration:1.79s;--rain-delay:-4.91s"></i><i style="left:96%;--rain-duration:1.96s;--rain-delay:-5.30s"></i></div>
   <div class="room-interior" aria-hidden="true">
     <div class="window-jamb window-jamb-left"></div>
     <div class="window-jamb window-jamb-right"></div>
