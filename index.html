@@ -10,13 +10,13 @@
   <title>Pixel Desk Clock</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="style.css?v=6.8.2">
-  <link rel="stylesheet" href="room.css?v=6.8.16">
+  <link rel="stylesheet" href="room.css?v=6.8.24">
   <link rel="stylesheet" href="characters.css?v=6.8.22">
 <link rel="stylesheet" href="scenes.css?v=6.8.4">
   <link rel="stylesheet" href="details.css?v=6.7.0">
 <link rel="stylesheet" href="motion.css?v=6.8.6">
 <link rel="stylesheet" href="screen-drift.css?v=6.8.8">
-<link rel="stylesheet" href="seasons.css?v=6.8.14">
+<link rel="stylesheet" href="seasons.css?v=6.8.24">
   <!-- Development badge: keep its styles and version in this HTML. -->
   <style id="html-version-style">
     .html-version {
@@ -37,14 +37,14 @@
 </head>
 <body>
 <div class="world evening" id="world">
-  <span class="html-version" aria-label="HTML version 6.8.23">HTML v6.8.23</span>
+  <span class="html-version" aria-label="HTML version 6.8.24">HTML v6.8.24</span>
   <div class="sky-stars"></div><div class="sky-detail-stars" aria-hidden="true"><i style="left:32%;top:8%;--spark-size:5px"></i><i style="left:44%;top:6%;--spark-size:3px"></i><i style="left:49%;top:31%;--spark-size:5px"></i><i style="left:6%;top:40%;--spark-size:3px"></i><i style="left:17%;top:55%;--spark-size:5px"></i><i style="left:95%;top:13%;--spark-size:3px"></i><i style="left:97%;top:40%;--spark-size:5px"></i><i style="left:24%;top:7%;--spark-size:3px"></i><i style="left:53%;top:38%;--spark-size:3px"></i><i style="left:3%;top:57%;--spark-size:3px"></i><i style="left:98%;top:25%;--spark-size:3px"></i></div><div class="sky-wisps" aria-hidden="true"><i></i><i></i><i></i></div><div class="sun-moon" aria-hidden="true"><span class="scene-sun"></span><svg class="scene-moon" viewBox="0 0 40 40" focusable="false"><path d="M23 2A18 18 0 1 1 7 32A18 18 0 0 0 23 2Z"/></svg></div>
   
 
   <div class="night-city" aria-hidden="true">
     <div class="city-glow"></div>
     <div class="night-cloud night-cloud-left"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 24H8V20H13V17H19V12H23V14H29V8H34V11H40V6H46V10H50V8H55V13H61V12H67V17H75V15H81V19H88V17H94V22H102V24H109V27H118V29H124V32H112V34H101V32H90V35H77V33H66V35H53V32H43V34H31V31H20V33H11V29H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
-    <div class="night-cloud night-cloud-center"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 29H10V26H18V23H27V25H35V20H42V17H48V19H54V12H60V9H64V12H69V10H75V15H82V13H87V20H94V18H100V24H110V26H119V29H128V32H116V34H103V32H91V35H79V32H64V34H49V32H35V34H23V31H10V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
+    <div class="night-cloud night-cloud-center"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><g class="ordinary-center-cloud"><path class="cloud-body" d="M0 29H10V26H18V23H27V25H35V20H42V17H48V19H54V12H60V9H64V12H69V10H75V15H82V13H87V20H94V18H100V24H110V26H119V29H128V32H116V34H103V32H91V35H79V32H64V34H49V32H35V34H23V31H10V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></g><g class="summer-cumulus"><path class="cloud-body" d="M0 34H9V29H18V24H27V28H35V19H40V12H47V6H54V2H65V5H72V10H79V17H85V24H91V21H101V25H109V29H119V33H128V37H113V39H94V37H71V40H49V37H29V39H12V37H0Z"/><path class="cloud-highlight" d="M43 14h5v-6h8V4h7v3h6v5h-9V9h-9v7h-8zM36 23h7v-4h5v5h-5v3h-7zM87 26h6v-3h6v4H87z"/><path class="cloud-shade" d="M9 34h23v2H9zM41 34h38v3H41zM93 33h24v3H93zM68 16h7v5h-7z"/></g></svg></div>
     <div class="night-cloud night-cloud-right"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 27H7V21H15V23H22V17H28V13H35V16H40V8H46V10H52V5H57V9H63V7H70V13H78V11H85V17H93V15H99V22H107V20H113V26H122V29H128V34H117V32H107V36H94V33H80V35H69V32H56V35H44V32H32V35H18V31H7V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
     <div class="skyline skyline-far">
       <div class="building far-building roof-utility" style="--x:-1.0%;--w:2.2%;--h:56%;--cols:3;--rows:6">
@@ -423,6 +423,13 @@
       <path fill="#b5967b" d="M15 48h3v3h-3zM65 48h3v3h-3zM15 119h3v3h-3zM65 119h3v3h-3z"/>
     </svg>
 
+    <!-- Small static seasonal ornament on the clear sill below the calendar. -->
+    <svg class="room-object room-seasonal-item" viewBox="0 0 32 40" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+      <path fill="#242739" opacity=".45" d="M4 38h24v2H4z"/>
+      <g class="seasonal-vase"><path fill="#6b886b" d="M14 9h2v18h-2zM15 17h5v-3h3v5h-7z"/><path fill="#d2acb8" d="M12 1h5v3h4v5h-4v4h-5V9H8V4h4z"/><path fill="#ead2a1" d="M13 5h3v3h-3z"/><path fill="#3e3d51" d="M11 25h9v5h3v7h-3v2H10v-2H7v-7h4z"/><path fill="#b4b9b2" d="M13 27h5v5h3v4h-3v1h-6v-1H9v-4h4z"/><path fill="#ded9c5" d="M12 32h2v4h-2z"/></g>
+      <g class="seasonal-glass"><path fill="#434d60" d="M8 11h16v4h-1v22h-2v2H11v-2H9V15H8z"/><path fill="#93b6be" d="M10 14h12v20h-1v3H11v-3h-1z"/><path fill="#608d9f" d="M11 24h10v10H11z"/><path fill="#d5e1dc" d="M11 15h2v17h-2zM14 17h4v4h-4zM18 22h3v3h-3zM11 35h10v2H11z"/></g>
+      <g class="seasonal-mug"><path fill="#353448" d="M6 18h18v4h6v11h-6v4h-3v2H9v-2H6z"/><path fill="var(--seasonal-mug-color,#b49a87)" d="M8 21h14v14h-2v2H10v-2H8zM24 24h4v7h-4z"/><path fill="#e1ccb0" d="M8 19h14v3H8zM10 23h2v10h-2z"/><path fill="#66505a" d="M10 20h10v1H10z"/><path fill="#8c7680" d="M19 24h2v10h-2z"/></g>
+    </svg>
     <!-- Stacked cloth-bound books with small spine marks, no UI controls. -->
     <svg class="room-object room-books" viewBox="0 0 176 76" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
       <path fill="#292b41" d="M2 49h170v27H2zM9 24h151v26H9zM20 0h147v25H20z"/>

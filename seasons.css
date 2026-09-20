@@ -1,4 +1,4 @@
-/* Seasonal plants, calendar ornament and sparse outdoor petals/leaves. */
+/* Only the existing plants and a small calendar ornament follow the season. */
 .plant-foliage .season-leaf > path:nth-child(1){fill:var(--season-ink)}
 .plant-foliage .season-leaf > path:nth-child(2){fill:var(--season-leaf)}
 .plant-foliage .season-leaf > path:nth-child(3){fill:var(--season-highlight)}
@@ -33,37 +33,14 @@ html[data-season="winter"] .season-decoration{fill:#b6ceda;--decoration-detail:#
 }
 
 
-/* Four shared particles in the lower outdoor view. No JS or additional timers. */
-.season-particles{
-  display:none;position:absolute;top:38%;right:1.4%;bottom:14%;left:1.4%;
-  z-index:-2;overflow:hidden;contain:paint;pointer-events:none;
-  --season-particle-color:#dcb9c3;
-}
-html:is([data-season="spring"],[data-season="autumn"]) .world:is([data-weather="sunny"],[data-weather="cloudy"]) .season-particles{display:block}
-.season-particles i{
-  position:absolute;top:-6px;bottom:-6px;width:4px;
-  animation:season-particle-fall var(--season-fall-duration) linear infinite;
-  animation-delay:var(--season-fall-delay);animation-play-state:paused;
-}
-.season-particles i::before{
-  content:"";position:absolute;top:0;left:0;width:3px;height:3px;
-  background:var(--season-particle-color);opacity:.65;
-  clip-path:polygon(0 0,66% 0,66% 33%,100% 33%,100% 100%,33% 100%,33% 66%,0 66%);
-}
-html[data-season="autumn"] .season-particles{--season-particle-color:#c69a70}
-html[data-season="autumn"] .season-particles i::before{
-  width:4px;height:3px;
-  clip-path:polygon(50% 0,100% 0,100% 66%,75% 66%,75% 100%,0 100%,0 33%,50% 33%);
-}
-html[data-season="autumn"] .season-particles i:nth-child(2n){--season-particle-color:#b77e6c}
-@keyframes season-particle-fall{
-  0%{transform:translate(-4px,0);opacity:0}
-  12%{opacity:1}
-  45%{transform:translate(8px,45%)}
-  88%{opacity:1}
-  100%{transform:translate(-2px,100%);opacity:0}
-}
-html[data-scene-paused="false"] .season-particles i{animation-play-state:running}
-@media(prefers-reduced-motion:reduce){
-  html:is([data-season="spring"],[data-season="autumn"]) .world:is([data-weather="sunny"],[data-weather="cloudy"]) .season-particles{display:none}
-}
+/* Summer daytime cloud swaps geometry inside the existing animated SVG. */
+.summer-cumulus{display:none}
+html[data-season="summer"] .world[data-weather="sunny"]:is([data-time-scene="lateMorning"],[data-time-scene="day"]) .summer-cumulus{display:inline}
+html[data-season="summer"] .world[data-weather="sunny"]:is([data-time-scene="lateMorning"],[data-time-scene="day"]) .ordinary-center-cloud{display:none}
+/* One quiet indoor item, with no seasonal motion. */
+.room-seasonal-item > g{display:none}
+html[data-season="spring"] .seasonal-vase,
+html[data-season="summer"] .seasonal-glass,
+html:is([data-season="autumn"],[data-season="winter"]) .seasonal-mug{display:inline}
+html[data-season="autumn"] .room-seasonal-item{--seasonal-mug-color:#b5987c}
+html[data-season="winter"] .room-seasonal-item{--seasonal-mug-color:#aab4bf}
