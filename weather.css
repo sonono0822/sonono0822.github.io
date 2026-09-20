@@ -23,3 +23,27 @@ html[data-scene-paused="false"] .weather-rain i{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){
   .world[data-weather="rain"] .weather-rain{display:none}
 }
+
+/* Winter snow reuses the same outdoor layer; every third streak is hidden.
+   Ten small flakes, no additional DOM, timers or accumulation. */
+.world[data-weather="snow"] .weather-rain{display:block}
+.world[data-weather="snow"] .weather-rain i{
+  width:2px;animation-name:window-snow-fall;
+  animation-duration:calc(var(--rain-duration) * 5);
+  animation-delay:calc(var(--rain-delay) * 4);
+}
+.world[data-weather="snow"] .weather-rain i:nth-child(3n){display:none}
+.world[data-weather="snow"] .weather-rain i::before{
+  width:2px;height:2px;background:#dce4e7;opacity:.58;
+}
+.world[data-weather="snow"] .weather-rain i:nth-child(2n)::before{
+  width:1px;height:1px;opacity:.42;
+}
+@keyframes window-snow-fall{
+  0%{transform:translate(-2px,0)}
+  50%{transform:translate(3px,50%)}
+  100%{transform:translate(-2px,100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .world[data-weather="snow"] .weather-rain{display:none}
+}
