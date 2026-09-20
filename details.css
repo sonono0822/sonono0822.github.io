@@ -39,3 +39,21 @@
 /* Step 8-4: layered foliage on the existing plants; preserve pot placement. */
 .room-interior .plant-foliage{filter:drop-shadow(1px 1px 0 #252a3d66)}
 .room-interior .room-plant-right{height:31%;width:5.2%}
+
+/* Three static outdoor trees, behind precipitation and all indoor objects. */
+.night-city .street-tree{position:absolute;bottom:14%;width:3.4%;pointer-events:none;opacity:calc(.9 - var(--window-opacity) * .25)}
+.street-tree-trunk{fill:var(--near)}
+.street-tree-bark{fill:var(--roof);opacity:.55}
+.street-tree-bed{fill:var(--mid)}
+.street-tree-canopy{opacity:clamp(0,calc(var(--season-extra-leaves) * 1.14 - .14),1)}
+.street-tree-outline{fill:var(--season-ink)}
+.street-tree-leaf{fill:var(--season-leaf)}
+.street-tree-highlight{fill:var(--season-highlight)}
+.street-tree-accent{fill:var(--season-accent)}
+/* Three modest entrances; existing window, roof and lighting rules stay intact. */
+.night-city .street-entry{position:absolute;left:18%;bottom:14%;width:65%;height:43%;z-index:1;pointer-events:none}
+.entry-wall{fill:var(--near)}
+.entry-shadow{fill:var(--sky-top)}
+.entry-glass{fill:var(--window-dim);opacity:.55}
+.entry-frame{fill:var(--roof);opacity:.65}
+.entry-awning{fill:var(--mid-alt)}
