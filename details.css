@@ -13,7 +13,12 @@
 .roof-aerial::after{content:"";position:absolute;left:-3px;top:2px;width:7px;height:1px;background:inherit}
 .night-city .skyline-far::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,var(--horizon));opacity:.13;pointer-events:none}
 .night-city .city-glow{background:radial-gradient(ellipse at 44% 80%,var(--horizon),transparent 70%);opacity:.16}
-.night-city .landmark-tower .tower-lantern{background:var(--window);box-shadow:inset -2px 0 #4b4f6870}
+.night-city .landmark-tower{left:50.4%;width:5.4vw;height:128%;z-index:2}
+.world[data-time-scene] .night-city .landmark-tower{color:color-mix(in srgb,var(--near) 82%,var(--roof))}
+.night-city .landmark-tower::after{width:4px;height:4px;background:var(--window);box-shadow:0 0 4px color-mix(in srgb,var(--window) 45%,transparent)}
+.night-city .landmark-tower i{background:var(--roof);opacity:.78}
+.night-city .landmark-tower .tower-lantern{left:35%;width:31%;background:var(--window);border-color:var(--near);box-shadow:inset -2px 0 #4b4f6870}
+.night-city .landmark-tower .tower-brace{background:var(--mid-alt);opacity:.86}
 .sky-detail-stars{position:absolute;inset:0;z-index:-7;opacity:var(--stars,0);pointer-events:none}
 .sky-detail-stars i{position:absolute;width:var(--spark-size);height:var(--spark-size);background:#f9e5be;clip-path:polygon(40% 0,60% 0,60% 40%,100% 40%,100% 60%,60% 60%,60% 100%,40% 100%,40% 60%,0 60%,0 40%,40% 40%)}
 .sky-wisps{position:absolute;inset:0;z-index:-6;opacity:var(--cloud-opacity,.2);pointer-events:none}
@@ -24,12 +29,17 @@
 
 /* Step 8-3: a river corridor between the middle and foreground buildings.
    Static shapes reuse palette variables, including the ten-second AUTO blend. */
-.night-city .river-corridor{position:absolute;left:10%;right:0;bottom:14%;height:15%;pointer-events:none}
+.night-city .river-corridor{position:absolute;left:4%;right:0;bottom:13.25%;height:19%;pointer-events:none}
 .river-corridor svg{display:block;width:100%;height:100%}
-.river-water{fill:var(--mid)}
-.river-tint{fill:var(--sky-mid);opacity:.45}
-.river-reflections{fill:var(--window);opacity:var(--window-opacity)}
-.river-bank{fill:var(--near)}
+.river-water{fill:color-mix(in srgb,var(--mid) 72%,var(--sky-top));stroke:var(--sky-low);stroke-width:2;vector-effect:non-scaling-stroke}
+.river-tint{fill:var(--horizon);opacity:.16}
+.river-reflections{fill:var(--window);opacity:calc(var(--window-opacity) * .9)}
+.river-reflections rect{transform-box:fill-box;transform-origin:center}
+.river-reflections rect:nth-child(4n+1){opacity:.16;transform:scaleX(.8)}
+.river-reflections rect:nth-child(4n+2){opacity:.26;transform:scaleX(1.12)}
+.river-reflections rect:nth-child(4n+3){opacity:.34;transform:scaleX(1.42)}
+.river-reflections rect:nth-child(4n){opacity:.44;transform:scaleX(1.72)}
+.river-bank{fill:var(--near);stroke:var(--roof);stroke-width:1;vector-effect:non-scaling-stroke}
 .bridge-deck{fill:var(--near)}
 .bridge-edge{fill:var(--roof);opacity:.7}
 .bridge-rail{fill:none;stroke:var(--mid);stroke-width:1;vector-effect:non-scaling-stroke}
