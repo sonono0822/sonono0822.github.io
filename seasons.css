@@ -8,3 +8,15 @@
 .plant-foliage .season-flower{opacity:var(--season-flowers)}
 .season-decoration{position:absolute;right:10px;top:6px;width:12px;height:12px;fill:var(--season-highlight);opacity:.8;pointer-events:none;shape-rendering:crispEdges}
 .dev-panel button[data-season-preview][aria-pressed="true"]{background:#777087;color:#fff0cf;border-color:#fff0cf}
+
+/* v6.8.12: align the original foliage with the existing seasonal palette.
+   Direct-child fill selectors exclude pots, added foliage and other room objects.
+   Fallback colors preserve the original appearance if seasons.js is unavailable. */
+.room-interior .room-plant > path[fill="#435650"]{fill:var(--season-leaf,#435650)}
+.room-interior .room-plant > path[fill="#627264"]{fill:var(--season-highlight,#627264)}
+.room-interior .room-plant > path[fill="#34463f"]{fill:var(--season-ink,#34463f)}
+.room-interior .room-plant > path[fill="#7b866a"]{fill:var(--season-glint,#7b866a)}
+.room-interior .room-plant > path[fill="#52664f"]{fill:var(--season-leaf,#52664f)}
+.room-interior .room-plant-right > path[fill="#43554e"]{fill:var(--season-leaf,#43554e)}
+.room-interior .room-plant-right > path[fill="#74816a"]{fill:var(--season-highlight,#74816a)}
+.room-interior .room-plant-right > path[fill="#566a59"]{fill:var(--season-ink,#566a59)}
