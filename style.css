@@ -76,16 +76,16 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .win {min-width:0;min-height:0;width:100%;height:100%;max-width:4px;max-height:5px;align-self:center;justify-self:center;background:#b4afc311}
 .night-city .win.on {background:#d4ae88;box-shadow:none;opacity:.8}
 .night-city .win.on:nth-child(3n) {background:#aeaabe;opacity:.6}
-.night-city .skyline-far {height:26%;bottom:23%;opacity:.82}
+.night-city .skyline-far {height:24%;bottom:24%;opacity:.72}
 .night-city .far-building {background:#706980;border-top:1px solid #b5a1b74d}
 .night-city .far-building:nth-child(3n) {background:#62667d}
 .night-city .far-building:nth-child(4n) {background:#7b6d84}
 .night-city .far-building .win {max-width:2px;max-height:3px;opacity:.55}
-.night-city .skyline-mid {height:36%;bottom:14.5%}
+.night-city .skyline-mid {height:41%;bottom:14.5%}
 .night-city .mid-building {background:#464d68;border-top:2px solid #878198}
 .night-city .mid-building:nth-child(3n) {background:#53536f;border-top-color:#998496}
 .night-city .mid-building:nth-child(4n) {background:#39445f}
-.night-city .skyline-near {height:20%;bottom:12.5%}
+.night-city .skyline-near {height:23%;bottom:12.5%}
 .night-city .near-building {background:#2c344d;border-top:2px solid #585a73}
 .night-city .near-building:nth-child(3n) {background:#363b55}
 .night-city .near-building .win.on {opacity:.65}
@@ -124,6 +124,13 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .skyline-near .roof-stepped:nth-child(odd)::before{left:10%;width:56%;height:18%}
 .night-city .skyline-near .roof-stepped:nth-child(even)::before{left:35%;width:54%;height:10%}
 .night-city .skyline-near .roof-utility:nth-child(3n+1)::before{left:55%;width:31%;height:8%;box-shadow:-7px -2px color-mix(in srgb,var(--mid) 58%,transparent)}
+/* v6.8.31 field correction: stronger scale separation and modest overlap.
+   Existing x positions and all 91 building objects remain unchanged. */
+.night-city .skyline-mid .building:not(.form-slender){width:calc(var(--w) * 1.12)}
+.night-city .skyline-mid .building.form-slender{width:calc(var(--w) * .92)}
+.night-city .skyline-mid .building:nth-child(4n+2):not(.form-slender){width:calc(var(--w) * 1.2)}
+.night-city .skyline-near .building:not(.form-slender){width:calc(var(--w) * 1.06)}
+.night-city .skyline-near .building.form-slender{width:calc(var(--w) * .84)}
 /* Landmark sits in the open sky left of the panel. Roofs nearby are deliberately lower. */
 .night-city .landmark-tower {position:absolute;left:51%;bottom:0;width:4.8vw;height:118%;color:#202d49;z-index:1}
 .night-city .landmark-tower::before {content:"";position:absolute;inset:0;background:currentColor;clip-path:polygon(48% 0,52% 0,54% 14%,61% 17%,58% 24%,62% 51%,73% 72%,94% 100%,73% 100%,51% 63%,29% 100%,8% 100%,29% 71%,39% 51%,43% 24%,37% 17%,46% 14%)}
