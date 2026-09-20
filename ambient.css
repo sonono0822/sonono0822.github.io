@@ -9,7 +9,3 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .mid-building
   .sky-meteor{display:none}
   .world[data-time-scene] .night-city .mid-building .win.on.ambient-window{transition:none}
 }
-
-/* Brief whole-sprite pose hints; existing art and footing remain unchanged. */
-.window-companions .companion-character,
-.window-companions .companion-cat{transform-origin:center bottom}
