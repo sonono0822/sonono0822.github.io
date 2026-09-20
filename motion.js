@@ -6,6 +6,7 @@
   let syncStars = () => {};
   function pause(hidden) {
     scenePaused = hidden;
+    if (typeof AMBIENT !== "undefined") AMBIENT.pause(hidden);
     document.documentElement.setAttribute("data-scene-paused", String(hidden));
     syncStars();
   }

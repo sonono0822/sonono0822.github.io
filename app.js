@@ -518,6 +518,7 @@ function syncScene(force = false) {
   const scene = state.sceneMode === "auto" ? sceneForTime(now) : state.sceneMode;
   if (scene !== state.activeScene) applyScene(scene);
   if (typeof DIALOGUE !== "undefined") DIALOGUE.sync(now, scene);
+  if (typeof AMBIENT !== "undefined") AMBIENT.sync(now);
   const blend = state.sceneMode === "auto" ? blendForTime(now) : {from:scene,to:scene,amount:0};
   const key = weather + ":" + state.sceneMode + ":" + blend.from + ":" + blend.to + ":" +
     (blend.from === blend.to ? "fixed" : Math.floor(now.getTime()/10000));
