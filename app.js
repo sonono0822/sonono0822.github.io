@@ -115,7 +115,6 @@ function updateClockAndDate() {
 function applyNightScene() {
   elements.world.className = "world night";
   elements.greeting.innerHTML = "Good night,<br><span><svg class=\"greeting-pixels\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 73 7\" width=\"73\" height=\"7\" role=\"img\" aria-label=\"Take it slow.\" focusable=\"false\" shape-rendering=\"crispEdges\"><path fill=\"currentColor\" d=\"M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM2 1h1v1h-1zM2 2h1v1h-1zM2 3h1v1h-1zM2 4h1v1h-1zM2 5h1v1h-1zM2 6h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 3h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM9 6h1v1h-1zM10 6h1v1h-1zM12 0h1v1h-1zM12 1h1v1h-1zM12 2h1v1h-1zM15 2h1v1h-1zM12 3h1v1h-1zM14 3h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM12 5h1v1h-1zM14 5h1v1h-1zM12 6h1v1h-1zM15 6h1v1h-1zM19 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM18 3h1v1h-1zM22 3h1v1h-1zM18 4h1v1h-1zM19 4h1v1h-1zM20 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM18 5h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM30 0h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM30 3h1v1h-1zM30 4h1v1h-1zM30 5h1v1h-1zM29 6h1v1h-1zM30 6h1v1h-1zM31 6h1v1h-1zM36 0h1v1h-1zM36 1h1v1h-1zM35 2h1v1h-1zM36 2h1v1h-1zM37 2h1v1h-1zM36 3h1v1h-1zM36 4h1v1h-1zM36 5h1v1h-1zM37 6h1v1h-1zM38 6h1v1h-1zM45 2h1v1h-1zM46 2h1v1h-1zM47 2h1v1h-1zM48 2h1v1h-1zM44 3h1v1h-1zM45 4h1v1h-1zM46 4h1v1h-1zM47 4h1v1h-1zM48 5h1v1h-1zM44 6h1v1h-1zM45 6h1v1h-1zM46 6h1v1h-1zM47 6h1v1h-1zM51 0h1v1h-1zM52 0h1v1h-1zM52 1h1v1h-1zM52 2h1v1h-1zM52 3h1v1h-1zM52 4h1v1h-1zM52 5h1v1h-1zM51 6h1v1h-1zM52 6h1v1h-1zM53 6h1v1h-1zM57 2h1v1h-1zM58 2h1v1h-1zM59 2h1v1h-1zM56 3h1v1h-1zM60 3h1v1h-1zM56 4h1v1h-1zM60 4h1v1h-1zM56 5h1v1h-1zM60 5h1v1h-1zM57 6h1v1h-1zM58 6h1v1h-1zM59 6h1v1h-1zM62 2h1v1h-1zM66 2h1v1h-1zM62 3h1v1h-1zM66 3h1v1h-1zM62 4h1v1h-1zM64 4h1v1h-1zM66 4h1v1h-1zM62 5h1v1h-1zM64 5h1v1h-1zM66 5h1v1h-1zM63 6h1v1h-1zM65 6h1v1h-1zM70 5h1v1h-1zM71 5h1v1h-1zM70 6h1v1h-1zM71 6h1v1h-1z\"/></svg></span>";
-  elements.bubble.textContent = "ねむい... Zzz";
 }
 
 // Shared clock/calendar glyphs: narrow, readable 5x7 strokes.
@@ -277,7 +276,6 @@ function applyScene(scene) {
   state.activeScene = scene;
   elements.world.setAttribute("data-time-scene", scene);
   elements.greeting.innerHTML = elements.greeting.innerHTML.replace("Good night,", SCENE_COPY[scene][0]);
-  elements.bubble.textContent = SCENE_COPY[scene][1];
   document.querySelectorAll("[data-scene]").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.getAttribute("data-scene") === state.sceneMode));
   });
@@ -519,6 +517,7 @@ function syncScene(force = false) {
   const weather = typeof WEATHER !== "undefined" ? WEATHER.sync(now) : "sunny";
   const scene = state.sceneMode === "auto" ? sceneForTime(now) : state.sceneMode;
   if (scene !== state.activeScene) applyScene(scene);
+  if (typeof DIALOGUE !== "undefined") DIALOGUE.sync(now, scene);
   const blend = state.sceneMode === "auto" ? blendForTime(now) : {from:scene,to:scene,amount:0};
   const key = weather + ":" + state.sceneMode + ":" + blend.from + ":" + blend.to + ":" +
     (blend.from === blend.to ? "fixed" : Math.floor(now.getTime()/10000));
