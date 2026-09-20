@@ -11,6 +11,7 @@ const WEATHER = (() => {
   const world = document.querySelector('#world');
   const labels = {sunny:'晴れ',cloudy:'曇り',rain:'雨',snow:'雪'};
   let mode = 'auto', current = '', cachedBlock = null, days = [];
+  let cachedDay = null, dailyPlan = null, lastStatus = '';
   function sequence(block) {
     let random = (seed ^ Math.imul(block, 2654435761)) >>> 0;
     const next = () => {random = (Math.imul(random,1664525)+1013904223)>>>0;return random/4294967296;};
@@ -24,17 +25,47 @@ const WEATHER = (() => {
     }
     return ['sunny','cloudy','sunny','rain','sunny','sunny','cloudy','sunny','rain','cloudy'];
   }
-  function at(date, season) {
+  function hash(value) {
+    let x=(seed ^ value)>>>0;
+    x=Math.imul(x^(x>>>16),0x7feb352d);
+    x=Math.imul(x^(x>>>15),0x846ca68b);
+    return (x^(x>>>16))>>>0;
+  }
+  function plan(date, season) {
     const day=Math.floor(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())/86400000);
-    const block=Math.floor(day/10);
-    if(block!==cachedBlock){cachedBlock=block;days=sequence(block);}
-    const value=days[((day%10)+10)%10];
-    return value==='rain'&&season==='winter'?'snow':value;
+    if(day!==cachedDay){
+      const block=Math.floor(day/10);
+      if(block!==cachedBlock){cachedBlock=block;days=sequence(block);}
+      const before=days[((day%10)+10)%10];
+      let after=before, minute=null;
+      if(hash(day)%100<15){
+        minute=720+hash(day^0x53a9b4e1)%360;
+        const candidates=[['sunny',50],['cloudy',30],['rain',20]].filter(([v])=>v!==before);
+        let pick=hash(day^0x2c1b3a57)%candidates.reduce((sum,[,weight])=>sum+weight,0);
+        for(const [value,weight] of candidates){if(pick<weight){after=value;break;}pick-=weight;}
+      }
+      dailyPlan={before,after,minute};cachedDay=day;
+    }
+    const seasonal=value=>value==='rain'&&season==='winter'?'snow':value;
+    return {before:seasonal(dailyPlan.before),after:seasonal(dailyPlan.after),minute:dailyPlan.minute};
+  }
+  function at(date, season) {
+    const schedule=plan(date,season);
+    return schedule.minute!==null&&date.getHours()*60+date.getMinutes()>=schedule.minute?schedule.after:schedule.before;
   }
   function sync(date=new Date()) {
     const season=document.documentElement.getAttribute('data-season');
     const value=mode==='auto'?at(date,season):mode==='rain'&&season==='winter'?'snow':mode;
-    if(value!==current){current=value;world.setAttribute('data-weather',value);document.querySelector('#weatherStatus').textContent=labels[value];}
+    if(value!==current){current=value;world.setAttribute('data-weather',value);}
+    let status=labels[value];
+    if(mode==='auto'){
+      const schedule=plan(date,season);
+      if(schedule.minute!==null){
+        const time=String(Math.floor(schedule.minute/60)).padStart(2,'0')+':'+String(schedule.minute%60).padStart(2,'0');
+        status+=date.getHours()*60+date.getMinutes()<schedule.minute?'（'+time+'から'+labels[schedule.after]+'）':'（'+time+'に変化）';
+      }
+    }
+    if(status!==lastStatus){document.querySelector('#weatherStatus').textContent=status;lastStatus=status;}
     return current;
   }
   function select(value) {
@@ -62,5 +93,5 @@ const WEATHER = (() => {
   // Initialize without calling app.js before its state has been initialized.
   sync();
   document.querySelector('[data-weather-preview="auto"]').setAttribute('aria-pressed','true');
-  return Object.freeze({sync,select,at,palette});
+  return Object.freeze({sync,select,at,plan,palette});
 })();

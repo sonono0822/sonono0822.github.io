@@ -37,10 +37,10 @@ html[data-season="winter"] .season-decoration{fill:#b6ceda;--decoration-detail:#
 .summer-cumulus{display:none}
 html[data-season="summer"] .world[data-weather="sunny"]:is([data-time-scene="lateMorning"],[data-time-scene="day"]) .summer-cumulus{display:inline}
 html[data-season="summer"] .world[data-weather="sunny"]:is([data-time-scene="lateMorning"],[data-time-scene="day"]) .ordinary-center-cloud{display:none}
-/* One quiet indoor item, with no seasonal motion. */
-.room-seasonal-item > g{display:none}
-html[data-season="spring"] .seasonal-vase,
-html[data-season="summer"] .seasonal-glass,
-html:is([data-season="autumn"],[data-season="winter"]) .seasonal-mug{display:inline}
-html[data-season="autumn"] .room-seasonal-item{--seasonal-mug-color:#b5987c}
-html[data-season="winter"] .room-seasonal-item{--seasonal-mug-color:#aab4bf}
+/* A larger upper-sky silhouette, keeping the original cloud animation. */
+html[data-season="summer"] .world[data-weather="sunny"]:is([data-time-scene="lateMorning"],[data-time-scene="day"]) .night-city .night-cloud-center{
+  top:1%;width:32%;height:16%;
+}
+@media(max-height:450px) and (orientation:landscape){
+  html[data-season="summer"] .world[data-weather="sunny"]:is([data-time-scene="lateMorning"],[data-time-scene="day"]) .night-city .night-cloud-center{top:0;height:14%}
+}

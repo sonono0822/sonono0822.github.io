@@ -58,6 +58,3 @@
 .room-interior .room-radio{right:1.2%;bottom:7%;width:6.5%;height:18%}
 @media(orientation:portrait){.room-interior .room-radio{display:none}}
 
-/* Seasonal ornament on the clear sill; no animation or interaction. */
-.room-interior .room-seasonal-item{left:70%;bottom:7%;width:3%;height:5%}
-@media(orientation:portrait){.room-interior .room-seasonal-item{display:none}}
