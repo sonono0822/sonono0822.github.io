@@ -10,7 +10,7 @@
   <title>Pixel Desk Clock</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="style.css?v=6.8.2">
-  <link rel="stylesheet" href="room.css?v=6.4.0">
+  <link rel="stylesheet" href="room.css?v=6.8.16">
   <link rel="stylesheet" href="characters.css?v=6.4.1">
 <link rel="stylesheet" href="scenes.css?v=6.8.4">
   <link rel="stylesheet" href="details.css?v=6.7.0">
@@ -22,7 +22,7 @@
     .html-version {
       position:absolute;
       top:calc(env(safe-area-inset-top, 0px) + 10px);
-      right:calc(env(safe-area-inset-right, 0px) + 12px);
+      right:calc(env(safe-area-inset-right, 0px) + 8vw);
       z-index:20;
       padding:3px 6px;
       border:1px solid #eee0cd80;
@@ -36,7 +36,7 @@
 </head>
 <body>
 <div class="world evening" id="world">
-  <span class="html-version" aria-label="HTML version 6.8.14">HTML v6.8.14</span>
+  <span class="html-version" aria-label="HTML version 6.8.16">HTML v6.8.16</span>
   <div class="sky-stars"></div><div class="sky-detail-stars" aria-hidden="true"><i style="left:32%;top:8%;--spark-size:5px"></i><i style="left:44%;top:6%;--spark-size:3px"></i><i style="left:49%;top:31%;--spark-size:5px"></i><i style="left:6%;top:40%;--spark-size:3px"></i><i style="left:17%;top:55%;--spark-size:5px"></i><i style="left:95%;top:13%;--spark-size:3px"></i><i style="left:97%;top:40%;--spark-size:5px"></i><i style="left:24%;top:7%;--spark-size:3px"></i><i style="left:53%;top:38%;--spark-size:3px"></i><i style="left:3%;top:57%;--spark-size:3px"></i><i style="left:98%;top:25%;--spark-size:3px"></i></div><div class="sky-wisps" aria-hidden="true"><i></i><i></i><i></i></div><div class="sun-moon" aria-hidden="true"><span class="scene-sun"></span><svg class="scene-moon" viewBox="0 0 40 40" focusable="false"><path d="M23 2A18 18 0 1 1 7 32A18 18 0 0 0 23 2Z"/></svg></div>
   
 
@@ -360,7 +360,41 @@
       <path fill="#38354a" d="M28 173h29v3H28z"/>
     <g class="plant-foliage"><g transform="translate(54 17)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(42 32) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(23 40)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(53 46)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(25 63) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(48 65)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(20 84) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(49 89)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 103)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(37 114) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(55 114)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 128) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(52 51)"><path fill="#ad969c" d="M3 0h4v3h3v4H7v3H3V7H0V3h3z"/><path fill="#f0dccb" d="M4 0h2v4h4v2H6v4H4V6H0V4h4z"/><path fill="#d4b077" d="M4 4h2v2H4z"/></g><g transform="translate(18 91)"><path fill="#ad969c" d="M3 0h4v3h3v4H7v3H3V7H0V3h3z"/><path fill="#f0dccb" d="M4 0h2v4h4v2H6v4H4V6H0V4h4z"/><path fill="#d4b077" d="M4 4h2v2H4z"/></g></g></svg>
 
-    <svg class="room-object room-plant-right" viewBox="0 0 52 144" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges"><path fill="#24283d" d="M7 140h40v4H7z"/><path fill="#43554e" d="M25 111V30h3v81zM25 83H14v-4H7V67h9v5h9zM28 65h9v-6h9V44H35v8h-7zM25 48H14v-5H8V29h10v8h7zM27 31h8v-8h7V8H31v10h-4zM28 99h9v-5h10V80H36v8h-8z"/><path fill="#74816a" d="M33 10h6v11h-6zM10 31h6v9h-6zM37 47h6v9h-6zM9 69h6v8H9zM38 83h6v8h-6z"/><path fill="#566a59" d="M19 40h6v5h-6zM28 59h8v4h-8zM16 77h9v4h-9zM28 92h9v4h-9z"/><path fill="#292a40" d="M8 107h36v9h-3v24H11v-24H8z"/><path fill="#b09a98" d="M11 110h30v5H11z"/><path fill="#827182" d="M14 117h24v20H14z"/><path fill="#bba29b" d="M15 118h4v16h-4z"/><path fill="#5b526a" d="M33 117h5v20h-5z"/><path fill="#99878e" d="M21 124h8v2h-8zM21 130h6v2h-6z"/><g class="plant-foliage"><g transform="translate(35 13)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(19 27) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(34 35)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(22 47) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(36 55)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 63) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(34 73)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(21 84) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(32 94)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(30 44)"><path fill="#ad969c" d="M3 0h4v3h3v4H7v3H3V7H0V3h3z"/><path fill="#f0dccb" d="M4 0h2v4h4v2H6v4H4V6H0V4h4z"/><path fill="#d4b077" d="M4 4h2v2H4z"/></g></g></svg>
+    <svg class="room-object room-radio" viewBox="0 0 96 88" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+      <!-- Decorative radio: no audio, controls, timers or animation. -->
+      <path fill="#222638" opacity=".5" d="M4 84h88v3H4z"/>
+      <path fill="none" stroke="#292a40" stroke-width="4" d="M34 31L80 8"/>
+      <path fill="none" stroke="#a49590" stroke-width="2" d="M34 30L80 7"/>
+      <path fill="#343344" d="M78 4h5v5h-5zM30 29h11v4H30z"/>
+      <path fill="#b6a698" d="M79 5h2v2h-2z"/>
+      <path fill="#25283d" d="M8 31h78v3h4v46h-4v4H8v-4H4V35h4zM13 83h10v3H13zM73 83h10v3H73z"/>
+      <path fill="#796373" d="M9 35h76v44H9z"/>
+      <path fill="#b29884" d="M11 37h71v39H11z"/>
+      <path fill="#d0b59a" d="M11 37h71v3H11zM11 40h3v33h-3z"/>
+      <path fill="#685565" d="M82 37h3v42H12v-3h70z"/>
+      <path fill="#363747" d="M17 43h43v28H17z"/>
+      <path fill="#655d69" d="M19 45h39v24H19z"/>
+      <path fill="#333445" d="M21 47h35v2H21zM21 52h35v2H21zM21 57h35v2H21zM21 62h35v2H21zM25 46h2v22h-2zM34 46h2v22h-2zM43 46h2v22h-2zM52 46h2v22h-2z"/>
+      <path fill="#292b3c" d="M68 43h8v3h3v9h-3v3h-8v-3h-3v-9h3z"/>
+      <path fill="#d4bba1" d="M69 45h6v3h2v5h-2v3h-6v-3h-2v-5h2z"/>
+      <path fill="#f0d8b7" d="M69 46h5v2h-5z"/>
+      <path fill="#7b6c73" d="M71 48h2v5h-2z"/>
+      <path fill="#343344" d="M66 64h5v7h-5zM75 63h5v8h-5z"/>
+      <path fill="#c5ad95" d="M67 65h2v4h-2zM76 64h2v5h-2z"/>
+    </svg>
+    <svg class="room-object room-plant-right" viewBox="0 0 64 160" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
+      <!-- Static indoor hanging planter: stepped cords, ceramic bowl and trailing vines. -->
+      <path fill="#292a40" d="M27 0h10v4H27zM30 4h4v12h-4z"/>
+      <path fill="#a28c81" d="M30 2h4v2h-4zM31 6h2v8h-2z"/>
+      <path fill="none" stroke="#393340" stroke-width="4" d="M31 14v12h-3v16h-4v18h-4v18h-4v14M33 14v12h3v16h4v18h4v18h4v14M32 15v75"/>
+      <path fill="none" stroke="#b09a88" stroke-width="2" d="M31 14v12h-3v16h-4v18h-4v18h-4v14M33 14v12h3v16h4v18h4v18h4v14M32 15v75"/>
+      <path fill="#43554e" d="M16 80h31v13H16zM14 86h3v30h-3v17h-3v16H8v-20h3v-15h3zM47 86h3v18h4v24h-3v22h-3v-24h3v-20h-4z"/>
+      <path fill="#292a40" d="M15 88h34v8h-3v15h-4v5H22v-5h-4V96h-3z"/>
+      <path fill="#b5a29b" d="M18 91h28v5H18zM21 96h22v13h-3v4H24v-4h-3z"/>
+      <path fill="#e0ceba" d="M21 93h20v3H21zM24 98h5v11h-5zM29 109h10v3H29z"/>
+      <path fill="#827182" d="M40 96h3v13h-3zM25 113h15v2H25z"/>
+      <g class="plant-foliage"><g transform="translate(22 68) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(27 65)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(41 70)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 80) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(47 85)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(15 99) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(49 107)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(12 119) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(50 130)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g></g>
+    </svg>
 
     <!-- A steady warm lamp, without flicker or additional animation. -->
     <svg class="room-object room-lantern" viewBox="0 0 84 144" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
