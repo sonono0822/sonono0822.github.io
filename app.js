@@ -516,15 +516,17 @@ function mixPaletteValue(a,b,t) {
 }
 function syncScene(force = false) {
   const now = new Date();
+  const weather = typeof WEATHER !== "undefined" ? WEATHER.sync(now) : "sunny";
   const scene = state.sceneMode === "auto" ? sceneForTime(now) : state.sceneMode;
   if (scene !== state.activeScene) applyScene(scene);
   const blend = state.sceneMode === "auto" ? blendForTime(now) : {from:scene,to:scene,amount:0};
-  const key = state.sceneMode + ":" + blend.from + ":" + blend.to + ":" +
+  const key = weather + ":" + state.sceneMode + ":" + blend.from + ":" + blend.to + ":" +
     (blend.from === blend.to ? "fixed" : Math.floor(now.getTime()/10000));
   if (!force && key === lastPaletteKey) return;
   lastPaletteKey = key;
   for (const name of Object.keys(SCENE_PALETTES[blend.from])) {
-    elements.world.style.setProperty("--"+name, mixPaletteValue(SCENE_PALETTES[blend.from][name],SCENE_PALETTES[blend.to][name],blend.amount));
+    const value = mixPaletteValue(SCENE_PALETTES[blend.from][name],SCENE_PALETTES[blend.to][name],blend.amount);
+    elements.world.style.setProperty("--"+name, typeof WEATHER !== "undefined" ? WEATHER.palette(name,value) : value);
   }
 }
 
