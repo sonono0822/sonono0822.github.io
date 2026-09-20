@@ -24,15 +24,13 @@ html[data-scene-paused="false"] .weather-rain i{animation-play-state:running}
   .world[data-weather="rain"] .weather-rain{display:none}
 }
 
-/* Winter snow reuses the same outdoor layer; every third streak is hidden.
-   Ten small flakes, no additional DOM, timers or accumulation. */
+/* Winter snow reuses all fourteen particles in the existing outdoor layer. */
 .world[data-weather="snow"] .weather-rain{display:block}
 .world[data-weather="snow"] .weather-rain i{
   width:2px;animation-name:window-snow-fall;
   animation-duration:calc(var(--rain-duration) * 5);
   animation-delay:calc(var(--rain-delay) * 4);
 }
-.world[data-weather="snow"] .weather-rain i:nth-child(3n){display:none}
 .world[data-weather="snow"] .weather-rain i::before{
   width:2px;height:2px;background:#dce4e7;opacity:.58;
 }
@@ -47,3 +45,14 @@ html[data-scene-paused="false"] .weather-rain i{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){
   .world[data-weather="snow"] .weather-rain{display:none}
 }
+
+/* Sparse roof snow only. Existing roof details and indoor surfaces are unchanged. */
+.night-city .roof-snow{
+  position:absolute;left:7%;top:-3px;width:50%;height:3px;
+  background:#c6d0d6;opacity:0;pointer-events:none;
+  clip-path:polygon(0 1px,15% 1px,15% 0,48% 0,48% 1px,82% 1px,82% 2px,100% 2px,100% 100%,0 100%);
+  transition:opacity 12s linear;
+}
+.world[data-weather="snow"] .roof-snow{opacity:.7;transition:none}
+html[data-scene-paused="true"] .roof-snow{transition:none}
+@media(prefers-reduced-motion:reduce){.night-city .roof-snow{transition:none}}
