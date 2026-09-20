@@ -20,3 +20,15 @@
 .room-interior .room-plant-right > path[fill="#43554e"]{fill:var(--season-leaf,#43554e)}
 .room-interior .room-plant-right > path[fill="#74816a"]{fill:var(--season-highlight,#74816a)}
 .room-interior .room-plant-right > path[fill="#566a59"]{fill:var(--season-ink,#566a59)}
+
+/* v6.8.14: static calendar-only colors; preserve the 12px size and placement. */
+html[data-season="spring"] .season-decoration{fill:#d6adb7;--decoration-detail:#f0d394}
+html[data-season="summer"] .season-decoration{fill:#94b584;--decoration-detail:#cbd4a2}
+html[data-season="autumn"] .season-decoration{fill:#c99a74;--decoration-detail:#e3c28b}
+html[data-season="winter"] .season-decoration{fill:#b6ceda;--decoration-detail:#e3e9e5}
+.season-decoration .season-decoration-detail{fill:var(--decoration-detail)}
+/* Keep the ornament clear of the next-month button on compact landscape screens. */
+@media(max-height:450px) and (orientation:landscape){
+  .season-decoration{right:56px;top:4px}
+}
+

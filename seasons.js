@@ -26,6 +26,13 @@ const SEASONS = (() => {
     "M5 0h2v3h2V2h2v4h1v2H9v2H7v2H5V9H2V7H0V4h3V2h2z",
     "M5 0h2v3h2V1h2v2H9v2h3v2H9v2h2v2H9V9H7v3H5V9H3v2H1V9h2V7H0V5h3V3H1V1h2v2h2z"
   ];
+  // A single static detail path makes the small calendar silhouettes easier to read.
+  const iconDetails = [
+    "M5 5h2v2H5z",
+    "M3 8h2v2H3zM5 6h2v2H5zM7 4h2v2H7zM9 2h2v2H9z",
+    "M5 4h2v6H5zM3 5h2v2H3zM7 5h2v2H7z",
+    "M5 5h2v2H5z"
+  ];
   document.querySelectorAll('.plant-foliage > g').forEach(group => {
     group.classList.add(group.children.length === 4 ? 'season-leaf' : 'season-flower');
   });
@@ -36,6 +43,9 @@ const SEASONS = (() => {
   icon.setAttribute("aria-hidden","true");
   icon.setAttribute("focusable","false");
   const shape = document.createElementNS(ns,"path");icon.appendChild(shape);
+  const detail = document.createElementNS(ns,"path");
+  detail.setAttribute("class","season-decoration-detail");
+  icon.appendChild(detail);
   document.querySelector('#calendarPanel').appendChild(icon);
   let mode = "auto", lastKey = "", lastSeason = "";
   function at(date) {
@@ -59,7 +69,7 @@ const SEASONS = (() => {
     const {index,blend}=sample;
     properties.forEach((property,i)=>root.style.setProperty(property,mix(palettes[index][i],palettes[(index+1)%4][i],blend)));
     const name=names[index];
-    if(lastSeason!==name){root.setAttribute('data-season',name);shape.setAttribute('d',icons[index]);lastSeason=name;}
+    if(lastSeason!==name){root.setAttribute('data-season',name);shape.setAttribute('d',icons[index]);detail.setAttribute('d',iconDetails[index]);lastSeason=name;}
   }
   function select(value) {
     if(value!=="auto"&&!names.includes(value))return;
