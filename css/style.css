@@ -13,7 +13,7 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .city-mid{height:31%;z-index:-4;background:#44465f;clip-path:polygon(0 55%,8% 55%,8% 35%,15% 35%,15% 68%,23% 68%,23% 46%,31% 46%,31% 70%,39% 70%,39% 29%,47% 29%,47% 62%,55% 62%,55% 41%,64% 41%,64% 68%,73% 68%,73% 35%,82% 35%,82% 64%,91% 64%,91% 40%,100% 40%,100% 100%,0 100%)}
 .city-near{height:22%;z-index:-3;background:#292d48;clip-path:polygon(0 46%,7% 46%,7% 26%,14% 26%,14% 64%,22% 64%,22% 38%,30% 38%,30% 68%,38% 68%,38% 22%,47% 22%,47% 59%,56% 59%,56% 35%,65% 35%,65% 66%,74% 66%,74% 29%,83% 29%,83% 58%,92% 58%,92% 34%,100% 34%,100% 100%,0 100%)}
 .city-lights{position:absolute;left:0;right:0;bottom:2%;height:16%;z-index:-2;opacity:.18;background-image:radial-gradient(#ffd47c 0 2px,transparent 2.4px);background-size:30px 22px}.evening .city-lights{opacity:.55}.night .city-lights{opacity:.9}.rail{position:absolute;left:0;right:0;bottom:19%;height:3px;z-index:-1;background:#77728b88;box-shadow:0 7px #494a67aa}
-.dashboard{height:100%;display:grid;grid-template-columns:57% 43%;gap:3vw;padding:6vh 5vw 7vh}.clock-side{position:relative;min-width:0;transform:translateY(3vh)}
+.dashboard{height:100%;display:grid;grid-template-columns:57% 43%;gap:3vw;padding:6vh 5vw 7vh}.clock-side{position:relative;min-width:0;transform:translateY(6vh)}
 .greeting{margin-left:.5vw;font-size:clamp(10px,1.15vw,17px);line-height:1.55;letter-spacing:.1em;text-shadow:2px 2px var(--shadow)}
 .greeting-pixels{width:auto;height:clamp(7px,.75vw,10px);vertical-align:middle;filter:none}
 .pixel-clock{display:flex;align-items:center;justify-content:center;width:82%;margin-top:6vh;height:clamp(104px,13vw,180px)}
