@@ -56,18 +56,18 @@
 
 /* A small static radio rests on the same sill plane as the indoor objects. */
 .room-interior .room-radio{right:1.2%;bottom:7%;width:6.5%;height:18%}
-.room-interior .radio-bubble{
-  position:absolute;right:7.2%;bottom:22%;z-index:1;
-  min-width:clamp(116px,12vw,172px);padding:7px 10px 9px;
+.radio-bubble{
+  position:absolute;right:7.2%;bottom:22%;z-index:2;
+  width:max-content;max-width:clamp(92px,10vw,136px);padding:5px 7px 7px;
   color:#fff0d8;background:#343149e8;border:1px solid #eee0cdcc;
-  box-shadow:2px 3px #25243d80;font:600 clamp(9px,.78vw,12px)/1.45 "Courier New",ui-monospace,monospace;
+  box-shadow:2px 3px #25243d80;font:600 clamp(8px,.68vw,10px)/1.35 "Courier New",ui-monospace,monospace;
   text-shadow:1px 1px #26263b;
 }
-.room-interior .radio-bubble::after{
+.radio-bubble::after{
   content:"";position:absolute;right:12%;bottom:-7px;width:12px;height:8px;
   background:#343149e8;clip-path:polygon(0 0,100% 0,100% 35%,65% 35%,65% 70%,35% 70%,35% 100%,0 100%);
 }
-.room-interior .radio-greeting,.room-interior .radio-weather{display:block;white-space:nowrap}
-.room-interior .radio-greeting{margin-bottom:3px}
-.room-interior .radio-bubble .greeting-pixels{height:7px;max-width:100%}
-@media(orientation:portrait){.room-interior .room-radio,.room-interior .radio-bubble{display:none}}
+.radio-greeting,.radio-weather{display:block;white-space:nowrap}
+.radio-greeting{margin-bottom:2px}
+.radio-bubble .greeting-pixels{height:6px;max-width:100%}
+@media(orientation:portrait){.room-interior .room-radio,.radio-bubble{display:none}}

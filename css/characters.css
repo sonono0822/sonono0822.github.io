@@ -35,7 +35,7 @@
 
 /* Step 7-2: stepped speech balloon, pointing toward the seated character. */
 .window-companions .companion-bubble{
-  top:10%;right:100%;isolation:isolate;
+  top:-15%;right:100%;isolation:isolate;
   padding:8px 11px;border:0;background:transparent;box-shadow:none;
   color:#fff0d8;text-shadow:1px 1px 1px #26263b;font-size:clamp(11.67px,calc(.82vw + 2.67px),14.67px);font-weight:600;line-height:1.4;
   filter:drop-shadow(2px 3px 0 #25243d55);
