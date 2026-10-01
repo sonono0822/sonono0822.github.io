@@ -14,7 +14,7 @@ const elements = {
   world: $("#world"),
   clock: $("#pixelClock"),
   date: $("#date"),
-  greeting: $("#greeting"),
+  greeting: $("#radioGreeting"),
   bubble: $("#bubble"),
   month: $("#month"),
   days: $("#days"),

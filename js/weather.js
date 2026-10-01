@@ -65,7 +65,11 @@ const WEATHER = (() => {
         status+=date.getHours()*60+date.getMinutes()<schedule.minute?'（'+time+'から'+labels[schedule.after]+'）':'（'+time+'に変化）';
       }
     }
-    if(status!==lastStatus){document.querySelector('#weatherStatus').textContent=status;lastStatus=status;}
+    if(status!==lastStatus){
+      document.querySelector('#weatherStatus').textContent=status;
+      document.querySelector('#radioWeather').textContent=labels[value];
+      lastStatus=status;
+    }
     return current;
   }
   function select(value) {
