@@ -1,0 +1,58 @@
+/* Development controls only. Scene geometry and indoor colors are unchanged. */
+.dev-panel button[data-weather-preview][aria-pressed="true"]{background:#777087;color:#fff0cf;border-color:#fff0cf}
+.weather-status{color:#fff0cf;font:11px/1.4 monospace;margin-left:6px}
+
+/* Fourteen fixed streaks outside the closed window. Indoor objects are at -1. */
+.weather-rain{
+  display:none;position:absolute;top:1.1%;right:1.4%;bottom:14%;left:1.4%;
+  z-index:-2;overflow:hidden;pointer-events:none;contain:paint;
+}
+.world[data-weather="rain"] .weather-rain{display:block}
+.weather-rain i{
+  position:absolute;top:-14px;bottom:-14px;width:1px;
+  animation:window-rain-fall var(--rain-duration) linear infinite;
+  animation-delay:var(--rain-delay);animation-play-state:paused;
+}
+.weather-rain i::before{
+  content:"";position:absolute;top:0;left:0;width:1px;height:10px;
+  background:#c7d6df;opacity:.38;
+}
+.weather-rain i:nth-child(3n)::before{height:7px;opacity:.26}
+@keyframes window-rain-fall{from{transform:translateY(0)}to{transform:translateY(100%)}}
+html[data-scene-paused="false"] .weather-rain i{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){
+  .world[data-weather="rain"] .weather-rain{display:none}
+}
+
+/* Winter snow reuses all fourteen particles in the existing outdoor layer. */
+.world[data-weather="snow"] .weather-rain{display:block}
+.world[data-weather="snow"] .weather-rain i{
+  width:2px;animation-name:window-snow-fall;
+  animation-duration:calc(var(--rain-duration) * 5);
+  animation-delay:calc(var(--rain-delay) * 4);
+}
+.world[data-weather="snow"] .weather-rain i::before{
+  width:2px;height:2px;background:#dce4e7;opacity:.58;
+}
+.world[data-weather="snow"] .weather-rain i:nth-child(2n)::before{
+  width:1px;height:1px;opacity:.42;
+}
+@keyframes window-snow-fall{
+  0%{transform:translate(-2px,0)}
+  50%{transform:translate(3px,50%)}
+  100%{transform:translate(-2px,100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .world[data-weather="snow"] .weather-rain{display:none}
+}
+
+/* Sparse roof snow only. Existing roof details and indoor surfaces are unchanged. */
+.night-city .roof-snow{
+  position:absolute;left:7%;top:-3px;width:50%;height:3px;
+  background:#c6d0d6;opacity:0;pointer-events:none;
+  clip-path:polygon(0 1px,15% 1px,15% 0,48% 0,48% 1px,82% 1px,82% 2px,100% 2px,100% 100%,0 100%);
+  transition:opacity 12s linear;
+}
+.world[data-weather="snow"] .roof-snow{opacity:.7;transition:none}
+html[data-scene-paused="true"] .roof-snow{transition:none}
+@media(prefers-reduced-motion:reduce){.night-city .roof-snow{transition:none}}

@@ -1,0 +1,40 @@
+
+/* Step 9-1: animate children so time-of-day opacity remains on the parent.
+   No layout-property animation, filters or per-frame JavaScript. */
+/* v6.8.6: only two randomly chosen stars animate at once. */
+.sky-detail-stars i{opacity:.28}
+/* v6.8.5: drift fully across the viewport with transform only.
+   Full cycles include the cloud's width; visible edge-to-edge travel is 2–3 min.
+   Original positions remain the reduced-motion fallback. */
+@media(prefers-reduced-motion:no-preference){
+  .world[data-time-scene] .night-city .night-cloud{left:0;right:auto}
+  /* Keep full-width travel clear of the clock and date. */
+  .world[data-time-scene] .night-city .night-cloud-left{top:60%}
+  .world[data-time-scene] .night-city .night-cloud-center{top:54%}
+  .world[data-time-scene] .night-city .night-cloud-right{top:2%;opacity:calc(var(--cloud-opacity) * .25)}
+  .sky-wisps i:nth-child(n){left:0;right:auto}
+}
+.night-cloud .cloud-pixels{animation:cloud-stream 180s linear infinite;animation-delay:-35s}
+.night-cloud-center .cloud-pixels{animation-duration:195s;animation-delay:-100s}
+.night-cloud-right .cloud-pixels{animation-duration:210s;animation-delay:-175s}
+@keyframes cloud-stream{
+  0%{transform:translateX(calc(-100% - 2vw));opacity:0}
+  8%{opacity:.85}
+  45%{opacity:1}
+  92%{opacity:.85}
+  100%{transform:translateX(102vw);opacity:0}
+}
+.sky-wisps i{animation:wisp-stream 165s linear infinite;animation-delay:-35s}
+.sky-wisps i:nth-child(2){animation-duration:180s;animation-delay:-91s}
+.sky-wisps i:nth-child(3){animation-duration:175s;animation-delay:-140s}
+@keyframes wisp-stream{0%{transform:translateX(calc(-100% - 2vw));opacity:0}8%,92%{opacity:.35}100%{transform:translateX(102vw);opacity:0}}
+html[data-scene-paused="true"] .sky-detail-stars i,
+html[data-scene-paused="true"] .cloud-pixels,
+html[data-scene-paused="true"] .sky-wisps i{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  .sky-detail-stars i,.night-cloud .cloud-pixels,.sky-wisps i{animation:none;transform:none}
+  .sky-detail-stars i{opacity:.45}
+  .night-cloud .cloud-pixels{opacity:1}
+  .sky-wisps i{opacity:.35}
+}
+
