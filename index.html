@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#3b3e63">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pixel Clock">
+  <title>Pixel Desk Clock</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css?v=6.8.31">
+  <link rel="stylesheet" href="room.css?v=6.8.25">
+  <link rel="stylesheet" href="characters.css?v=6.8.30">
+<link rel="stylesheet" href="scenes.css?v=6.8.35">
+  <link rel="stylesheet" href="details.css?v=6.8.32">
+<link rel="stylesheet" href="motion.css?v=6.8.6">
+<link rel="stylesheet" href="screen-drift.css?v=6.8.8">
+<link rel="stylesheet" href="seasons.css?v=6.8.25">
+  <!-- Development badge: keep its styles and version in this HTML. -->
+  <style id="html-version-style">
+    .html-version {
+      position:absolute;
+      top:calc(env(safe-area-inset-top, 0px) + 10px);
+      right:calc(env(safe-area-inset-right, 0px) + 8vw);
+      z-index:20;
+      padding:3px 6px;
+      border:1px solid #eee0cd80;
+      background:#25283de6;
+      color:#fff0d8;
+      font:11px/1.4 "Courier New",monospace;
+      white-space:nowrap;
+      pointer-events:none;
+    }
+  </style>
+  <link rel="stylesheet" href="weather.css?v=6.8.20">
+<link rel="stylesheet" href="ambient.css?v=6.8.26">
+</head>
+<body>
+<div class="world evening" id="world">
+  <span class="html-version" aria-label="HTML version 6.8.35">HTML v6.8.35</span>
+  <div class="sky-meteor" aria-hidden="true"></div>
+  <div class="sky-stars"></div><div class="sky-detail-stars" aria-hidden="true"><i style="left:32%;top:8%;--spark-size:5px"></i><i style="left:44%;top:6%;--spark-size:3px"></i><i style="left:49%;top:31%;--spark-size:5px"></i><i style="left:6%;top:40%;--spark-size:3px"></i><i style="left:17%;top:55%;--spark-size:5px"></i><i style="left:95%;top:13%;--spark-size:3px"></i><i style="left:97%;top:40%;--spark-size:5px"></i><i style="left:24%;top:7%;--spark-size:3px"></i><i style="left:53%;top:38%;--spark-size:3px"></i><i style="left:3%;top:57%;--spark-size:3px"></i><i style="left:98%;top:25%;--spark-size:3px"></i></div><div class="sky-wisps" aria-hidden="true"><i></i><i></i><i></i></div><div class="sun-moon" aria-hidden="true"><span class="scene-sun"></span><svg class="scene-moon" viewBox="0 0 40 40" focusable="false"><path d="M23 2A18 18 0 1 1 7 32A18 18 0 0 0 23 2Z"/></svg></div>
+  
+
+  <div class="night-city" aria-hidden="true">
+    <div class="city-glow"></div>
+    <div class="night-cloud night-cloud-left"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 24H8V20H13V17H19V12H23V14H29V8H34V11H40V6H46V10H50V8H55V13H61V12H67V17H75V15H81V19H88V17H94V22H102V24H109V27H118V29H124V32H112V34H101V32H90V35H77V33H66V35H53V32H43V34H31V31H20V33H11V29H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
+    <div class="night-cloud night-cloud-center"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><g class="ordinary-center-cloud"><path class="cloud-body" d="M0 29H10V26H18V23H27V25H35V20H42V17H48V19H54V12H60V9H64V12H69V10H75V15H82V13H87V20H94V18H100V24H110V26H119V29H128V32H116V34H103V32H91V35H79V32H64V34H49V32H35V34H23V31H10V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></g><g class="summer-cumulus"><path class="cloud-body" d="M0 34H9V29H18V24H27V28H35V19H40V12H47V6H54V2H65V5H72V10H79V17H85V24H91V21H101V25H109V29H119V33H128V37H113V39H94V37H71V40H49V37H29V39H12V37H0Z"/><path class="cloud-highlight" d="M43 14h5v-6h8V4h7v3h6v5h-9V9h-9v7h-8zM36 23h7v-4h5v5h-5v3h-7zM87 26h6v-3h6v4H87z"/><path class="cloud-shade" d="M9 34h23v2H9zM41 34h38v3H41zM93 33h24v3H93zM68 16h7v5h-7z"/></g></svg></div>
+    <div class="night-cloud night-cloud-right"><svg class="cloud-pixels" viewBox="0 0 128 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="cloud-body" d="M0 27H7V21H15V23H22V17H28V13H35V16H40V8H46V10H52V5H57V9H63V7H70V13H78V11H85V17H93V15H99V22H107V20H113V26H122V29H128V34H117V32H107V36H94V33H80V35H69V32H56V35H44V32H32V35H18V31H7V32H0Z"/><path class="cloud-highlight" d="M15 25h9v2h-9zM30 19h6v2h-6zM43 14h5v2h-5zM57 17h9v2h-9zM72 22h7v2h-7zM91 27h11v2H91zM37 28h14v2H37z"/><path class="cloud-shade" d="M10 29h12v2H10zM28 30h15v2H28zM51 29h19v3H51zM77 30h11v2H77zM95 31h15v2H95z"/><path class="cloud-fragments" d="M6 17h3v2H6zM19 10h4v2h-4zM34 5h3v2h-3zM82 8h4v2h-4zM106 14h5v2h-5zM116 22h4v2h-4zM3 35h6v2H3zM118 36h7v2h-7z"/></svg></div>
+    <div class="skyline skyline-far">
+      <div class="building far-building roof-utility" style="--x:-1.0%;--w:2.2%;--h:56%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:1.1%;--w:1.4%;--h:72%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:2.3%;--w:1.9%;--h:48%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:4.1%;--w:1.8%;--h:82%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:5.7%;--w:2.0%;--h:63%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:7.6%;--w:2.6%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:10.0%;--w:1.6%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:11.5%;--w:2.3%;--h:53%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:13.6%;--w:1.9%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:15.4%;--w:2.6%;--h:61%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:17.8%;--w:2.1%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:19.8%;--w:2.5%;--h:53%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:22.1%;--w:1.6%;--h:48%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:23.6%;--w:2.6%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:26.0%;--w:2.7%;--h:61%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-utility" style="--x:28.6%;--w:1.5%;--h:55%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:29.9%;--w:2.4%;--h:53%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:32.2%;--w:2.6%;--h:53%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:34.6%;--w:2.4%;--h:61%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:36.9%;--w:2.6%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:39.3%;--w:2.4%;--h:53%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:41.6%;--w:2.2%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:43.6%;--w:2.2%;--h:48%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:45.7%;--w:1.8%;--h:82%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-utility" style="--x:47.3%;--w:2.1%;--h:63%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-utility" style="--x:49.3%;--w:2.7%;--h:90%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:51.8%;--w:2.2%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-utility" style="--x:53.9%;--w:1.5%;--h:78%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:55.2%;--w:2.7%;--h:66%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:57.8%;--w:2.3%;--h:86%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:59.9%;--w:2.0%;--h:56%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:61.8%;--w:2.1%;--h:72%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:63.7%;--w:2.4%;--h:48%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:66.0%;--w:2.8%;--h:82%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:68.6%;--w:1.6%;--h:63%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:70.1%;--w:2.5%;--h:90%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:72.4%;--w:2.1%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-utility" style="--x:74.4%;--w:2.8%;--h:78%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:77.0%;--w:2.3%;--h:66%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building far-building roof-utility" style="--x:79.2%;--w:1.7%;--h:86%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:80.7%;--w:1.4%;--h:56%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:82.0%;--w:2.3%;--h:72%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:84.1%;--w:2.3%;--h:48%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:86.3%;--w:1.6%;--h:82%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:87.7%;--w:1.8%;--h:63%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:89.4%;--w:2.8%;--h:90%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-flat" style="--x:92.0%;--w:2.3%;--h:54%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:94.2%;--w:2.4%;--h:78%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-antenna" style="--x:96.4%;--w:2.6%;--h:66%;--cols:3;--rows:6">
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building far-building roof-stepped" style="--x:98.9%;--w:2.8%;--h:86%;--cols:3;--rows:6">
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+    </div>
+    <div class="skyline skyline-mid">
+      <div class="building mid-building roof-flat form-slender" style="--x:-1.0%;--w:3.1%;--h:82%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-lowrise" style="--x:2.6%;--w:4.8%;--h:39%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-flat form-terraced" style="--x:7.8%;--w:3.3%;--h:51%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-flat" style="--x:11.6%;--w:3.4%;--h:57%;--cols:4;--rows:7"><span class="roof-snow" aria-hidden="true"></span><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-flat" style="--x:15.4%;--w:2.7%;--h:68%;--cols:4;--rows:7"><span class="roof-snow" aria-hidden="true"></span><span class="facade-detail facade-1" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-slender" style="--x:18.6%;--w:2.5%;--h:54%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-flat form-lowrise" style="--x:21.5%;--w:4.1%;--h:39%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-terraced" style="--x:26.1%;--w:4.8%;--h:51%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-utility" style="--x:31.3%;--w:4.4%;--h:46%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped" style="--x:36.2%;--w:3.6%;--h:60%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-utility form-slender" style="--x:40.2%;--w:3.0%;--h:59%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-lowrise" style="--x:43.7%;--w:2.6%;--h:39%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-terraced" style="--x:46.7%;--w:3.5%;--h:64%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-antenna" style="--x:50.7%;--w:4.0%;--h:46%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-flat" style="--x:55.1%;--w:3.1%;--h:46%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-utility form-slender" style="--x:58.7%;--w:2.8%;--h:57%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-antenna form-lowrise" style="--x:61.9%;--w:3.7%;--h:39%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-terraced" style="--x:66.1%;--w:3.9%;--h:54%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-antenna" style="--x:70.4%;--w:4.7%;--h:76%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-flat" style="--x:75.6%;--w:3.5%;--h:62%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-flat form-slender" style="--x:79.5%;--w:4.4%;--h:46%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-flat form-lowrise" style="--x:84.4%;--w:4.2%;--h:39%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped form-terraced" style="--x:89.0%;--w:3.9%;--h:59%;--cols:4;--rows:7"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building mid-building roof-stepped" style="--x:93.4%;--w:3.1%;--h:73%;--cols:4;--rows:7"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building mid-building roof-flat" style="--x:96.9%;--w:4.8%;--h:82%;--cols:4;--rows:7"><span class="facade-detail facade-0" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="landmark-tower"><i></i><i></i><i></i><span class="tower-lantern"></span><span class="tower-brace"></span></div>
+    </div>
+    <div class="river-corridor" aria-hidden="true"><svg viewBox="0 0 1000 100" preserveAspectRatio="none" focusable="false" shape-rendering="crispEdges"><path class="river-water" d="M0 25H1000V100H0Z"/><path class="river-tint" d="M0 26H1000V100H0Z"/><g class="river-reflections"><rect x="19" y="36" width="5" height="2" opacity="0.16"/><rect x="92" y="53" width="12" height="1" opacity="0.25"/><rect x="165" y="70" width="19" height="1" opacity="0.33999999999999997"/><rect x="238" y="87" width="26" height="2" opacity="0.43000000000000005"/><rect x="311" y="46" width="9" height="1" opacity="0.16"/><rect x="384" y="63" width="16" height="1" opacity="0.25"/><rect x="457" y="80" width="23" height="2" opacity="0.33999999999999997"/><rect x="530" y="39" width="6" height="1" opacity="0.43000000000000005"/><rect x="603" y="56" width="13" height="1" opacity="0.16"/><rect x="676" y="73" width="20" height="2" opacity="0.25"/><rect x="749" y="90" width="27" height="1" opacity="0.33999999999999997"/><rect x="822" y="49" width="10" height="1" opacity="0.43000000000000005"/><rect x="895" y="66" width="17" height="2" opacity="0.16"/><rect x="968" y="83" width="24" height="1" opacity="0.25"/><rect x="41" y="42" width="7" height="1" opacity="0.33999999999999997"/><rect x="114" y="59" width="14" height="2" opacity="0.43000000000000005"/><rect x="187" y="76" width="21" height="1" opacity="0.16"/><rect x="260" y="93" width="28" height="1" opacity="0.25"/><rect x="333" y="52" width="11" height="2" opacity="0.33999999999999997"/><rect x="406" y="69" width="18" height="1" opacity="0.43000000000000005"/><rect x="479" y="86" width="25" height="1" opacity="0.16"/><rect x="552" y="45" width="8" height="2" opacity="0.25"/><rect x="625" y="62" width="15" height="1" opacity="0.33999999999999997"/><rect x="698" y="79" width="22" height="1" opacity="0.43000000000000005"/><rect x="771" y="38" width="5" height="2" opacity="0.16"/><rect x="844" y="55" width="12" height="1" opacity="0.25"/><rect x="917" y="72" width="19" height="1" opacity="0.33999999999999997"/><rect x="990" y="89" width="26" height="2" opacity="0.43000000000000005"/><rect x="63" y="48" width="9" height="1" opacity="0.16"/><rect x="136" y="65" width="16" height="1" opacity="0.25"/><rect x="209" y="82" width="23" height="2" opacity="0.33999999999999997"/><rect x="282" y="41" width="6" height="1" opacity="0.43000000000000005"/><rect x="355" y="58" width="13" height="1" opacity="0.16"/><rect x="428" y="75" width="20" height="2" opacity="0.25"/><rect x="501" y="92" width="27" height="1" opacity="0.33999999999999997"/><rect x="574" y="51" width="10" height="1" opacity="0.43000000000000005"/><rect x="647" y="68" width="17" height="2" opacity="0.16"/><rect x="720" y="85" width="24" height="1" opacity="0.25"/><rect x="793" y="44" width="7" height="1" opacity="0.33999999999999997"/><rect x="866" y="61" width="14" height="2" opacity="0.43000000000000005"/><rect x="939" y="78" width="21" height="1" opacity="0.16"/><rect x="12" y="37" width="28" height="1" opacity="0.25"/></g><path class="river-bank" d="M0 20H1000V26H0Z"/><path class="bridge-deck" d="M0 24H1000V31H0Z M40 30H50V72H40Z M206 30H216V72H206Z M372 30H382V72H372Z M538 30H548V72H538Z M704 30H714V72H704Z M870 30H880V72H870Z"/><path class="bridge-edge" d="M0 24H1000V26H0Z"/><path class="bridge-rail" d="M0 18H1000M0 21H1000"/><path d="M18 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="17" y="14" width="3" height="2" class="bridge-light"/><path d="M56 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="55" y="14" width="3" height="2" class="bridge-light"/><path d="M94 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="93" y="14" width="3" height="2" class="bridge-light"/><path d="M132 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="131" y="14" width="3" height="2" class="bridge-light"/><path d="M170 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="169" y="14" width="3" height="2" class="bridge-light"/><path d="M208 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="207" y="14" width="3" height="2" class="bridge-light"/><path d="M246 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="245" y="14" width="3" height="2" class="bridge-light"/><path d="M284 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="283" y="14" width="3" height="2" class="bridge-light"/><path d="M322 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="321" y="14" width="3" height="2" class="bridge-light"/><path d="M360 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="359" y="14" width="3" height="2" class="bridge-light"/><path d="M398 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="397" y="14" width="3" height="2" class="bridge-light"/><path d="M436 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="435" y="14" width="3" height="2" class="bridge-light"/><path d="M474 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="473" y="14" width="3" height="2" class="bridge-light"/><path d="M512 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="511" y="14" width="3" height="2" class="bridge-light"/><path d="M550 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="549" y="14" width="3" height="2" class="bridge-light"/><path d="M588 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="587" y="14" width="3" height="2" class="bridge-light"/><path d="M626 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="625" y="14" width="3" height="2" class="bridge-light"/><path d="M664 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="663" y="14" width="3" height="2" class="bridge-light"/><path d="M702 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="701" y="14" width="3" height="2" class="bridge-light"/><path d="M740 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="739" y="14" width="3" height="2" class="bridge-light"/><path d="M778 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="777" y="14" width="3" height="2" class="bridge-light"/><path d="M816 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="815" y="14" width="3" height="2" class="bridge-light"/><path d="M854 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="853" y="14" width="3" height="2" class="bridge-light"/><path d="M892 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="891" y="14" width="3" height="2" class="bridge-light"/><path d="M930 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="929" y="14" width="3" height="2" class="bridge-light"/><path d="M968 15v9m-2-9h5" class="bridge-lamp-post"/><rect x="967" y="14" width="3" height="2" class="bridge-light"/></svg></div>
+    <div class="skyline skyline-near">
+      <div class="building near-building roof-utility form-slender" style="--x:-1.0%;--w:4.7%;--h:48%;--cols:4;--rows:5"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building near-building roof-flat form-lowrise" style="--x:5.0%;--w:6.7%;--h:36%;--cols:4;--rows:5"><span class="facade-detail facade-2" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-flat form-terraced" style="--x:13.0%;--w:5.3%;--h:37%;--cols:4;--rows:5"><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-utility" style="--x:19.6%;--w:4.7%;--h:72%;--cols:4;--rows:5"><svg class="street-entry" viewBox="0 0 32 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="entry-wall" d="M3 7h26v33H3z"/><path class="entry-shadow" d="M6 12h20v28H6z"/><path class="entry-glass" d="M9 15h14v23H9z"/><path class="entry-frame" d="M8 13h16v2H8zM8 15h2v25H8zM22 15h2v25h-2zM15 15h1v23h-1zM3 38h26v2H3z"/><path class="entry-awning" d="M3 2h24v3h3v4H0V5h3z"/><path class="entry-shadow" d="M0 9h30v2H0z"/><path class="entry-frame" d="M20 26h1v4h-1z"/></svg><span class="facade-detail facade-1" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-antenna" style="--x:25.6%;--w:5.8%;--h:43%;--cols:4;--rows:5"><svg class="street-entry" viewBox="0 0 32 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="entry-wall" d="M3 7h26v33H3z"/><path class="entry-shadow" d="M6 12h20v28H6z"/><path class="entry-glass" d="M9 15h14v23H9z"/><path class="entry-frame" d="M8 13h16v2H8zM8 15h2v25H8zM22 15h2v25h-2zM15 15h1v23h-1zM3 38h26v2H3z"/><path class="entry-awning" d="M3 2h24v3h3v4H0V5h3z"/><path class="entry-shadow" d="M0 9h30v2H0z"/><path class="entry-frame" d="M20 26h1v4h-1z"/></svg><span class="roof-snow" aria-hidden="true"></span><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-utility form-slender" style="--x:32.7%;--w:4.6%;--h:57%;--cols:4;--rows:5"><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-stepped form-lowrise" style="--x:38.6%;--w:5.2%;--h:36%;--cols:4;--rows:5"><span class="facade-detail facade-1" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-utility form-terraced" style="--x:45.1%;--w:6.2%;--h:62%;--cols:4;--rows:5"><span class="facade-detail facade-2" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-utility" style="--x:52.6%;--w:4.4%;--h:48%;--cols:4;--rows:5"><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-flat" style="--x:58.3%;--w:6.6%;--h:64%;--cols:4;--rows:5"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i></div>
+      </div>
+      <div class="building near-building roof-stepped form-slender" style="--x:66.2%;--w:3.9%;--h:37%;--cols:4;--rows:5"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-flat form-lowrise" style="--x:71.4%;--w:6.2%;--h:36%;--cols:4;--rows:5"><span class="facade-detail facade-0" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span><span class="roof-aerial" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-stepped form-terraced" style="--x:78.9%;--w:5.1%;--h:43%;--cols:4;--rows:5"><span class="facade-detail facade-1" aria-hidden="true"></span>
+        <div class="windows"><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-stepped" style="--x:85.3%;--w:5.3%;--h:57%;--cols:4;--rows:5"><span class="facade-detail facade-2" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-antenna" style="--x:91.9%;--w:5.8%;--h:35%;--cols:4;--rows:5"><svg class="street-entry" viewBox="0 0 32 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path class="entry-wall" d="M3 7h26v33H3z"/><path class="entry-shadow" d="M6 12h20v28H6z"/><path class="entry-glass" d="M9 15h14v23H9z"/><path class="entry-frame" d="M8 13h16v2H8zM8 15h2v25H8zM22 15h2v25h-2zM15 15h1v23h-1zM3 38h26v2H3z"/><path class="entry-awning" d="M3 2h24v3h3v4H0V5h3z"/><path class="entry-shadow" d="M0 9h30v2H0z"/><path class="entry-frame" d="M20 26h1v4h-1z"/></svg><span class="roof-snow" aria-hidden="true"></span><span class="facade-detail facade-0" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+      <div class="building near-building roof-flat form-slender" style="--x:99.0%;--w:5.6%;--h:62%;--cols:4;--rows:5"><span class="facade-detail facade-1" aria-hidden="true"></span><span class="roof-vent" aria-hidden="true"></span>
+        <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win on"></i><i class="win on"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+      </div>
+    </div>
+
+<svg class="street-tree" style="left:16.5%;height:14%" viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges"><g><path class="street-tree-trunk" d="M18 77V35h-5v-7H7V16h3v10h6v7h3V9h3v27h4v-8h6V16h3v14h-6v9h-7v38z"/><path class="street-tree-bark" d="M20 43h1v33h-1zM20 12h1v17h-1zM8 18h1v8H8z"/><g class="street-tree-canopy"><path class="street-tree-outline" d="M12 3h15v4h6v7h4v10h3v12h-4v10h-8v5H12v-4H5v-7H1V26h3V15h5V7h3z"/><path class="street-tree-leaf" d="M14 5h11v5h6v7h4v9h3v8h-5v10h-7v4H14v-4H7v-6H3V28h4V17h5V9h2z"/><path class="street-tree-highlight" d="M14 8h10v4H14zM9 20h9v5H9zM6 31h9v5H6zM23 18h7v6h-7z"/><path class="street-tree-accent" d="M23 29h10v7H23zM16 39h9v6h-9z"/></g></g><path class="street-tree-bed" d="M7 76h26v3H7z"/></svg>
+<svg class="street-tree" style="left:45%;height:13%" viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges"><g transform="translate(40 0) scale(-1 1)"><path class="street-tree-trunk" d="M18 77V35h-5v-7H7V16h3v10h6v7h3V9h3v27h4v-8h6V16h3v14h-6v9h-7v38z"/><path class="street-tree-bark" d="M20 43h1v33h-1zM20 12h1v17h-1zM8 18h1v8H8z"/><g class="street-tree-canopy"><path class="street-tree-outline" d="M12 3h15v4h6v7h4v10h3v12h-4v10h-8v5H12v-4H5v-7H1V26h3V15h5V7h3z"/><path class="street-tree-leaf" d="M14 5h11v5h6v7h4v9h3v8h-5v10h-7v4H14v-4H7v-6H3V28h4V17h5V9h2z"/><path class="street-tree-highlight" d="M14 8h10v4H14zM9 20h9v5H9zM6 31h9v5H6zM23 18h7v6h-7z"/><path class="street-tree-accent" d="M23 29h10v7H23zM16 39h9v6h-9z"/></g></g><path class="street-tree-bed" d="M7 76h26v3H7z"/></svg>
+<svg class="street-tree" style="left:94%;height:12%" viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges"><g><path class="street-tree-trunk" d="M18 77V35h-5v-7H7V16h3v10h6v7h3V9h3v27h4v-8h6V16h3v14h-6v9h-7v38z"/><path class="street-tree-bark" d="M20 43h1v33h-1zM20 12h1v17h-1zM8 18h1v8H8z"/><g class="street-tree-canopy"><path class="street-tree-outline" d="M12 3h15v4h6v7h4v10h3v12h-4v10h-8v5H12v-4H5v-7H1V26h3V15h5V7h3z"/><path class="street-tree-leaf" d="M14 5h11v5h6v7h4v9h3v8h-5v10h-7v4H14v-4H7v-6H3V28h4V17h5V9h2z"/><path class="street-tree-highlight" d="M14 8h10v4H14zM9 20h9v5H9zM6 31h9v5H6zM23 18h7v6h-7z"/><path class="street-tree-accent" d="M23 29h10v7H23zM16 39h9v6h-9z"/></g></g><path class="street-tree-bed" d="M7 76h26v3H7z"/></svg>
+  </div>
+  <div class="city city-far"></div><div class="city city-mid"></div><div class="city city-near"></div>
+  <div class="city-lights"></div><div class="rail"></div>
+
+  <!-- Rain and snow share a layer behind indoor objects, clipped above the sill. -->
+  <div class="weather-rain" aria-hidden="true"><i style="left:4%;--rain-duration:1.45s;--rain-delay:-0.23s"></i><i style="left:12%;--rain-duration:1.62s;--rain-delay:-0.62s"></i><i style="left:19%;--rain-duration:1.79s;--rain-delay:-1.01s"></i><i style="left:27%;--rain-duration:1.96s;--rain-delay:-1.40s"></i><i style="left:33%;--rain-duration:2.13s;--rain-delay:-1.79s"></i><i style="left:41%;--rain-duration:1.45s;--rain-delay:-2.18s"></i><i style="left:48%;--rain-duration:1.62s;--rain-delay:-2.57s"></i><i style="left:55%;--rain-duration:1.79s;--rain-delay:-2.96s"></i><i style="left:63%;--rain-duration:1.96s;--rain-delay:-3.35s"></i><i style="left:69%;--rain-duration:2.13s;--rain-delay:-3.74s"></i><i style="left:76%;--rain-duration:1.45s;--rain-delay:-4.13s"></i><i style="left:83%;--rain-duration:1.62s;--rain-delay:-4.52s"></i><i style="left:90%;--rain-duration:1.79s;--rain-delay:-4.91s"></i><i style="left:96%;--rain-duration:1.96s;--rain-delay:-5.30s"></i></div>
+  <div class="room-interior" aria-hidden="true">
+    <div class="window-jamb window-jamb-left"></div>
+    <div class="window-jamb window-jamb-right"></div>
+    <div class="window-lintel"></div>
+    <div class="window-sill"></div>
+    <div class="sill-lamplight"></div>
+    <div class="sill-grain"></div>
+    <div class="object-contact-shadows"></div>
+
+    <!-- Pixel foliage and a ceramic pot; flat rectangular edges match the city. -->
+    <svg class="room-object room-plant" viewBox="0 0 80 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
+      <path fill="#252b3a" d="M34 153V74h5v79h9V39h4v116h8v9H24v-11z"/>
+      <path fill="#435650" d="M36 115H21v-5H10v-9H4V90h15v5h12v8h8zm12-22h12v-9h13V70H58v7H48zm-9-14H25v-8H12V58h16v5h12zm10-23H36V44H27V29h13v7h10zm1-14h13V29h9V12H58v11h-8zm-14 95H22v-7H9v-12h16v6h13z"/>
+      <path fill="#627264" d="M7 90h13v6H7zm6-32h13v5H13zm17-28h8v10h-8zm29-15h8v12h-8zm1 57h10v6H60zm-46 47h12v6H14z"/>
+      <path fill="#34463f" d="M21 98h9v9h-9zm5-34h12v9H26zm27-35h9v9h-9zm-1 58h9v7h-9z"/>
+      <path fill="#292a40" d="M19 144h46v10h-4v22H23v-22h-4z"/>
+      <path fill="#9a7d83" d="M23 148h38v8H23z"/>
+      <path fill="#746477" d="M27 157h30v16H27z"/>
+      <path fill="#b09796" d="M27 158h5v13h-5z"/>
+      <path fill="#4a455d" d="M50 158h7v15h-7z"/>
+      <path fill="#22263b" d="M20 176h46v4H20z"/>
+      <!-- Smaller leaf tips, veins and reflected lamplight on the pot's right edge. -->
+      <path fill="#7b866a" d="M61 29h4v7h-4zM35 41h3v8h-3zM24 70h8v3h-8zM59 81h8v3h-8zM22 104h9v3h-9zM23 130h7v3h-7z"/>
+      <path fill="#52664f" d="M40 112h8v-7h8v-8h9v10h-6v7H48v7h-8zM35 66h7v-7h7v9h-6v5h-8z"/>
+      <path fill="#b89a86" d="M54 149h7v4h-7zM54 158h3v13h-3z"/>
+      <path fill="#8c7887" d="M35 159h10v2H35zM35 168h8v2h-8z"/>
+      <path fill="#38354a" d="M28 173h29v3H28z"/>
+    <g class="plant-foliage"><g transform="translate(54 17)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(42 32) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(23 40)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(53 46)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(25 63) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(48 65)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(20 84) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(49 89)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 103)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(37 114) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(55 114)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 128) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(52 51)"><path fill="#ad969c" d="M3 0h4v3h3v4H7v3H3V7H0V3h3z"/><path fill="#f0dccb" d="M4 0h2v4h4v2H6v4H4V6H0V4h4z"/><path fill="#d4b077" d="M4 4h2v2H4z"/></g><g transform="translate(18 91)"><path fill="#ad969c" d="M3 0h4v3h3v4H7v3H3V7H0V3h3z"/><path fill="#f0dccb" d="M4 0h2v4h4v2H6v4H4V6H0V4h4z"/><path fill="#d4b077" d="M4 4h2v2H4z"/></g></g></svg>
+
+    <svg class="room-object room-radio" viewBox="0 0 96 88" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+      <!-- Decorative radio: no audio, controls, timers or animation. -->
+      <path fill="#222638" opacity=".5" d="M4 84h88v3H4z"/>
+      <path fill="none" stroke="#292a40" stroke-width="4" d="M34 31L80 8"/>
+      <path fill="none" stroke="#a49590" stroke-width="2" d="M34 30L80 7"/>
+      <path fill="#343344" d="M78 4h5v5h-5zM30 29h11v4H30z"/>
+      <path fill="#b6a698" d="M79 5h2v2h-2z"/>
+      <path fill="#25283d" d="M8 31h78v3h4v46h-4v4H8v-4H4V35h4zM13 83h10v3H13zM73 83h10v3H73z"/>
+      <path fill="#796373" d="M9 35h76v44H9z"/>
+      <path fill="#b29884" d="M11 37h71v39H11z"/>
+      <path fill="#d0b59a" d="M11 37h71v3H11zM11 40h3v33h-3z"/>
+      <path fill="#685565" d="M82 37h3v42H12v-3h70z"/>
+      <path fill="#363747" d="M17 43h43v28H17z"/>
+      <path fill="#655d69" d="M19 45h39v24H19z"/>
+      <path fill="#333445" d="M21 47h35v2H21zM21 52h35v2H21zM21 57h35v2H21zM21 62h35v2H21zM25 46h2v22h-2zM34 46h2v22h-2zM43 46h2v22h-2zM52 46h2v22h-2z"/>
+      <path fill="#292b3c" d="M68 43h8v3h3v9h-3v3h-8v-3h-3v-9h3z"/>
+      <path fill="#d4bba1" d="M69 45h6v3h2v5h-2v3h-6v-3h-2v-5h2z"/>
+      <path fill="#f0d8b7" d="M69 46h5v2h-5z"/>
+      <path fill="#7b6c73" d="M71 48h2v5h-2z"/>
+      <path fill="#343344" d="M66 64h5v7h-5zM75 63h5v8h-5z"/>
+      <path fill="#c5ad95" d="M67 65h2v4h-2zM76 64h2v5h-2z"/>
+    </svg>
+    <svg class="room-object room-plant-right" viewBox="0 0 64 160" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
+      <!-- Static indoor hanging planter: stepped cords, ceramic bowl and trailing vines. -->
+      <path fill="#292a40" d="M27 0h10v4H27zM30 4h4v12h-4z"/>
+      <path fill="#a28c81" d="M30 2h4v2h-4zM31 6h2v8h-2z"/>
+      <path fill="none" stroke="#393340" stroke-width="4" d="M31 14v12h-3v16h-4v18h-4v18h-4v14M33 14v12h3v16h4v18h4v18h4v14M32 15v75"/>
+      <path fill="none" stroke="#b09a88" stroke-width="2" d="M31 14v12h-3v16h-4v18h-4v18h-4v14M33 14v12h3v16h4v18h4v18h4v14M32 15v75"/>
+      <path fill="#43554e" d="M16 80h31v13H16zM14 86h3v30h-3v17h-3v16H8v-20h3v-15h3zM47 86h3v18h4v24h-3v22h-3v-24h3v-20h-4z"/>
+      <path fill="#292a40" d="M15 88h34v8h-3v15h-4v5H22v-5h-4V96h-3z"/>
+      <path fill="#b5a29b" d="M18 91h28v5H18zM21 96h22v13h-3v4H24v-4h-3z"/>
+      <path fill="#e0ceba" d="M21 93h20v3H21zM24 98h5v11h-5zM29 109h10v3H29z"/>
+      <path fill="#827182" d="M40 96h3v13h-3zM25 113h15v2H25z"/>
+      <g class="plant-foliage"><g transform="translate(22 68) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(27 65)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(41 70)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(17 80) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(47 85)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(15 99) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(49 107)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(12 119) scale(-1 1)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g><g transform="translate(50 130)"><path fill="#2e423e" d="M0 0h7v3h5v5h3v6H8v-2H3V7H0z"/><path fill="#536e58" d="M1 1h5v3h5v5h3v3H9v-2H4V6H1z"/><path fill="#83916d" d="M2 2h3v3h3v2H5V5H2z"/><path fill="#a6aa7e" opacity=".55" d="M8 8h3v2H8z"/></g></g>
+    </svg>
+
+    <!-- A steady warm lamp, without flicker or additional animation. -->
+    <svg class="room-object room-lantern" viewBox="0 0 84 144" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
+      <path fill="#25283d" d="M31 4h22v5h5v16h-6V11H32v14h-6V9h5z"/>
+      <path fill="#767084" d="M34 5h16v3H34z"/>
+      <path fill="#25283d" d="M22 22h40v7h7v8h8v8H7v-8h8v-8h7z"/>
+      <path fill="#555168" d="M25 26h34v5H25zm-9 10h52v5H16z"/>
+      <path fill="#25283d" d="M11 44h62v85H11z"/>
+      <path fill="#a87969" d="M18 49h48v73H18z"/>
+      <path fill="#d5a277" d="M22 53h40v65H22z"/>
+      <path fill="#f0c48d" d="M29 63h26v49H29z"/>
+      <path fill="#fbe2ab" d="M34 86h5V72h6v9h5v31H34z"/>
+      <path fill="#fff0cf" d="M39 91h6v19h-6z"/>
+      <path fill="#6b5661" d="M27 112h31v7H27z"/>
+      <path fill="#363348" d="M15 46h5v77h-5zm49 0h5v77h-5zM13 77h58v5H13zm27-30h4v76h-4z"/>
+      <path fill="#97808a" d="M12 48h3v73h-3zm-2 79h64v4H10z"/>
+      <path fill="#25283d" d="M8 123h68v10h5v9H3v-9h5z"/>
+      <path fill="#696071" d="M12 126h60v4H12zm-4 10h68v3H8z"/>
+      <!-- Metal catches warm light; the glass reflection stays sharply pixelated. -->
+      <path fill="#d2aa87" d="M20 51h2v23h-2zM44 83h2v30h-2zM21 119h40v2H21zM14 127h20v2H14z"/>
+      <path fill="#ffeac1" opacity=".45" d="M24 55h4v16h-4zM24 84h3v11h-3z"/>
+      <path fill="#8c7a80" d="M26 30h12v2H26zM18 39h17v2H18zM63 126h6v2h-6z"/>
+      <path fill="#b5967b" d="M15 48h3v3h-3zM65 48h3v3h-3zM15 119h3v3h-3zM65 119h3v3h-3z"/>
+    </svg>
+
+<!-- Stacked cloth-bound books with small spine marks, no UI controls. -->
+    <svg class="room-object room-books" viewBox="0 0 176 76" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" focusable="false" shape-rendering="crispEdges">
+      <path fill="#292b41" d="M2 49h170v27H2zM9 24h151v26H9zM20 0h147v25H20z"/>
+      <path fill="#a18b92" d="M6 53h162v18H6z"/>
+      <path fill="#7d7189" d="M13 28h143v18H13z"/>
+      <path fill="#b19c9f" d="M24 4h139v17H24z"/>
+      <path fill="#dbc3b5" d="M153 55h11v12h-11zM142 30h10v12h-10zM151 6h8v11h-8z"/>
+      <path fill="#d1b6a8" d="M6 53h162v3H6zM13 28h143v3H13zM24 4h139v3H24z"/>
+      <path fill="#5b526b" d="M16 56h4v12h-4zM26 32h4v11h-4zM34 8h4v10h-4z"/>
+      <g fill="#51485f">
+        <path d="M47 10h25v3H47zm30 0h12v3H77zM40 35h17v3H40zm22 0h30v3H62zM34 60h25v3H34zm30 0h24v3H64z"/>
+        <path d="M119 57h4v4h-4zm8 0h4v4h-4zm-12 6h4v4h-4zm16 0h4v4h-4zm-10 0h8v7h-8z"/>
+      </g>
+      <path fill="#6a5a70" d="M6 68h162v3H6zM13 43h143v3H13zM24 18h139v3H24z"/>
+      <!-- Cloth bands, paper edges and a short fabric bookmark. -->
+      <path fill="#c4a69a" d="M39 7h3v11h-3zM31 32h3v10h-3zM23 57h3v10h-3z"/>
+      <path fill="#8c7a83" d="M153 9h6v1h-6zM153 13h6v1h-6zM144 34h8v1h-8zM144 38h8v1h-8zM155 59h9v1h-9zM155 63h9v1h-9z"/>
+      <path fill="#9b6572" d="M111 21h6v14l-3-3-3 3z"/>
+      <path fill="#d0af9a" d="M25 8h4v9h-4zM14 32h4v10h-4zM7 57h4v10H7z"/>
+      <defs><linearGradient id="book-lamplight" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#f3bc7e" stop-opacity=".3"/><stop offset=".65" stop-color="#f3bc7e" stop-opacity="0"/></linearGradient></defs>
+      <path fill="url(#book-lamplight)" d="M6 53h162v18H6zM13 28h143v18H13zM24 4h139v17H24z"/>
+    </svg>
+  </div>
+
+
+  <main class="dashboard">
+    <section class="clock-side">
+      <div class="greeting" id="greeting"></div>
+      <div class="pixel-clock" id="pixelClock" aria-label="現在時刻"></div>
+      <div class="date" id="date"></div>
+
+    </section>
+
+    <section class="calendar-panel" id="calendarPanel">
+      <header class="cal-head">
+        <button id="prev" aria-label="前月"><svg viewBox="0 0 5 9" aria-hidden="true" focusable="false"><path d="M4 0h1v2H4v1H3v1H2v1h1v1h1v1h1v2H4V8H3V7H2V6H1V5H0V4h1V3h1V2h1V1h1z"/></svg></button><h1 id="month"></h1><button id="next" aria-label="次月"><svg viewBox="0 0 5 9" aria-hidden="true" focusable="false"><path transform="translate(5 0) scale(-1 1)" d="M4 0h1v2H4v1H3v1H2v1h1v1h1v1h1v2H4V8H3V7H2V6H1V5H0V4h1V3h1V2h1V1h1z"/></svg></button>
+      </header>
+      <div class="week"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+      <div class="days" id="days"></div>
+      <footer class="calendar-footer">
+<div class="calendar-return"><button id="today" aria-label="今日の月に戻る"><span class="today-button-art" aria-hidden="true"><svg class="today-frame" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M14 3H86V8H92V14H97V86H92V92H86V97H14V92H8V86H3V14H8V8H14Z"/></svg><svg class="today-star" viewBox="0 0 7 7" aria-hidden="true" focusable="false"><path d="M3 0H4V2H5V3H7V4H5V5H4V7H3V5H2V4H0V3H2V2H3Z"/></svg><svg class="footer-pixels" viewBox="0 0 29 7" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM2 1h1v1h-1zM2 2h1v1h-1zM2 3h1v1h-1zM2 4h1v1h-1zM2 5h1v1h-1zM2 6h1v1h-1zM7 0h1v1h-1zM8 0h1v1h-1zM9 0h1v1h-1zM6 1h1v1h-1zM10 1h1v1h-1zM6 2h1v1h-1zM10 2h1v1h-1zM6 3h1v1h-1zM10 3h1v1h-1zM6 4h1v1h-1zM10 4h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM9 6h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM14 0h1v1h-1zM15 0h1v1h-1zM12 1h1v1h-1zM16 1h1v1h-1zM12 2h1v1h-1zM16 2h1v1h-1zM12 3h1v1h-1zM16 3h1v1h-1zM12 4h1v1h-1zM16 4h1v1h-1zM12 5h1v1h-1zM16 5h1v1h-1zM12 6h1v1h-1zM13 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM21 0h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM18 2h1v1h-1zM22 2h1v1h-1zM18 3h1v1h-1zM19 3h1v1h-1zM20 3h1v1h-1zM21 3h1v1h-1zM22 3h1v1h-1zM18 4h1v1h-1zM22 4h1v1h-1zM18 5h1v1h-1zM22 5h1v1h-1zM18 6h1v1h-1zM22 6h1v1h-1zM24 0h1v1h-1zM28 0h1v1h-1zM24 1h1v1h-1zM28 1h1v1h-1zM25 2h1v1h-1zM27 2h1v1h-1zM26 3h1v1h-1zM26 4h1v1h-1zM26 5h1v1h-1zM26 6h1v1h-1z"/></svg></span></button></div>
+<div class="calendar-note"><svg class="footer-paw" viewBox="0 0 16 18" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M2 2h3v4H2zM7 0h3v4H7zM12 3h3v4h-3zM0 8h3v3H0zM6 6h4v2h2v5H4V8h2zM7 15h2v3H7zM11 14h2v2h-2z"/></svg><div class="calendar-motto" role="img" aria-label="Small steps make a good day."><svg class="footer-pixels" viewBox="0 0 65 7" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 4h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM9 2h1v1h-1zM6 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM10 5h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM13 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 3h1v1h-1zM13 4h1v1h-1zM14 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM12 5h1v1h-1zM16 5h1v1h-1zM13 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM16 6h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM20 1h1v1h-1zM20 2h1v1h-1zM20 3h1v1h-1zM20 4h1v1h-1zM20 5h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM25 0h1v1h-1zM26 0h1v1h-1zM26 1h1v1h-1zM26 2h1v1h-1zM26 3h1v1h-1zM26 4h1v1h-1zM26 5h1v1h-1zM25 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM37 2h1v1h-1zM38 2h1v1h-1zM39 2h1v1h-1zM40 2h1v1h-1zM36 3h1v1h-1zM37 4h1v1h-1zM38 4h1v1h-1zM39 4h1v1h-1zM40 5h1v1h-1zM36 6h1v1h-1zM37 6h1v1h-1zM38 6h1v1h-1zM39 6h1v1h-1zM44 0h1v1h-1zM44 1h1v1h-1zM42 2h1v1h-1zM43 2h1v1h-1zM44 2h1v1h-1zM45 2h1v1h-1zM46 2h1v1h-1zM44 3h1v1h-1zM44 4h1v1h-1zM44 5h1v1h-1zM45 6h1v1h-1zM46 6h1v1h-1zM49 2h1v1h-1zM50 2h1v1h-1zM51 2h1v1h-1zM48 3h1v1h-1zM52 3h1v1h-1zM48 4h1v1h-1zM49 4h1v1h-1zM50 4h1v1h-1zM51 4h1v1h-1zM52 4h1v1h-1zM48 5h1v1h-1zM49 6h1v1h-1zM50 6h1v1h-1zM51 6h1v1h-1zM52 6h1v1h-1zM55 1h1v1h-1zM56 1h1v1h-1zM57 1h1v1h-1zM54 2h1v1h-1zM58 2h1v1h-1zM54 3h1v1h-1zM58 3h1v1h-1zM54 4h1v1h-1zM55 4h1v1h-1zM56 4h1v1h-1zM57 4h1v1h-1zM54 5h1v1h-1zM54 6h1v1h-1zM61 2h1v1h-1zM62 2h1v1h-1zM63 2h1v1h-1zM64 2h1v1h-1zM60 3h1v1h-1zM61 4h1v1h-1zM62 4h1v1h-1zM63 4h1v1h-1zM64 5h1v1h-1zM60 6h1v1h-1zM61 6h1v1h-1zM62 6h1v1h-1zM63 6h1v1h-1z"/></svg><svg class="footer-pixels" viewBox="0 0 23 7" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M0 2h1v1h-1zM1 2h1v1h-1zM3 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM4 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 3h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM9 6h1v1h-1zM10 6h1v1h-1zM12 0h1v1h-1zM12 1h1v1h-1zM12 2h1v1h-1zM15 2h1v1h-1zM12 3h1v1h-1zM14 3h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM12 5h1v1h-1zM14 5h1v1h-1zM12 6h1v1h-1zM15 6h1v1h-1zM19 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM18 3h1v1h-1zM22 3h1v1h-1zM18 4h1v1h-1zM19 4h1v1h-1zM20 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM18 5h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1z"/></svg><svg class="footer-pixels" viewBox="0 0 65 7" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM4 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM13 1h1v1h-1zM14 1h1v1h-1zM15 1h1v1h-1zM16 1h1v1h-1zM12 2h1v1h-1zM16 2h1v1h-1zM12 3h1v1h-1zM16 3h1v1h-1zM13 4h1v1h-1zM14 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM16 5h1v1h-1zM13 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM19 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM18 3h1v1h-1zM22 3h1v1h-1zM18 4h1v1h-1zM22 4h1v1h-1zM18 5h1v1h-1zM22 5h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM27 2h1v1h-1zM24 3h1v1h-1zM28 3h1v1h-1zM24 4h1v1h-1zM28 4h1v1h-1zM24 5h1v1h-1zM28 5h1v1h-1zM25 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM34 0h1v1h-1zM34 1h1v1h-1zM31 2h1v1h-1zM32 2h1v1h-1zM33 2h1v1h-1zM34 2h1v1h-1zM30 3h1v1h-1zM34 3h1v1h-1zM30 4h1v1h-1zM34 4h1v1h-1zM30 5h1v1h-1zM34 5h1v1h-1zM31 6h1v1h-1zM32 6h1v1h-1zM33 6h1v1h-1zM34 6h1v1h-1zM46 0h1v1h-1zM46 1h1v1h-1zM43 2h1v1h-1zM44 2h1v1h-1zM45 2h1v1h-1zM46 2h1v1h-1zM42 3h1v1h-1zM46 3h1v1h-1zM42 4h1v1h-1zM46 4h1v1h-1zM42 5h1v1h-1zM46 5h1v1h-1zM43 6h1v1h-1zM44 6h1v1h-1zM45 6h1v1h-1zM46 6h1v1h-1zM49 2h1v1h-1zM50 2h1v1h-1zM51 2h1v1h-1zM52 3h1v1h-1zM49 4h1v1h-1zM50 4h1v1h-1zM51 4h1v1h-1zM52 4h1v1h-1zM48 5h1v1h-1zM52 5h1v1h-1zM49 6h1v1h-1zM50 6h1v1h-1zM51 6h1v1h-1zM52 6h1v1h-1zM54 1h1v1h-1zM58 1h1v1h-1zM54 2h1v1h-1zM58 2h1v1h-1zM54 3h1v1h-1zM58 3h1v1h-1zM55 4h1v1h-1zM56 4h1v1h-1zM57 4h1v1h-1zM58 4h1v1h-1zM58 5h1v1h-1zM55 6h1v1h-1zM56 6h1v1h-1zM57 6h1v1h-1zM62 5h1v1h-1zM63 5h1v1h-1zM62 6h1v1h-1zM63 6h1v1h-1z"/></svg></div><svg class="footer-sprig" viewBox="0 0 20 30" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M9 25h2V12h2V7h-2v5H9v9H7v-5H5v-3H2v6h3v3h4zM12 8h4V3h-2V0h-2v3h-2v4h2zM12 16h4v-3h3V9h-4v3h-3zM5 13V8H2V5H0v6h2v2zM11 24h4v-2h3v-3h-5v2h-2zM4 27h10v2H4z"/></svg></div>
+</footer>
+    </section>
+  </main>
+
+  <!-- The existing bubble id is retained for app.js. Decorative companions do not capture taps. -->
+  <div class="window-companions" id="petHome" aria-hidden="true">
+    <div class="companion-bubble" id="bubble"></div>
+    <img class="companion companion-character" src="assets/character.png?v=6.4.0" alt="" draggable="false">
+    <img class="companion companion-cat" src="assets/sleeping-cat.png?v=6.4.0" alt="" draggable="false">
+    <svg class="sleep-marks" viewBox="0 0 20 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path d="M11 0h9v2h-2v2h-2v2h4v2h-9V6h2V4h2V2h-4zM5 12h9v2h-2v2h-2v2h4v2H5v-2h2v-2h2v-2H5zM0 24h7v2H5v2H3v2h4v2H0v-2h2v-2h2v-2H0z"/></svg>
+  </div>
+  <details class="dev-panel"><summary aria-label="背景の時間帯を選ぶ">◆</summary><div>
+    <button data-scene="auto">AUTO</button><button data-scene="morning">朝</button>
+    <button data-scene="lateMorning">午前</button><button data-scene="day">午後</button><button data-scene="evening">夕</button><button data-scene="night">夜</button><button data-scene="deepNight">深夜</button>
+  </div><div aria-label="季節の確認"><button data-season-preview="auto">季節AUTO</button><button data-season-preview="spring">春</button><button data-season-preview="summer">夏</button><button data-season-preview="autumn">秋</button><button data-season-preview="winter">冬</button></div><div aria-label="天気の確認"><button data-weather-preview="auto">天気AUTO</button><button data-weather-preview="sunny">晴れ</button><button data-weather-preview="cloudy">曇り</button><button data-weather-preview="rain">雨／冬は雪</button><span class="weather-status">天気：<span id="weatherStatus"></span></span></div><div aria-label="夜の演出確認"><button id="previewMeteor" disabled title="晴れの夜・深夜のみ">流れ星確認</button><button id="previewWindows" disabled title="夜・深夜のみ">窓明かり確認</button></div></details>
+</div>
+<script src="holidays.js?v=6.8.10"></script>
+<script src="seasons.js?v=6.8.14"></script>
+<script src="weather.js?v=6.8.25"></script>
+<script src="dialogue.js?v=6.8.29"></script>
+<script src="ambient.js?v=6.8.26"></script>
+<script src="app.js?v=6.8.26"></script>
+<script src="motion.js?v=6.8.26"></script>
+</body></html>
