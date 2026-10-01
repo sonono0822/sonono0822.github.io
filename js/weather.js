@@ -10,6 +10,7 @@ const WEATHER = (() => {
   } catch (_) { /* Deterministic fallback also survives reload without storage. */ seed = 1729; }
   const world = document.querySelector('#world');
   const labels = {sunny:'晴れ',cloudy:'曇り',rain:'雨',snow:'雪'};
+  const radioLabels = {sunny:'Sunny',cloudy:'Cloudy',rain:'Rain',snow:'Snow'};
   let mode = 'auto', current = '', cachedBlock = null, days = [];
   let cachedDay = null, dailyPlan = null, lastStatus = '';
   function sequence(block) {
@@ -67,7 +68,7 @@ const WEATHER = (() => {
     }
     if(status!==lastStatus){
       document.querySelector('#weatherStatus').textContent=status;
-      document.querySelector('#radioWeather').textContent=labels[value];
+      document.querySelector('#radioWeather').textContent=radioLabels[value];
       lastStatus=status;
     }
     return current;
