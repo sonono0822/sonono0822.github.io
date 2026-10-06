@@ -58,7 +58,7 @@
 .room-interior .room-radio{right:1.2%;bottom:7%;width:6.5%;height:18%}
 .radio-bubble{
   position:absolute;right:7.2%;bottom:14%;z-index:2;
-  width:max-content;max-width:clamp(92px,10vw,136px);padding:5px 13px 7px 7px;
+  width:max-content;max-width:clamp(108px,12vw,152px);padding:5px 13px 7px 7px;
   color:#fff0d8;background:#343149e8;border:1px solid #eee0cdcc;
   box-shadow:2px 3px #25243d80;font:600 clamp(9.33px,calc(.68vw + 1.33px),11.33px)/1.35 "Courier New",ui-monospace,monospace;
   text-shadow:1px 1px #26263b;
