@@ -5,7 +5,8 @@
 .sky-detail-stars i{opacity:.28}
 .sky-detail-stars i.night-only-star{display:none}
 .world:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-detail-stars i.night-only-star{display:block}
-.world:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-detail-stars i{width:max(4px,var(--spark-size));height:max(4px,var(--spark-size))}
+.world:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-detail-stars i{width:max(4px,var(--spark-size));height:max(4px,var(--spark-size));opacity:.5;background:#fff1d5}
+.world[data-time-scene]:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-stars{opacity:calc(var(--stars) * 1.2);background-image:radial-gradient(#fff1d5 0 1px,transparent 1.2px),radial-gradient(#e0d9ea 0 .7px,transparent 1px)}
 .world:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-detail-stars i:first-child{width:7px;height:7px}
 /* v6.8.5: drift fully across the viewport with transform only.
    Full cycles include the cloud's width; visible edge-to-edge travel is 2–3 min.
