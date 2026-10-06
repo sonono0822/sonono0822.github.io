@@ -14,10 +14,17 @@ const AMBIENT = (() => {
   function flyBirds(){
     if(!birdsAllowed()||flights.size||typeof birds.animate!=='function')return;
     const count=world.getAttribute('data-weather')==='cloudy'?3:3+Math.floor(Math.random()*3);
-    function startFlight(bird,phase=0){
+    function startFlight(bird,index,phase=0){
       if(!birdsAllowed()||!bird.isConnected)return;
       const reverse=Math.random()<.2,width=world.clientWidth,duration=45000+Math.random()*20000;
-      bird.style.top=(7+Math.random()*30)+'%';
+      const height=world.clientHeight,origin=world.getBoundingClientRect().top;
+      const clock=document.querySelector('#pixelClock').getBoundingClientRect();
+      // Separate upper/lower lanes, leaving room for the bird's bob and drift.
+      const bands=[[Math.max(12,height*.04),clock.top-origin-24],[clock.bottom-origin+24,height*.55]].filter(([min,max])=>max>min);
+      if(!bands.length){bird.remove();return;}
+      const bandIndex=index%bands.length,[min,max]=bands[bandIndex];
+      const lanes=Math.ceil((count-bandIndex)/bands.length),lane=Math.floor(index/bands.length);
+      bird.style.top=(min+(max-min)*(lane+.2+Math.random()*.6)/lanes)+'px';
       bird.style.setProperty('--flap-time',(650+Math.random()*350)+'ms');
       const bob=2+Math.random()*4,drift=(Math.random()-.5)*18;
       const flight=bird.animate(Array.from({length:9},(_,step)=>({transform:`translate(${reverse?width+20-(width+40)*step/8:-20+(width+40)*step/8}px,${drift*step/8+(step%2?bob:-bob)}px)`})),{duration,easing:'linear'});
@@ -25,7 +32,7 @@ const AMBIENT = (() => {
       flights.add(flight);
       flight.finished.then(()=>{
         if(!flights.delete(flight))return;
-        if(birdsAllowed()&&bird.isConnected)startFlight(bird);
+        if(birdsAllowed()&&bird.isConnected)startFlight(bird,index);
         else bird.remove();
       },()=>{});
     }
@@ -35,7 +42,7 @@ const AMBIENT = (() => {
       sprite.style.animationDelay=(-Math.random())+'s';
       birds.append(bird);
       // Spread the first flights across the sky; recycle each bird without a waiting timer.
-      startFlight(bird,(i+.5)/count);
+      startFlight(bird,i,(i+.5)/count);
     }
   }
   let animation=null,paused=document.hidden,lastTime=null,nextMeteor=0,nextWindow=0,lastWindow=null;
@@ -83,5 +90,6 @@ const AMBIENT = (() => {
   document.querySelector('#previewWindows').addEventListener('click',()=>{if(changeWindow())nextWindow=Date.now()+windowDelay();});
   document.querySelector('#previewBirds').addEventListener('click',()=>{cancelBirds();flyBirds();});
   reduced.addEventListener('change',()=>sync(new Date()));
+  window.addEventListener('resize',cancelBirds);
   return Object.freeze({sync,pause});
 })();
