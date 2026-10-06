@@ -1,6 +1,6 @@
 /* One meteor behind the clock and indoor objects; no persistent animation. */
 .sky-meteor{position:absolute;left:28%;top:5%;width:46px;height:2px;z-index:-6;opacity:0;pointer-events:none}
-.sky-meteor::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#dce1da);transform:rotate(22deg);transform-origin:right center}
+.sky-meteor::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#dce1da);transform:rotate(var(--meteor-angle,22deg));transform-origin:right center}
 .world[data-time-scene] .night-city .mid-building .win.on.ambient-window{transition:opacity 5s linear}
 .world[data-time-scene] .night-city .mid-building .win.on.ambient-window-dim:not(:nth-child(3n+1)){opacity:calc(var(--window-opacity) * .18)}
 html[data-scene-paused="true"] .world[data-time-scene] .night-city .mid-building .win.on.ambient-window{transition:none}

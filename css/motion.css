@@ -3,6 +3,8 @@
    No layout-property animation, filters or per-frame JavaScript. */
 /* v6.8.6: only two randomly chosen stars animate at once. */
 .sky-detail-stars i{opacity:.28}
+.world:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-detail-stars i{width:max(4px,var(--spark-size));height:max(4px,var(--spark-size))}
+.world:is([data-time-scene="night"],[data-time-scene="deepNight"]) .sky-detail-stars i:first-child{width:7px;height:7px}
 /* v6.8.5: drift fully across the viewport with transform only.
    Full cycles include the cloud's width; visible edge-to-edge travel is 2–3 min.
    Original positions remain the reduced-motion fallback. */
