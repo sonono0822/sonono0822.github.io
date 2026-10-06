@@ -11,6 +11,7 @@ const AMBIENT = (() => {
   let nextBird=0,birdContext='';
   const birdsAllowed=()=>allowed()&&['morning','lateMorning','day'].includes(world.getAttribute('data-time-scene'))&&['sunny','cloudy'].includes(world.getAttribute('data-weather'));
   const birdDelay=()=> (60+Math.random()*60)*1000*(world.getAttribute('data-weather')==='cloudy'?2:1);
+  const firstBirdDelay=()=> (8+Math.random()*7)*1000;
   function cancelBirds(){for(const flight of flights)flight.cancel();flights.clear();if(birds.firstChild)birds.replaceChildren();}
   function flyBirds(){
     if(!birdsAllowed()||flights.size||typeof birds.animate!=='function')return;
@@ -20,7 +21,6 @@ const AMBIENT = (() => {
       const bird=document.createElement('i'),sprite=document.createElement('span');
       bird.className='sky-bird';bird.append(sprite);
       bird.style.top=(top+Math.random()*7)+'%';
-      bird.style.setProperty('--bird-size',(7+Math.random()*4)+'px');
       bird.style.setProperty('--flap-time',(650+Math.random()*350)+'ms');
       sprite.style.animationDelay=(-Math.random())+'s';
       birds.append(bird);
@@ -55,14 +55,15 @@ const AMBIENT = (() => {
   }
   function sync(now){
     const time=now.getTime();
-    if(lastTime===null||time<lastTime||time-lastTime>60000){schedule(time);nextBird=time+birdDelay();}
+    if(lastTime===null||time<lastTime||time-lastTime>60000){schedule(time);nextBird=time+firstBirdDelay();}
     lastTime=time;
     const context=world.getAttribute('data-time-scene')+':'+world.getAttribute('data-weather');
-    if(context!==birdContext||nextBird===0){birdContext=context;nextBird=time+birdDelay();}
+    if(context!==birdContext||nextBird===0){birdContext=context;nextBird=time+firstBirdDelay();}
     if(!birdsAllowed())cancelBirds();
     if(birdsAllowed()&&time>=nextBird){flyBirds();nextBird=time+birdDelay();}
     document.querySelector('#previewMeteor').disabled=!meteorAllowed();
     document.querySelector('#previewWindows').disabled=!allowed()||!night();
+    document.querySelector('#previewBirds').disabled=!birdsAllowed();
     if(!meteorAllowed())cancelMeteor();
     if(!night()||reduced.matches){for(const e of dimmed)e.classList.remove('ambient-window-dim');dimmed.clear();}
     if(!allowed())return;
@@ -72,6 +73,7 @@ const AMBIENT = (() => {
   function pause(value){paused=value;if(value){cancelMeteor();cancelBirds();}nextBird=0;lastTime=null;}
   document.querySelector('#previewMeteor').addEventListener('click',()=>{if(shoot())nextMeteor=Date.now()+meteorDelay();});
   document.querySelector('#previewWindows').addEventListener('click',()=>{if(changeWindow())nextWindow=Date.now()+windowDelay();});
+  document.querySelector('#previewBirds').addEventListener('click',()=>{flyBirds();nextBird=Date.now()+birdDelay();});
   reduced.addEventListener('change',()=>sync(new Date()));
   return Object.freeze({sync,pause});
 })();
