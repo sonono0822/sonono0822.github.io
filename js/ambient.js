@@ -49,14 +49,17 @@ const AMBIENT = (() => {
   const night=()=>['night','deepNight'].includes(world.getAttribute('data-time-scene'));
   const allowed=()=>!paused&&!document.hidden&&!reduced.matches;
   const meteorAllowed=()=>allowed()&&night()&&world.getAttribute('data-weather')==='sunny';
-  const meteorDelay=()=> (2+Math.random()*2)*3600000;
+  const meteorDelay=()=> (1+Math.random())*3600000;
   const windowDelay=()=> (4+Math.random()*3)*60000;
   function schedule(now){nextMeteor=now+meteorDelay();nextWindow=now+windowDelay();}
   function cancelMeteor(){if(animation){animation.cancel();animation=null;}}
   function shoot(){
     if(!meteorAllowed()||animation||typeof meteor.animate!=='function')return false;
     meteor.style.left=(23+Math.random()*18)+'%';
-    const shot=meteor.animate([{transform:'translate(0,0)',opacity:0},{transform:'translate(20px,8px)',opacity:.65,offset:.18},{transform:'translate(105px,42px)',opacity:.45,offset:.72},{transform:'translate(145px,58px)',opacity:0}],{duration:1500,easing:'linear'});
+    meteor.style.top=(3+Math.random()*6)+'%';
+    const dx=125+Math.random()*50,dy=dx*(.32+Math.random()*.16);
+    meteor.style.setProperty('--meteor-angle',Math.atan2(dy,dx)*180/Math.PI+'deg');
+    const shot=meteor.animate([{transform:'translate(0,0)',opacity:0},{transform:`translate(${dx*.18}px,${dy*.18}px)`,opacity:.6,offset:.18},{transform:`translate(${dx*.72}px,${dy*.72}px)`,opacity:.4,offset:.72},{transform:`translate(${dx}px,${dy}px)`,opacity:0}],{duration:1300+Math.random()*300,easing:'linear'});
     animation=shot;shot.finished.then(()=>{if(animation===shot)animation=null;},()=>{});return true;
   }
   function changeWindow(){

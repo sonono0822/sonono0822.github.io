@@ -29,15 +29,21 @@
     if (typeof star.animate !== "function") return;
     recent.push(star);
     if (recent.length > 3) recent.shift();
-    // A quiet hold, a short soft peak, then a return to the base appearance.
-    const animation = star.animate([
+    // Stagger gentle pulses; keep every star visible at its dimmest.
+    const accent = star === stars[0];
+    const evening = world.getAttribute("data-time-scene") === "evening";
+    const animation = star.animate(evening ? [
       {opacity:.28, backgroundColor:"#f9e5be", offset:0},
       {opacity:.28, backgroundColor:"#f9e5be", offset:.5},
       {opacity:.65, backgroundColor:"#fff9e8", offset:.68},
       {opacity:1, backgroundColor:"#fff9e8", offset:.78},
       {opacity:.28, backgroundColor:"#f9e5be", offset:.95},
       {opacity:.28, backgroundColor:"#f9e5be", offset:1}
-    ], {duration:14000 + Math.random() * 12000, easing:"ease-in-out"});
+    ] : [
+      {opacity:.28, backgroundColor:"#f9e5be", offset:0},
+      {opacity:accent ? .85 : .68, backgroundColor:"#fff9e8", offset:.35+Math.random()*.3},
+      {opacity:.28, backgroundColor:"#f9e5be", offset:1}
+    ], {duration:evening ? 14000 + Math.random() * 12000 : 10000 + Math.random() * 8000, easing:"ease-in-out", delay:evening ? 0 : Math.random()*3000});
     active.set(star, animation);
     animation.finished.then(() => {
       if (active.get(star) !== animation) return;
