@@ -6,7 +6,7 @@
 html[data-scene-paused="true"] .world[data-time-scene] .night-city .mid-building .win.on.ambient-window{transition:none}
 .dev-panel button:disabled{opacity:.4;cursor:default}
 .sky-birds{position:absolute;inset:0;z-index:-6;overflow:hidden;pointer-events:none}
-.sky-bird{position:absolute;left:0;width:var(--bird-size);height:6px;visibility:hidden;color:#465568;opacity:.48}
+.sky-bird{position:absolute;left:0;width:10px;height:6px;visibility:hidden;color:#465568;opacity:.48}
 .sky-bird span{display:block;width:100%;height:100%;background:currentColor;animation:bird-flap var(--flap-time) steps(1,end) infinite}
 .world:is([data-time-scene="morning"],[data-time-scene="lateMorning"],[data-time-scene="day"]):is([data-weather="sunny"],[data-weather="cloudy"]) .sky-bird{visibility:visible}
 @keyframes bird-flap{
