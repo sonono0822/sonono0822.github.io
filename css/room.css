@@ -57,10 +57,10 @@
 /* A small static radio rests on the same sill plane as the indoor objects. */
 .room-interior .room-radio{right:1.2%;bottom:7%;width:6.5%;height:18%}
 .radio-bubble{
-  position:absolute;right:7.2%;bottom:16%;z-index:2;
+  position:absolute;right:7.2%;bottom:14%;z-index:2;
   width:max-content;max-width:clamp(92px,10vw,136px);padding:5px 13px 7px 7px;
   color:#fff0d8;background:#343149e8;border:1px solid #eee0cdcc;
-  box-shadow:2px 3px #25243d80;font:600 clamp(8px,.68vw,10px)/1.35 "Courier New",ui-monospace,monospace;
+  box-shadow:2px 3px #25243d80;font:600 clamp(9.33px,calc(.68vw + 1.33px),11.33px)/1.35 "Courier New",ui-monospace,monospace;
   text-shadow:1px 1px #26263b;
 }
 .radio-bubble::before,
@@ -74,5 +74,5 @@
 .radio-decoration{position:absolute;right:6px;top:6px;width:2px;height:2px;background:#e8bd85;box-shadow:-3px 3px #e8bd85,0 6px #e8bd85}
 .radio-greeting,.radio-weather{display:block;white-space:nowrap}
 .radio-greeting{margin-bottom:2px}
-.radio-bubble .greeting-pixels{height:6px;max-width:100%}
+.radio-bubble .greeting-pixels{height:7.33px;max-width:100%}
 @media(orientation:portrait){.room-interior .room-radio,.radio-bubble{display:none}}
