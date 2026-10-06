@@ -40,9 +40,9 @@
       {opacity:.28, backgroundColor:"#f9e5be", offset:.95},
       {opacity:.28, backgroundColor:"#f9e5be", offset:1}
     ] : [
-      {opacity:.28, backgroundColor:"#f9e5be", offset:0},
-      {opacity:accent ? .85 : .68, backgroundColor:"#fff9e8", offset:.35+Math.random()*.3},
-      {opacity:.28, backgroundColor:"#f9e5be", offset:1}
+      {opacity:.5, backgroundColor:"#fff1d5", offset:0},
+      {opacity:accent ? .98 : .85, backgroundColor:"#fff9e8", offset:.35+Math.random()*.3},
+      {opacity:.5, backgroundColor:"#fff1d5", offset:1}
     ], {duration:evening ? 14000 + Math.random() * 12000 : 10000 + Math.random() * 8000, easing:"ease-in-out", delay:evening ? 0 : Math.random()*3000});
     active.set(star, animation);
     animation.finished.then(() => {
