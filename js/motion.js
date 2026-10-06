@@ -23,7 +23,7 @@
   }
   function startStar() {
     if (scenePaused || !enabled()) return;
-    const candidates = stars.filter(star => !active.has(star) && !recent.includes(star));
+    const candidates = stars.filter(star => !active.has(star) && !recent.includes(star) && (world.getAttribute("data-time-scene") !== "evening" || !star.classList.contains("night-only-star")));
     if (!candidates.length) return;
     const star = candidates[Math.floor(Math.random() * candidates.length)];
     if (typeof star.animate !== "function") return;

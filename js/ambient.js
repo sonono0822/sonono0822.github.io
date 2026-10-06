@@ -49,7 +49,7 @@ const AMBIENT = (() => {
   const night=()=>['night','deepNight'].includes(world.getAttribute('data-time-scene'));
   const allowed=()=>!paused&&!document.hidden&&!reduced.matches;
   const meteorAllowed=()=>allowed()&&night()&&world.getAttribute('data-weather')==='sunny';
-  const meteorDelay=()=> (1+Math.random())*3600000;
+  const meteorDelay=()=> (4+Math.random()*2)*60000;
   const windowDelay=()=> (4+Math.random()*3)*60000;
   function schedule(now){nextMeteor=now+meteorDelay();nextWindow=now+windowDelay();}
   function cancelMeteor(){if(animation){animation.cancel();animation=null;}}
