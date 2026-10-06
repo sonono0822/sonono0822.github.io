@@ -8,26 +8,34 @@ const AMBIENT = (() => {
   windows.forEach(e=>e.classList.add('ambient-window'));
   const dimmed=new Set();
   const birds=document.querySelector('.sky-birds'),flights=new Set();
-  let nextBird=0,birdContext='';
+  let birdContext='';
   const birdsAllowed=()=>allowed()&&['morning','lateMorning','day'].includes(world.getAttribute('data-time-scene'))&&['sunny','cloudy'].includes(world.getAttribute('data-weather'));
-  const birdDelay=()=> (60+Math.random()*60)*1000*(world.getAttribute('data-weather')==='cloudy'?2:1);
-  const firstBirdDelay=()=> (8+Math.random()*7)*1000;
   function cancelBirds(){for(const flight of flights)flight.cancel();flights.clear();if(birds.firstChild)birds.replaceChildren();}
   function flyBirds(){
     if(!birdsAllowed()||flights.size||typeof birds.animate!=='function')return;
-    const reverse=Math.random()<.2,width=world.clientWidth,duration=16000+Math.random()*9000;
-    const top=7+Math.random()*30,count=3+Math.floor(Math.random()*4);
+    const count=world.getAttribute('data-weather')==='cloudy'?3:3+Math.floor(Math.random()*3);
+    function startFlight(bird,phase=0){
+      if(!birdsAllowed()||!bird.isConnected)return;
+      const reverse=Math.random()<.2,width=world.clientWidth,duration=45000+Math.random()*20000;
+      bird.style.top=(7+Math.random()*30)+'%';
+      bird.style.setProperty('--flap-time',(650+Math.random()*350)+'ms');
+      const bob=2+Math.random()*4,drift=(Math.random()-.5)*18;
+      const flight=bird.animate(Array.from({length:9},(_,step)=>({transform:`translate(${reverse?width+20-(width+40)*step/8:-20+(width+40)*step/8}px,${drift*step/8+(step%2?bob:-bob)}px)`})),{duration,easing:'linear'});
+      flight.currentTime=phase*duration;
+      flights.add(flight);
+      flight.finished.then(()=>{
+        if(!flights.delete(flight))return;
+        if(birdsAllowed()&&bird.isConnected)startFlight(bird);
+        else bird.remove();
+      },()=>{});
+    }
     for(let i=0;i<count;i++){
       const bird=document.createElement('i'),sprite=document.createElement('span');
       bird.className='sky-bird';bird.append(sprite);
-      bird.style.top=(top+Math.random()*7)+'%';
-      bird.style.setProperty('--flap-time',(650+Math.random()*350)+'ms');
       sprite.style.animationDelay=(-Math.random())+'s';
       birds.append(bird);
-      const bob=2+Math.random()*4,drift=(Math.random()-.5)*18;
-      const flight=bird.animate(Array.from({length:9},(_,step)=>({transform:`translate(${reverse?width+20-(width+40)*step/8:-20+(width+40)*step/8}px,${drift*step/8+(step%2?bob:-bob)}px)`})),{duration:duration*(.95+Math.random()*.1),delay:i*(350+Math.random()*550),easing:'linear',fill:'backwards'});
-      flights.add(flight);
-      flight.finished.then(()=>{flights.delete(flight);bird.remove();},()=>{});
+      // Spread the first flights across the sky; recycle each bird without a waiting timer.
+      startFlight(bird,(i+.5)/count);
     }
   }
   let animation=null,paused=document.hidden,lastTime=null,nextMeteor=0,nextWindow=0,lastWindow=null;
@@ -55,12 +63,12 @@ const AMBIENT = (() => {
   }
   function sync(now){
     const time=now.getTime();
-    if(lastTime===null||time<lastTime||time-lastTime>60000){schedule(time);nextBird=time+firstBirdDelay();}
+    if(lastTime===null||time<lastTime||time-lastTime>60000)schedule(time);
     lastTime=time;
     const context=world.getAttribute('data-time-scene')+':'+world.getAttribute('data-weather');
-    if(context!==birdContext||nextBird===0){birdContext=context;nextBird=time+firstBirdDelay();}
+    if(context!==birdContext){birdContext=context;cancelBirds();}
     if(!birdsAllowed())cancelBirds();
-    if(birdsAllowed()&&time>=nextBird){flyBirds();nextBird=time+birdDelay();}
+    else flyBirds();
     document.querySelector('#previewMeteor').disabled=!meteorAllowed();
     document.querySelector('#previewWindows').disabled=!allowed()||!night();
     document.querySelector('#previewBirds').disabled=!birdsAllowed();
@@ -70,10 +78,10 @@ const AMBIENT = (() => {
     if(time>=nextMeteor){shoot();nextMeteor=time+meteorDelay();}
     if(time>=nextWindow){changeWindow();nextWindow=time+windowDelay();}
   }
-  function pause(value){paused=value;if(value){cancelMeteor();cancelBirds();}nextBird=0;lastTime=null;}
+  function pause(value){paused=value;if(value){cancelMeteor();cancelBirds();}lastTime=null;}
   document.querySelector('#previewMeteor').addEventListener('click',()=>{if(shoot())nextMeteor=Date.now()+meteorDelay();});
   document.querySelector('#previewWindows').addEventListener('click',()=>{if(changeWindow())nextWindow=Date.now()+windowDelay();});
-  document.querySelector('#previewBirds').addEventListener('click',()=>{flyBirds();nextBird=Date.now()+birdDelay();});
+  document.querySelector('#previewBirds').addEventListener('click',()=>{cancelBirds();flyBirds();});
   reduced.addEventListener('change',()=>sync(new Date()));
   return Object.freeze({sync,pause});
 })();
