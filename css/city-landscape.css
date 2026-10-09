@@ -1,0 +1,40 @@
+/* First-stage city composition. All geometry is static SVG; environment uses existing variables. */
+.night-city .city-landscape{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none}
+.city-landscape .city-district{--district-face:var(--mid);--district-roof:color-mix(in srgb,var(--mid) 66%,var(--roof))}
+.city-landscape .city-remote{--district-face:color-mix(in srgb,var(--far) 78%,var(--horizon));opacity:.78}
+.city-landscape .city-left-rear{--district-face:color-mix(in srgb,var(--mid) 72%,var(--far))}
+.city-landscape .city-opposite{--district-face:color-mix(in srgb,var(--mid) 62%,var(--far));--district-roof:color-mix(in srgb,var(--mid) 55%,var(--roof))}
+.city-landscape .city-left-main{--district-face:var(--mid-alt);--district-roof:color-mix(in srgb,var(--mid-alt) 72%,var(--roof))}
+.city-landscape .city-near-bank{--district-face:var(--near);--district-roof:color-mix(in srgb,var(--near) 74%,var(--roof))}
+.city-landscape .city-face{fill:var(--district-face)}
+.city-landscape .city-side{fill:color-mix(in srgb,var(--district-face) 89%,var(--sky-top))}
+.city-landscape .city-roof{fill:var(--district-roof)}
+.city-landscape .city-tower-body{fill:color-mix(in srgb,var(--mid) 80%,var(--far))}
+.city-landscape .city-tower-roof{fill:color-mix(in srgb,var(--mid) 70%,var(--roof))}
+.city-landscape .city-tower-brace{fill:var(--mid-alt)}
+.city-landscape .city-tower-light{fill:var(--window);opacity:var(--street-light-opacity)}
+.city-landscape .city-water{fill:color-mix(in srgb,var(--sky-low) 62%,var(--mid))}
+.city-landscape .city-water-light{fill:var(--horizon);opacity:.32}
+.city-landscape .city-water-reflection{fill:var(--window);opacity:calc(var(--window-opacity) * .35)}
+.city-landscape .city-bridge-piers,.city-landscape .city-bridge-deck{fill:color-mix(in srgb,var(--near) 80%,var(--mid))}
+.city-landscape .city-bridge-edge{fill:color-mix(in srgb,var(--mid) 75%,var(--roof))}
+.city-landscape .city-bridge-rail{fill:var(--mid)}
+.city-landscape .city-bridge-lights{fill:var(--window);opacity:var(--street-light-opacity)}
+.city-landscape .city-tree-trunk{fill:var(--near)}
+.city-landscape .city-tree-canopy{opacity:clamp(0,calc(var(--season-extra-leaves) * 1.14 - .14),1)}
+.city-landscape .city-tree-leaf{fill:var(--season-leaf)}
+.city-landscape .city-tree-highlight{fill:var(--season-highlight);opacity:.55}
+.city-landscape .city-far-trees{opacity:.85}
+/* A few existing-style light patches preserve ambient window events without a facade pass. */
+.city-landscape .city-window{fill:var(--window);opacity:var(--window-opacity)}
+.city-landscape .city-window:nth-of-type(3n+1){opacity:calc(var(--window-opacity) * var(--rest-window-factor))}
+.world[data-time-scene] .night-city .city-landscape .city-window.ambient-window{transition:opacity 5s linear}
+.world[data-time-scene] .night-city .city-landscape .city-window.ambient-window-dim{opacity:calc(var(--window-opacity) * .18)}
+/* Roof strips share the weather/paused/reduced-motion contract of the original snow. */
+.city-landscape .city-roof-snow{fill:#c6d0d6;opacity:0;transition:opacity 12s linear}
+.world[data-weather="snow"] .city-landscape .city-roof-snow{opacity:.7;transition:none}
+html[data-scene-paused="true"] .city-landscape .city-roof-snow,
+html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landscape .city-window.ambient-window{transition:none}
+@media(prefers-reduced-motion:reduce){
+  .city-landscape .city-roof-snow,.world[data-time-scene] .night-city .city-landscape .city-window.ambient-window{transition:none}
+}
