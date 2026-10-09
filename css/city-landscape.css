@@ -50,3 +50,7 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-left-main [data-left-volume="setback-upper"]{--district-face:color-mix(in srgb,var(--mid-alt) 85%,var(--far));--district-roof:color-mix(in srgb,var(--mid-alt) 65%,var(--roof))}
 .city-landscape .city-left-main [data-left-volume="separate-east"]{--district-face:var(--mid);--district-roof:color-mix(in srgb,var(--mid) 62%,var(--roof))}
 .city-landscape .city-left-main [data-left-volume="east-upper"]{--district-face:var(--mid);--district-roof:color-mix(in srgb,var(--mid) 70%,var(--roof))}
+
+/* District continuity: rear upper masses and foreground roof groups share distance palettes. */
+.city-landscape .city-opposite-rear{--district-face:color-mix(in srgb,var(--mid) 58%,var(--far));--district-roof:color-mix(in srgb,var(--mid) 54%,var(--roof))}
+.city-landscape .city-opposite-front{--district-face:color-mix(in srgb,var(--mid) 82%,var(--far));--district-roof:color-mix(in srgb,var(--mid) 68%,var(--roof))}
