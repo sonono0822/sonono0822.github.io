@@ -158,3 +158,14 @@
 /* Outline and roof steps carry volume; avoid a broad dark facade stripe. */
 .night-city .skyline .mid-building,.night-city .skyline .near-building{box-shadow:inset -2px 0 color-mix(in srgb,var(--sky-top) 18%,transparent),inset 1px 0 color-mix(in srgb,var(--roof) 16%,transparent)}
 
+
+/* Option A district revision: retain three stacking contexts and irregular gaps.
+   Middle-distance detail is sparse; near facades retain their original detail. */
+.night-city .mid-building .facade-detail{opacity:.28}
+.night-city .mid-building .roof-vent,.night-city .mid-building .roof-aerial{display:none}
+.night-city .mid-building .windows .win:not(.on),.night-city .mid-building .windows .win:nth-child(3n){visibility:hidden}
+.night-city .skyline .mid-building .win{max-width:3px;max-height:4px;box-shadow:none}
+/* Snow follows the actual existing roof, including raised planes and terraces.
+   Visibility/transition remain owned by weather.css; snow shares building occlusion. */
+.night-city .skyline .building.city-volume .roof-snow{top:calc(0px - var(--volume-roof-rise) - 1px);z-index:2}
+.night-city .skyline .building.city-volume.volume-setback .roof-snow{left:14%;width:50%;top:calc(-24% - var(--volume-roof-rise) - 1px)}
