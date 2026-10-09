@@ -43,3 +43,10 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-tier-rear{--district-face:color-mix(in srgb,var(--near) 64%,var(--mid));--district-roof:color-mix(in srgb,var(--mid) 72%,var(--roof))}
 .city-landscape .city-left-main .city-tier-rear{--district-face:color-mix(in srgb,var(--mid-alt) 76%,var(--far));--district-roof:color-mix(in srgb,var(--mid-alt) 64%,var(--roof))}
 .city-landscape .city-tier-front .city-side{fill:color-mix(in srgb,var(--district-face) 86%,var(--sky-top))}
+
+/* Left district replacement: broader roof landings and separate inset upper masses.
+   Scoped to this district; the river, other districts and environment logic keep their palette. */
+.city-landscape .city-left-main .city-left-volume{--district-roof:color-mix(in srgb,var(--mid-alt) 58%,var(--roof))}
+.city-landscape .city-left-main [data-left-volume="setback-upper"]{--district-face:color-mix(in srgb,var(--mid-alt) 85%,var(--far));--district-roof:color-mix(in srgb,var(--mid-alt) 65%,var(--roof))}
+.city-landscape .city-left-main [data-left-volume="separate-east"]{--district-face:var(--mid);--district-roof:color-mix(in srgb,var(--mid) 62%,var(--roof))}
+.city-landscape .city-left-main [data-left-volume="east-upper"]{--district-face:var(--mid);--district-roof:color-mix(in srgb,var(--mid) 70%,var(--roof))}
