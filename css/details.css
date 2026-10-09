@@ -1,5 +1,20 @@
 
 /* Step 8-2: static architectural and atmospheric detail, using blended palette values. */
+/* Five reviewed blocks share one roof landing: upper floors and equipment sit
+   on the roof plane, while the side reaches the same foundation as the front. */
+.night-city .volume-connected .building-planes::before{z-index:1}
+.night-city .volume-connected.volume-project .building-planes::after{top:0;bottom:0}
+.night-city .skyline .building.volume-connected.volume-setback::before{bottom:calc(100% + var(--volume-roof-rise) - 2px);box-sizing:border-box}
+.night-city .skyline .building.volume-connected.volume-setback::after{bottom:calc(124% + var(--volume-roof-rise) - 2px)}
+.night-city .skyline .building.volume-connected.form-terraced::before{bottom:calc(100% + var(--volume-roof-rise) - 2px);box-sizing:border-box}
+.night-city .skyline .building.volume-connected.form-terraced::after{bottom:calc(132% + var(--volume-roof-rise) - 2px);box-sizing:border-box}
+.night-city .building.volume-connected .upper-windows{top:calc(-24% - var(--volume-roof-rise) + 10px)}
+.night-city .building.volume-connected.form-terraced .upper-windows{top:calc(-32% - var(--volume-roof-rise) + 10px)}
+.night-city .volume-connected .roof-vent,.night-city .volume-connected .roof-aerial,.night-city .volume-connected .roof-railing{bottom:calc(100% + var(--volume-roof-rise) - 4px)}
+.night-city .building.volume-connected.volume-setback .roof-snow{top:calc(-24% - var(--volume-roof-rise) - 1px)}
+.night-city .volume-connected .building-wing{box-sizing:border-box}
+.night-city .volume-connected .building-wing::before{top:-4px}
+.night-city .volume-connected .wall-ac{z-index:1}
 /* Selected facades use bounded grids: node counts match columns times rows. */
 .night-city .skyline .building.window-profile .windows{top:var(--window-top,14%);left:var(--window-left,12%);right:calc(var(--volume-side,0%) + var(--window-edge,8%));bottom:var(--window-bottom,10%);column-gap:var(--window-col-gap,20%);row-gap:var(--window-row-gap,12%)}
 .night-city .skyline .building.window-profile .win{max-width:var(--window-width,4px);max-height:var(--window-height,5px)}
