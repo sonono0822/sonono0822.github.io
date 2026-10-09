@@ -9,10 +9,10 @@
 .world[data-time-scene] .sky-stars{opacity:var(--stars)}
 .world[data-time-scene] .calendar-panel::before{background:linear-gradient(135deg,var(--panel-top),var(--panel-bottom))}
 .world[data-time-scene] .night-city .far-building{background:var(--far);border-top-color:var(--roof)}
-.world[data-time-scene] .night-city .far-building:nth-child(3n),.world[data-time-scene] .night-city .far-building:nth-child(4n){background:var(--far-alt)}
+.world[data-time-scene] .night-city .far-building.city-order-3n,.world[data-time-scene] .night-city .far-building.city-order-4n{background:var(--far-alt)}
 .world[data-time-scene] .night-city .mid-building{background:var(--mid);border-top-color:var(--roof)}
-.world[data-time-scene] .night-city .mid-building:nth-child(3n),.world[data-time-scene] .night-city .mid-building:nth-child(4n){background:var(--mid-alt)}
-.world[data-time-scene] .night-city .near-building,.world[data-time-scene] .night-city .near-building:nth-child(3n){background:var(--near);border-top-color:var(--mid)}
+.world[data-time-scene] .night-city .mid-building.city-order-3n,.world[data-time-scene] .night-city .mid-building.city-order-4n{background:var(--mid-alt)}
+.world[data-time-scene] .night-city .near-building,.world[data-time-scene] .night-city .near-building.city-order-3n{background:var(--near);border-top-color:var(--mid)}
 .world[data-time-scene] .night-city .win.on{background:var(--window);opacity:var(--window-opacity)}
 .world[data-time-scene] .night-city .win.on:nth-child(3n){background:var(--window-dim)}
 .world[data-time-scene] .night-city .landmark-tower{color:var(--near)}

@@ -169,3 +169,22 @@
    Visibility/transition remain owned by weather.css; snow shares building occlusion. */
 .night-city .skyline .building.city-volume .roof-snow{top:calc(0px - var(--volume-roof-rise) - 1px);z-index:2}
 .night-city .skyline .building.city-volume.volume-setback .roof-snow{left:14%;width:50%;top:calc(-24% - var(--volume-roof-rise) - 1px)}
+
+/* Option B composition prototype: five city depths, water between opposite banks.
+   Original architectural classes and stable order classes preserve detail/palettes. */
+.night-city .skyline.city-band-horizon{bottom:34%;height:18%;z-index:0;opacity:.65}
+.night-city .skyline.city-band-back{bottom:29%;height:21%;z-index:1;opacity:.85}
+.night-city .skyline.city-band-shore{bottom:24%;height:30%;z-index:2}
+.night-city .river-corridor{bottom:14%;height:14%;z-index:3}
+.night-city .skyline.city-band-inner{bottom:16%;height:31%;z-index:4}
+.night-city .skyline.city-band-front{bottom:11%;height:30%;z-index:5}
+/* Keep the tower world-space extent (16% through 65.92%) inside the shore band. */
+.night-city .city-band-shore .landmark-tower{bottom:-26.666667%;height:166.4%}
+/* Distance comes from scale, overlaps and existing scene colours. */
+.world[data-time-scene] .night-city .city-band-back .far-building{background:color-mix(in srgb,var(--far) 70%,var(--mid))}
+.world[data-time-scene] .night-city .city-band-shore .mid-building{background:color-mix(in srgb,var(--mid) 78%,var(--far))}
+.night-city .city-band-shore .mid-building.city-volume{--volume-face:color-mix(in srgb,var(--mid) 78%,var(--far))}
+.world[data-time-scene] .night-city .city-band-shore .mid-building:is(.city-order-3n,.city-order-4n){background:color-mix(in srgb,var(--mid-alt) 78%,var(--far))}
+.night-city .city-band-shore .mid-building.city-volume:is(.city-order-3n,.city-order-4n){--volume-face:color-mix(in srgb,var(--mid-alt) 78%,var(--far))}
+/* Existing trees connect the near bank to foreground, below indoor objects. */
+.night-city .street-tree{z-index:6}
