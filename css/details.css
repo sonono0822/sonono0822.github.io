@@ -1,6 +1,6 @@
 
 /* Step 8-2: static architectural and atmospheric detail, using blended palette values. */
-/* Five reviewed blocks share one roof landing: upper floors and equipment sit
+/* Reviewed blocks share one roof landing: upper floors and equipment sit
    on the roof plane, while the side reaches the same foundation as the front. */
 .night-city .volume-connected .building-planes::before{z-index:1}
 .night-city .volume-connected.volume-project .building-planes::after{top:0;bottom:0}
@@ -15,6 +15,16 @@
 .night-city .volume-connected .building-wing{box-sizing:border-box}
 .night-city .volume-connected .building-wing::before{top:-4px}
 .night-city .volume-connected .wall-ac{z-index:1}
+/* Three existing blocks vary the outline, without expanding the skyline count.
+   Each upper mass overlaps its roof landing by 2px; shaded sides share the palette. */
+.night-city .skyline .building.city-volume.silhouette-long::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:54%;width:26%;height:16%;box-sizing:border-box;background:var(--volume-face);border-top:3px solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-long::after{content:none}
+.night-city .skyline .building.city-volume.silhouette-long .building-wing{border-right:0;box-shadow:inset 2px 0 color-mix(in srgb,var(--volume-face) 80%,var(--roof))}
+.night-city .skyline .building.city-volume.silhouette-steps::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:8%;width:66%;height:26%;box-sizing:border-box;background:var(--volume-face);border-top:4px solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-steps::after{content:"";position:absolute;bottom:calc(126% + var(--volume-roof-rise) - 3px);left:8%;right:auto;top:auto;width:34%;height:18%;box-sizing:border-box;background:var(--volume-face);border-top:4px solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-podium::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:28%;width:44%;height:70%;box-sizing:border-box;background:var(--volume-face);border-top:5px solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -7px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-podium::after{content:none}
+.night-city .skyline .building.city-volume.silhouette-podium .windows{z-index:2;top:calc(-70% - var(--volume-roof-rise) + 10px);bottom:auto;left:30%;right:auto;width:30%;height:calc(70% - 16px);column-gap:12%;row-gap:12%}
 /* Selected facades use bounded grids: node counts match columns times rows. */
 .night-city .skyline .building.window-profile .windows{top:var(--window-top,14%);left:var(--window-left,12%);right:calc(var(--volume-side,0%) + var(--window-edge,8%));bottom:var(--window-bottom,10%);column-gap:var(--window-col-gap,20%);row-gap:var(--window-row-gap,12%)}
 .night-city .skyline .building.window-profile .win{max-width:var(--window-width,4px);max-height:var(--window-height,5px)}
