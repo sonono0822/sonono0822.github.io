@@ -1,5 +1,11 @@
 
 /* Step 8-2: static architectural and atmospheric detail, using blended palette values. */
+/* Selected facades use bounded grids: node counts match columns times rows. */
+.night-city .skyline .building.window-profile .windows{top:var(--window-top,14%);left:var(--window-left,12%);right:calc(var(--volume-side,0%) + var(--window-edge,8%));bottom:var(--window-bottom,10%);column-gap:var(--window-col-gap,20%);row-gap:var(--window-row-gap,12%)}
+.night-city .skyline .building.window-profile .win{max-width:var(--window-width,4px);max-height:var(--window-height,5px)}
+.night-city .roof-railing{position:absolute;left:76%;bottom:calc(100% + var(--volume-roof-rise,10px));width:22%;height:6px;border-top:1px solid var(--roof);background:repeating-linear-gradient(90deg,var(--roof) 0 1px,transparent 1px 5px);opacity:.65;pointer-events:none}
+.night-city .wall-ac{position:absolute;right:-8%;top:46%;width:16%;min-width:5px;height:8%;min-height:5px;border:1px solid var(--roof);background:repeating-linear-gradient(0deg,var(--volume-face) 0 2px,color-mix(in srgb,var(--volume-face) 55%,var(--roof)) 2px 3px);box-shadow:2px 2px color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));pointer-events:none}
+.night-city .building.facade-bays .facade-detail{background:linear-gradient(90deg,transparent 30%,color-mix(in srgb,var(--volume-face) 78%,var(--roof)) 30% 32%,transparent 32% 65%,color-mix(in srgb,var(--volume-face) 70%,var(--sky-top)) 65% 68%,transparent 68%)}
 .night-city .mid-building,.night-city .near-building{box-shadow:inset -4px 0 #111b3059,inset 2px 0 #edddce26}
 /* Selected visible blocks: static, stepped roof/side planes inside their footprint.
    Palette-derived shading follows AUTO/time/weather without extra timers. */
