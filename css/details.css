@@ -17,42 +17,42 @@
 .night-city .volume-connected .wall-ac{z-index:1}
 /* Three existing blocks vary the outline, without expanding the skyline count.
    Each upper mass overlaps its roof landing by 2px; shaded sides share the palette. */
-.night-city .skyline .building.city-volume.silhouette-long::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:54%;width:26%;height:16%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-long::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:54%;width:26%;height:16%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
 .night-city .skyline .building.city-volume.silhouette-long::after{content:none}
 .night-city .skyline .building.city-volume.silhouette-long .building-wing{border-right:0;box-shadow:inset 2px 0 color-mix(in srgb,var(--volume-face) 80%,var(--roof))}
-.night-city .skyline .building.city-volume.silhouette-steps::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:8%;width:66%;height:26%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
-.night-city .skyline .building.city-volume.silhouette-steps::after{content:"";position:absolute;bottom:calc(126% + var(--volume-roof-rise) - 3px);left:8%;right:auto;top:auto;width:34%;height:18%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
-.night-city .skyline .building.city-volume.silhouette-podium::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:28%;width:44%;height:70%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -7px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-steps::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:8%;width:66%;height:26%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-steps::after{content:"";position:absolute;bottom:calc(126% + var(--volume-roof-rise) - 3px);left:8%;right:auto;top:auto;width:34%;height:18%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.silhouette-podium::before{content:"";position:absolute;bottom:calc(100% + var(--volume-roof-rise) - 2px);left:28%;width:44%;height:70%;box-sizing:border-box;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid color-mix(in srgb,var(--volume-face) 42%,var(--roof));box-shadow:inset -7px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
 .night-city .skyline .building.city-volume.silhouette-podium::after{content:none}
 .night-city .skyline .building.city-volume.silhouette-podium .windows{z-index:2;top:calc(-70% - var(--volume-roof-rise) + 10px);bottom:auto;left:30%;right:auto;width:30%;height:calc(70% - 16px);column-gap:12%;row-gap:12%}
 /* Selected facades use bounded grids: node counts match columns times rows. */
 .night-city .skyline .building.window-profile .windows{top:var(--window-top,14%);left:var(--window-left,12%);right:calc(var(--volume-side,0%) + var(--window-edge,8%));bottom:var(--window-bottom,10%);column-gap:var(--window-col-gap,20%);row-gap:var(--window-row-gap,12%)}
 .night-city .skyline .building.window-profile .win{max-width:var(--window-width,4px);max-height:var(--window-height,5px)}
 .night-city .roof-railing{position:absolute;left:76%;bottom:calc(100% + var(--volume-roof-rise,10px));width:22%;height:6px;border-top:1px solid var(--roof);background:repeating-linear-gradient(90deg,var(--roof) 0 1px,transparent 1px 5px);opacity:.65;pointer-events:none}
-.night-city .wall-ac{position:absolute;right:-8%;top:46%;width:16%;min-width:5px;height:8%;min-height:5px;border:1px solid var(--roof);background:repeating-linear-gradient(0deg,var(--volume-face) 0 2px,color-mix(in srgb,var(--volume-face) 55%,var(--roof)) 2px 3px);box-shadow:2px 2px color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));pointer-events:none}
+.night-city .wall-ac{position:absolute;right:-8%;top:46%;width:16%;min-width:5px;height:8%;min-height:5px;border:1px solid var(--roof);background:repeating-linear-gradient(0deg,var(--volume-face) 0 2px,color-mix(in srgb,var(--volume-face) 55%,var(--roof)) 2px 3px);box-shadow:2px 2px color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));pointer-events:none}
 .night-city .building.facade-bays .facade-detail{background:linear-gradient(90deg,transparent 30%,color-mix(in srgb,var(--volume-face) 78%,var(--roof)) 30% 32%,transparent 32% 65%,color-mix(in srgb,var(--volume-face) 70%,var(--sky-top)) 65% 68%,transparent 68%)}
 .night-city .mid-building,.night-city .near-building{box-shadow:inset -4px 0 #111b3059,inset 2px 0 #edddce26}
 /* Selected visible blocks: static, stepped roof/side planes inside their footprint.
    Palette-derived shading follows AUTO/time/weather without extra timers. */
-.night-city .building.city-volume{--volume-face:var(--mid);--volume-side:var(--side-width,22%);--volume-roof-rise:var(--roof-depth,10px)}
+.night-city .building.city-volume{--volume-face:var(--mid);--volume-side:var(--side-width,12%);--volume-roof-rise:var(--roof-depth,10px)}
 .night-city .mid-building.city-volume:nth-child(3n),.night-city .mid-building.city-volume:nth-child(4n){--volume-face:var(--mid-alt)}
-.night-city .near-building.city-volume{--volume-face:var(--near);--volume-side:var(--side-width,26%);--volume-roof-rise:var(--roof-depth,14px)}
+.night-city .near-building.city-volume{--volume-face:var(--near);--volume-side:var(--side-width,14%);--volume-roof-rise:var(--roof-depth,14px)}
 .night-city .city-volume .building-planes{position:absolute;inset:0;pointer-events:none}
 .building-planes::before{content:"";position:absolute;left:0;right:0;top:calc(0px - var(--volume-roof-rise));height:calc(var(--volume-roof-rise) + 2px);background:color-mix(in srgb,var(--volume-face) 42%,var(--roof));border-bottom:2px solid color-mix(in srgb,var(--volume-face) 70%,var(--sky-top));clip-path:polygon(0 4px,calc(100% - var(--volume-side)) 4px,calc(100% - var(--volume-side)) 2px,calc(100% - 12%) 2px,calc(100% - 12%) 0,100% 0,100% 100%,0 100%)}
-.building-planes::after{content:"";position:absolute;right:0;top:2px;bottom:0;width:var(--volume-side);background:color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));border-left:2px solid color-mix(in srgb,var(--volume-face) 50%,var(--roof));box-shadow:inset -2px 0 color-mix(in srgb,var(--volume-face) 60%,var(--sky-top))}
+.building-planes::after{content:"";position:absolute;right:0;top:2px;bottom:0;width:var(--volume-side);background:color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));border-left:2px solid color-mix(in srgb,var(--volume-face) 88%,var(--roof));box-shadow:inset -2px 0 color-mix(in srgb,var(--volume-face) 82%,var(--sky-top))}
 /* A few exposed corners project beyond the facade, with a raised rear edge.
    Keep projections small; each building retains its existing stacking order. */
-.night-city .volume-project .building-planes::before{right:-12%}
-.night-city .volume-project .building-planes::after{right:-12%;top:-6px;bottom:6px;width:calc(var(--volume-side) + 12%)}
-.night-city .city-volume .building-wing{position:absolute;left:calc(0% - var(--wing-width,24%));bottom:0;width:var(--wing-width,24%);height:var(--wing-height,42%);background:var(--volume-face);border-top:3px solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));pointer-events:none}
+.night-city .volume-project .building-planes::before{right:-4%}
+.night-city .volume-project .building-planes::after{right:-4%;top:-6px;bottom:6px;width:calc(var(--volume-side) + 4%)}
+.night-city .city-volume .building-wing{position:absolute;left:calc(0% - var(--wing-width,24%));bottom:0;width:var(--wing-width,24%);height:var(--wing-height,42%);background:var(--volume-face);border-top:3px solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));pointer-events:none}
 .night-city .building-wing::before{content:"";position:absolute;left:0;right:0;top:-7px;height:4px;background:color-mix(in srgb,var(--volume-face) 42%,var(--roof))}
 .night-city .building-wing .wing-windows{position:absolute;inset:15% 25% 12% 14%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:22%}
 /* Setbacks change the outline, rather than adding another thin facade stripe.
    Reuse the building's existing roof pseudo-elements; equipment/snow stays live. */
-.night-city .skyline .building.city-volume.volume-setback::before{content:"";position:absolute;bottom:100%;left:12%;width:60%;height:24%;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.volume-setback::before{content:"";position:absolute;bottom:100%;left:12%;width:60%;height:24%;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
 .night-city .skyline .building.city-volume.volume-setback::after{content:"";position:absolute;bottom:124%;left:20%;width:38%;height:3px;background:var(--roof)}
-.night-city .skyline .building.city-volume.form-terraced::before{left:10%;width:64%;height:32%;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
-.night-city .skyline .building.city-volume.form-terraced::after{bottom:132%;left:26%;width:38%;height:12%;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.form-terraced::before{left:10%;width:64%;height:32%;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
+.night-city .skyline .building.city-volume.form-terraced::after{bottom:132%;left:26%;width:38%;height:12%;background:var(--volume-face);border-top:var(--detail-roof-edge,2px) solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 86%,var(--sky-top));z-index:1}
 .night-city .skyline .building.city-volume .windows{right:calc(var(--volume-side) + 7%)}
 .night-city .city-volume .facade-detail{right:var(--volume-side)}
 .night-city .city-volume .roof-vent{left:78%}
@@ -62,7 +62,7 @@
    These static windows share the scene palette and bedtime dimming factor. */
 .night-city .city-volume .upper-windows{position:absolute;z-index:2;left:20%;top:calc(-24% + 8px);width:40%;height:calc(24% - 12px);min-height:6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:25% 24%;pointer-events:none}
 .night-city .city-volume.form-terraced .upper-windows{left:18%;top:calc(-32% + 8px);width:44%;height:calc(32% - 12px)}
-.night-city .upper-windows i,.night-city .wing-windows i{width:100%;height:100%;max-width:4px;max-height:5px;justify-self:center;align-self:center;background:var(--window-dim);opacity:.55;box-shadow:1px 1px color-mix(in srgb,var(--volume-face) 48%,var(--sky-top))}
+.night-city .upper-windows i,.night-city .wing-windows i{width:100%;height:100%;max-width:4px;max-height:5px;justify-self:center;align-self:center;background:var(--window-dim);opacity:.55;box-shadow:1px 1px color-mix(in srgb,var(--volume-face) 86%,var(--sky-top))}
 .night-city .upper-windows i:nth-child(3),.night-city .wing-windows i:nth-child(3){background:var(--window);opacity:var(--window-opacity)}
 .night-city .upper-windows i:nth-child(4),.night-city .wing-windows i:nth-child(4){background:var(--window);opacity:calc(var(--window-opacity) * var(--rest-window-factor))}
 .facade-detail{position:absolute;inset:3% 0 0;pointer-events:none;opacity:.65}
@@ -148,3 +148,13 @@
 .entry-glass{fill:var(--window-dim);opacity:.55}
 .entry-frame{fill:var(--roof);opacity:.65}
 .entry-awning{fill:var(--mid-alt)}
+
+/* Option A: three district planes, with staggered foundations and roof exposure.
+   River stays between middle and near blocks; gaps expose it without cutout masks. */
+.night-city .skyline-far{bottom:28%;height:22%;z-index:0}
+.night-city .skyline-mid{bottom:16%;height:39%;z-index:1}
+.night-city .river-corridor{bottom:12%;height:17%;z-index:2}
+.night-city .skyline-near{bottom:11%;height:30%;z-index:3}
+/* Outline and roof steps carry volume; avoid a broad dark facade stripe. */
+.night-city .skyline .mid-building,.night-city .skyline .near-building{box-shadow:inset -2px 0 color-mix(in srgb,var(--sky-top) 18%,transparent),inset 1px 0 color-mix(in srgb,var(--roof) 16%,transparent)}
+
