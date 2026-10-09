@@ -1,6 +1,17 @@
 
 /* Step 8-2: static architectural and atmospheric detail, using blended palette values. */
 .night-city .mid-building,.night-city .near-building{box-shadow:inset -4px 0 #111b3059,inset 2px 0 #edddce26}
+/* Selected visible blocks: static, stepped roof/side planes inside their footprint.
+   Palette-derived shading follows AUTO/time/weather without extra timers. */
+.night-city .building.city-volume{--volume-face:var(--mid);--volume-side:22%}
+.night-city .near-building.city-volume{--volume-face:var(--near);--volume-side:26%}
+.night-city .city-volume .building-planes{position:absolute;inset:0;pointer-events:none}
+.building-planes::before{content:"";position:absolute;left:0;right:0;top:-6px;height:8px;background:color-mix(in srgb,var(--volume-face) 64%,var(--roof));border-top:2px solid var(--roof);clip-path:polygon(0 6px,calc(100% - var(--volume-side)) 6px,calc(100% - var(--volume-side)) 3px,calc(100% - 12%) 3px,calc(100% - 12%) 0,100% 0,100% 100%,0 100%)}
+.building-planes::after{content:"";position:absolute;right:0;top:2px;bottom:0;width:var(--volume-side);background:color-mix(in srgb,var(--volume-face) 65%,var(--sky-top));border-left:2px solid color-mix(in srgb,var(--volume-face) 72%,var(--roof));box-shadow:inset -2px 0 color-mix(in srgb,var(--volume-face) 60%,var(--sky-top))}
+.night-city .skyline .building.city-volume .windows{right:calc(var(--volume-side) + 7%)}
+.night-city .city-volume .facade-detail{right:var(--volume-side)}
+.night-city .city-volume .roof-vent{left:48%}
+.night-city .city-volume .street-entry{width:48%}
 .facade-detail{position:absolute;inset:3% 0 0;pointer-events:none;opacity:.65}
 .facade-0{background:repeating-linear-gradient(0deg,transparent 0 17px,#e9dacc18 17px 18px,#15203925 18px 20px)}
 .facade-1{background:linear-gradient(90deg,transparent 27%,#e9dacc18 27% 30%,transparent 30% 69%,#15203936 69% 74%,transparent 74%)}
