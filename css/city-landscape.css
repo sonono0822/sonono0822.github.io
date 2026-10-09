@@ -38,3 +38,8 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 @media(prefers-reduced-motion:reduce){
   .city-landscape .city-roof-snow,.world[data-time-scene] .night-city .city-landscape .city-window.ambient-window{transition:none}
 }
+
+/* Stage 2: distance differences inside a district, with unchanged environment palette. */
+.city-landscape .city-tier-rear{--district-face:color-mix(in srgb,var(--near) 64%,var(--mid));--district-roof:color-mix(in srgb,var(--mid) 72%,var(--roof))}
+.city-landscape .city-left-main .city-tier-rear{--district-face:color-mix(in srgb,var(--mid-alt) 76%,var(--far));--district-roof:color-mix(in srgb,var(--mid-alt) 64%,var(--roof))}
+.city-landscape .city-tier-front .city-side{fill:color-mix(in srgb,var(--district-face) 86%,var(--sky-top))}
