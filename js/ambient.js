@@ -3,7 +3,7 @@
 const AMBIENT = (() => {
   const world=document.querySelector('#world'),meteor=document.querySelector('.sky-meteor');
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-  const candidates=[...document.querySelectorAll('.mid-building .win.on:not(:nth-child(3n+1))')].filter(e=>parseFloat(e.closest('.building').style.getPropertyValue('--x'))<50);
+  const candidates=[...document.querySelectorAll('.mid-building .win.on:not(:nth-child(3n+1)), .city-landscape .city-window.on')].filter(e=>parseFloat(e.closest('.building, .city-block').style.getPropertyValue('--x'))<50);
   const windows=candidates.filter((_,i)=>i%Math.max(1,Math.ceil(candidates.length/12))===0).slice(0,12);
   windows.forEach(e=>e.classList.add('ambient-window'));
   const dimmed=new Set();
