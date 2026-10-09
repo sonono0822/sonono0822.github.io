@@ -20,6 +20,13 @@
 .night-city .city-volume .roof-vent{left:78%}
 .night-city .city-volume.volume-setback .roof-snow{left:14%;top:calc(-24% - 3px)}
 .night-city .city-volume .street-entry{width:48%}
+/* Sparse upper-floor windows turn the setback into an occupied building.
+   These static windows share the scene palette and bedtime dimming factor. */
+.night-city .city-volume .upper-windows{position:absolute;z-index:2;left:20%;top:calc(-24% + 8px);width:40%;height:calc(24% - 12px);min-height:6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:25% 24%;pointer-events:none}
+.night-city .city-volume.form-terraced .upper-windows{left:18%;top:calc(-32% + 8px);width:44%;height:calc(32% - 12px)}
+.night-city .upper-windows i{width:100%;height:100%;max-width:4px;max-height:5px;justify-self:center;align-self:center;background:var(--window-dim);opacity:.55;box-shadow:1px 1px color-mix(in srgb,var(--volume-face) 48%,var(--sky-top))}
+.night-city .upper-windows i:nth-child(3){background:var(--window);opacity:var(--window-opacity)}
+.night-city .upper-windows i:nth-child(4){background:var(--window);opacity:calc(var(--window-opacity) * var(--rest-window-factor))}
 .facade-detail{position:absolute;inset:3% 0 0;pointer-events:none;opacity:.65}
 .facade-0{background:repeating-linear-gradient(0deg,transparent 0 17px,#e9dacc18 17px 18px,#15203925 18px 20px)}
 .facade-1{background:linear-gradient(90deg,transparent 27%,#e9dacc18 27% 30%,transparent 30% 69%,#15203936 69% 74%,transparent 74%)}
