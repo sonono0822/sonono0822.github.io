@@ -54,3 +54,12 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 /* District continuity: rear upper masses and foreground roof groups share distance palettes. */
 .city-landscape .city-opposite-rear{--district-face:color-mix(in srgb,var(--mid) 58%,var(--far));--district-roof:color-mix(in srgb,var(--mid) 54%,var(--roof))}
 .city-landscape .city-opposite-front{--district-face:color-mix(in srgb,var(--mid) 82%,var(--far));--district-roof:color-mix(in srgb,var(--mid) 68%,var(--roof))}
+
+/* Crafted left district: individual silhouettes, shared environment colors. */
+.city-landscape .city-left-crafted{--district-roof:color-mix(in srgb,var(--mid-alt) 57%,var(--roof))}
+.city-landscape .city-left-rear .city-left-crafted{--district-roof:color-mix(in srgb,var(--mid) 68%,var(--roof))}
+.city-landscape .left-east{--district-face:var(--mid);--district-roof:color-mix(in srgb,var(--mid) 62%,var(--roof))}
+.city-landscape .left-workshop,.city-landscape .left-low{--district-face:color-mix(in srgb,var(--mid-alt) 82%,var(--near))}
+.city-landscape .city-left-crafted .city-floor{fill:color-mix(in srgb,var(--district-face) 87%,var(--near))}
+.city-landscape .city-left-crafted .city-unlit{fill:color-mix(in srgb,var(--district-face) 72%,var(--far))}
+.city-landscape .city-left-crafted .city-roof-edge{fill:color-mix(in srgb,var(--district-roof) 75%,var(--near))}
