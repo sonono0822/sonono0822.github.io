@@ -9,6 +9,13 @@
 .night-city .city-volume .building-planes{position:absolute;inset:0;pointer-events:none}
 .building-planes::before{content:"";position:absolute;left:0;right:0;top:calc(0px - var(--volume-roof-rise));height:calc(var(--volume-roof-rise) + 2px);background:color-mix(in srgb,var(--volume-face) 42%,var(--roof));border-bottom:2px solid color-mix(in srgb,var(--volume-face) 70%,var(--sky-top));clip-path:polygon(0 4px,calc(100% - var(--volume-side)) 4px,calc(100% - var(--volume-side)) 2px,calc(100% - 12%) 2px,calc(100% - 12%) 0,100% 0,100% 100%,0 100%)}
 .building-planes::after{content:"";position:absolute;right:0;top:2px;bottom:0;width:var(--volume-side);background:color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));border-left:2px solid color-mix(in srgb,var(--volume-face) 50%,var(--roof));box-shadow:inset -2px 0 color-mix(in srgb,var(--volume-face) 60%,var(--sky-top))}
+/* A few exposed corners project beyond the facade, with a raised rear edge.
+   Keep projections small; each building retains its existing stacking order. */
+.night-city .volume-project .building-planes::before{right:-12%}
+.night-city .volume-project .building-planes::after{right:-12%;top:-6px;bottom:6px;width:calc(var(--volume-side) + 12%)}
+.night-city .city-volume .building-wing{position:absolute;left:-24%;bottom:0;width:24%;height:42%;background:var(--volume-face);border-top:3px solid var(--roof);box-shadow:inset -5px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));pointer-events:none}
+.night-city .building-wing::before{content:"";position:absolute;left:0;right:0;top:-7px;height:4px;background:color-mix(in srgb,var(--volume-face) 42%,var(--roof))}
+.night-city .building-wing .wing-windows{position:absolute;inset:15% 25% 12% 14%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:22%}
 /* Setbacks change the outline, rather than adding another thin facade stripe.
    Reuse the building's existing roof pseudo-elements; equipment/snow stays live. */
 .night-city .skyline .building.city-volume.volume-setback::before{content:"";position:absolute;bottom:100%;left:12%;width:60%;height:24%;background:var(--volume-face);border-top:3px solid var(--roof);box-shadow:inset -8px 0 color-mix(in srgb,var(--volume-face) 48%,var(--sky-top));z-index:1}
@@ -24,9 +31,9 @@
    These static windows share the scene palette and bedtime dimming factor. */
 .night-city .city-volume .upper-windows{position:absolute;z-index:2;left:20%;top:calc(-24% + 8px);width:40%;height:calc(24% - 12px);min-height:6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:25% 24%;pointer-events:none}
 .night-city .city-volume.form-terraced .upper-windows{left:18%;top:calc(-32% + 8px);width:44%;height:calc(32% - 12px)}
-.night-city .upper-windows i{width:100%;height:100%;max-width:4px;max-height:5px;justify-self:center;align-self:center;background:var(--window-dim);opacity:.55;box-shadow:1px 1px color-mix(in srgb,var(--volume-face) 48%,var(--sky-top))}
-.night-city .upper-windows i:nth-child(3){background:var(--window);opacity:var(--window-opacity)}
-.night-city .upper-windows i:nth-child(4){background:var(--window);opacity:calc(var(--window-opacity) * var(--rest-window-factor))}
+.night-city .upper-windows i,.night-city .wing-windows i{width:100%;height:100%;max-width:4px;max-height:5px;justify-self:center;align-self:center;background:var(--window-dim);opacity:.55;box-shadow:1px 1px color-mix(in srgb,var(--volume-face) 48%,var(--sky-top))}
+.night-city .upper-windows i:nth-child(3),.night-city .wing-windows i:nth-child(3){background:var(--window);opacity:var(--window-opacity)}
+.night-city .upper-windows i:nth-child(4),.night-city .wing-windows i:nth-child(4){background:var(--window);opacity:calc(var(--window-opacity) * var(--rest-window-factor))}
 .facade-detail{position:absolute;inset:3% 0 0;pointer-events:none;opacity:.65}
 .facade-0{background:repeating-linear-gradient(0deg,transparent 0 17px,#e9dacc18 17px 18px,#15203925 18px 20px)}
 .facade-1{background:linear-gradient(90deg,transparent 27%,#e9dacc18 27% 30%,transparent 30% 69%,#15203936 69% 74%,transparent 74%)}
