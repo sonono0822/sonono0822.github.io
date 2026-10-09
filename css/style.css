@@ -64,7 +64,9 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .night-cloud-center {left:45%;top:57%;width:13%;height:4%;opacity:.09}
 .night-city .night-cloud-right {right:-5%;top:37%;width:25%;height:9%;opacity:.1}
 .night-city .skyline {position:absolute;left:0;right:0;bottom:14%;isolation:isolate}
-.night-city .building {position:absolute;left:var(--x);bottom:0;width:var(--w);height:var(--h);box-shadow:inset -3px 0 #111b304d,inset 2px 0 #d0bac018}
+/* Per-building base/depth pairs stagger blocks within the existing three layers.
+   Front blocks sit lower and occlude neighbours; the landmark keeps depth 2. */
+.night-city .building {position:absolute;left:var(--x);bottom:var(--base,0%);z-index:var(--depth,0);width:var(--w);height:var(--h);box-shadow:inset -3px 0 #111b304d,inset 2px 0 #d0bac018}
 /* Fractional tracks and proportional gaps cannot force tiny buildings to grow.
    Clipping belongs to the window container, leaving roof details visible. */
 .night-city .windows {
@@ -81,6 +83,11 @@ button{font:inherit;color:inherit;background:#ffffff0d;border:2px solid #fff0cfa
 .night-city .far-building:nth-child(3n) {background:#62667d}
 .night-city .far-building:nth-child(4n) {background:#7b6d84}
 .night-city .far-building .win {max-width:2px;max-height:3px;opacity:.55}
+/* Distant blocks read as silhouettes, with only occasional window clusters.
+   Keep the existing window nodes and lighting state; no new drawing work. */
+.night-city .far-building:not(:nth-child(4n)) .windows {display:none}
+.night-city .far-building:nth-child(4n) .win:not(.on),
+.night-city .far-building:nth-child(4n) .win:nth-child(even) {visibility:hidden}
 .night-city .skyline-mid {height:41%;bottom:14.5%}
 .night-city .mid-building {background:#464d68;border-top:2px solid #878198}
 .night-city .mid-building:nth-child(3n) {background:#53536f;border-top-color:#998496}
