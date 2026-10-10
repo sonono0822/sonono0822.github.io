@@ -126,3 +126,20 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-tower-distance{fill:color-mix(in srgb,var(--far) 82%,var(--horizon));opacity:.8}
 .city-landscape .city-right-plane{fill:color-mix(in srgb,var(--mid) 64%,var(--roof))}
 .city-landscape .city-bridge-under{fill:color-mix(in srgb,var(--near) 84%,var(--sky-top))}
+
+/* Bridge rhythm and selective night lights: static shapes, no new animation. */
+.city-landscape .city-bridge-post,.city-landscape .city-bridge-head{fill:color-mix(in srgb,var(--near) 70%,var(--roof))}
+.city-landscape .city-bridge-lights{opacity:0}
+.city-landscape .city-tower-haze{fill:color-mix(in srgb,var(--far) 60%,var(--horizon));opacity:.46}
+.city-landscape .city-tower-shoulder{fill:color-mix(in srgb,var(--mid) 72%,var(--far))}
+.city-landscape .city-right-overlap{fill:color-mix(in srgb,var(--mid-alt) 72%,var(--near))}
+.city-landscape .city-right-overlap-roof{fill:color-mix(in srgb,var(--mid-alt) 65%,var(--roof))}
+.city-landscape .city-right-recess{fill:color-mix(in srgb,var(--far) 75%,var(--mid))}
+.city-landscape .city-unlit-group{fill:color-mix(in srgb,var(--district-face) 82%,var(--far))}
+.city-landscape .city-night-windows{fill:var(--window);opacity:0}
+.world[data-time-scene="night"] .city-landscape .city-night-windows,
+.world[data-time-scene="deepNight"] .city-landscape .city-night-windows{opacity:calc(var(--window-opacity) * .82)}
+.world[data-time-scene="night"] .city-landscape .city-night-windows.night-soft,
+.world[data-time-scene="deepNight"] .city-landscape .city-night-windows.night-soft{opacity:calc(var(--window-opacity) * .52)}
+.world[data-time-scene="night"] .city-landscape .city-bridge-lights,
+.world[data-time-scene="deepNight"] .city-landscape .city-bridge-lights{opacity:calc(var(--street-light-opacity) * .55)}
