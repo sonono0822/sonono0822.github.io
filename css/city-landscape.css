@@ -93,3 +93,17 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-grain-recess{fill:color-mix(in srgb,var(--district-face) 63%,var(--far))}
 .city-landscape .city-far-grain{fill:var(--mid);opacity:.3}
 .city-landscape .city-bank-seam{fill:color-mix(in srgb,var(--season-leaf) 40%,var(--mid));opacity:.65}
+
+/* Screenshot-targeted planes: large enough to read above dialogue, with local grouped windows. */
+.city-landscape .city-visible-light{fill:color-mix(in srgb,var(--district-face) 62%,var(--roof))}
+.city-landscape .city-visible-dark{fill:color-mix(in srgb,var(--district-face) 62%,var(--near))}
+.city-landscape .city-visible-roof{fill:color-mix(in srgb,var(--district-face) 52%,var(--roof))}
+.city-landscape .city-visible-boundary{fill:color-mix(in srgb,var(--district-face) 48%,var(--near))}
+.city-landscape .city-visible-window{fill:color-mix(in srgb,var(--district-face) 45%,var(--roof))}
+.world[data-time-scene="night"] .city-landscape .city-visible-window,
+.world[data-time-scene="deepNight"] .city-landscape .city-visible-window{fill:var(--window);opacity:calc(var(--window-opacity) * .68)}
+.city-landscape .city-band-rear{fill:color-mix(in srgb,var(--district-face) 65%,var(--far))}
+.city-landscape .city-band-front{fill:color-mix(in srgb,var(--district-face) 62%,var(--near))}
+.city-landscape .city-band-gap{fill:color-mix(in srgb,var(--far) 80%,var(--horizon))}
+.city-landscape .city-central-distance{fill:color-mix(in srgb,var(--far) 72%,var(--horizon));opacity:.72}
+.city-landscape .city-tree-foot{fill:color-mix(in srgb,var(--near) 75%,var(--mid))}
