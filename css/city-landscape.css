@@ -63,3 +63,12 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-left-crafted .city-floor{fill:color-mix(in srgb,var(--district-face) 87%,var(--near))}
 .city-landscape .city-left-crafted .city-unlit{fill:color-mix(in srgb,var(--district-face) 72%,var(--far))}
 .city-landscape .city-left-crafted .city-roof-edge{fill:color-mix(in srgb,var(--district-roof) 75%,var(--near))}
+
+/* Role-based city: silhouettes carry density; only landmarks retain full architecture. */
+.city-landscape .city-cluster.density-haze{--district-face:color-mix(in srgb,var(--far) 62%,var(--horizon))}
+.city-landscape .city-cluster.density-back{--district-face:color-mix(in srgb,var(--mid) 62%,var(--far))}
+.city-landscape .city-cluster.density-middle{--district-face:color-mix(in srgb,var(--mid-alt) 85%,var(--far))}
+.city-landscape .city-cluster.density-front{--district-face:color-mix(in srgb,var(--mid-alt) 73%,var(--near))}
+.city-landscape .city-near-bank .density-middle{--district-face:color-mix(in srgb,var(--near) 80%,var(--mid))}
+.city-landscape .city-near-bank .density-front{--district-face:var(--near)}
+.city-landscape .city-density-grain{fill:var(--mid);opacity:.24}
