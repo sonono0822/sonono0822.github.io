@@ -143,10 +143,3 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .world[data-time-scene="deepNight"] .city-landscape .city-night-windows.night-soft{opacity:calc(var(--window-opacity) * .52)}
 .world[data-time-scene="night"] .city-landscape .city-bridge-lights,
 .world[data-time-scene="deepNight"] .city-landscape .city-bridge-lights{opacity:calc(var(--street-light-opacity) * .55)}
-
-/* v6.9.42: exposed roof/upper-floor overlap, confined to left and central districts. */
-.city-landscape .city-rebuilt.rebuilt-haze{--district-face:color-mix(in srgb,var(--far) 62%,var(--horizon))}
-.city-landscape .city-rebuilt.rebuilt-back{--district-face:color-mix(in srgb,var(--mid) 55%,var(--far));--district-roof:color-mix(in srgb,var(--far) 65%,var(--roof))}
-.city-landscape .city-rebuilt.rebuilt-middle{--district-face:color-mix(in srgb,var(--mid-alt) 88%,var(--mid));--district-roof:color-mix(in srgb,var(--mid-alt) 65%,var(--roof))}
-.city-landscape .city-rebuilt.rebuilt-front{--district-face:color-mix(in srgb,var(--mid-alt) 68%,var(--near));--district-roof:color-mix(in srgb,var(--mid-alt) 64%,var(--roof))}
-.city-landscape .city-rebuilt .city-side{fill:color-mix(in srgb,var(--district-face) 77%,var(--near))}
