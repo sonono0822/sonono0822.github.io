@@ -110,3 +110,14 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 
 /* Two broader near-bank masses establish foreground scale without closing central water gaps. */
 .city-landscape .city-front-scale{--district-face:color-mix(in srgb,var(--near) 88%,var(--mid));--district-roof:color-mix(in srgb,var(--near) 65%,var(--roof))}
+
+/* Right-bank continuity and broad river planes; all colors follow the environment palette. */
+.city-landscape .city-right-haze{fill:color-mix(in srgb,var(--far) 70%,var(--horizon));opacity:.7}
+.city-landscape .city-right-bank{fill:color-mix(in srgb,var(--mid) 78%,var(--far))}
+.city-landscape .city-right-front,.city-landscape .city-tower-bank{fill:color-mix(in srgb,var(--mid-alt) 86%,var(--far))}
+.city-landscape .city-right-roof{fill:color-mix(in srgb,var(--mid) 60%,var(--roof))}
+.city-landscape .city-river-far-bank{fill:color-mix(in srgb,var(--mid) 74%,var(--near))}
+.city-landscape .city-river-open{fill:color-mix(in srgb,var(--sky-low) 48%,var(--far))}
+.city-landscape .city-river-deep{fill:color-mix(in srgb,var(--sky-mid) 48%,var(--mid));opacity:.48}
+.city-landscape .city-river-near-bank{fill:color-mix(in srgb,var(--near) 65%,var(--mid))}
+.city-landscape .city-river-sheen{fill:var(--horizon);opacity:.2}
