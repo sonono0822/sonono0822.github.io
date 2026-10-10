@@ -72,3 +72,13 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-near-bank .density-middle{--district-face:color-mix(in srgb,var(--near) 80%,var(--mid))}
 .city-landscape .city-near-bank .density-front{--district-face:var(--near)}
 .city-landscape .city-density-grain{fill:var(--mid);opacity:.24}
+
+/* Depth inside collective silhouettes: clipped rear fragments, front masses and sparse roof seams. */
+.city-landscape .city-inner-rear{fill:color-mix(in srgb,var(--district-face) 76%,var(--far))}
+.city-landscape .city-inner-front{fill:color-mix(in srgb,var(--district-face) 78%,var(--near))}
+.city-landscape .city-inner-roof{fill:color-mix(in srgb,var(--district-face) 70%,var(--roof))}
+.city-landscape .city-cluster-specks{fill:var(--window);opacity:calc(var(--window-opacity) * .38)}
+.city-landscape .interior-haze{opacity:.42}
+.city-landscape .city-depth-reveal{fill:color-mix(in srgb,var(--far) 75%,var(--mid));opacity:.82}
+.city-landscape .city-bank-root{fill:color-mix(in srgb,var(--near) 65%,var(--mid));opacity:.7}
+.city-landscape .city-tree-shade{fill:color-mix(in srgb,var(--season-leaf) 75%,var(--near));opacity:.5}
