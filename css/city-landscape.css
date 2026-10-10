@@ -82,3 +82,14 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-depth-reveal{fill:color-mix(in srgb,var(--far) 75%,var(--mid));opacity:.82}
 .city-landscape .city-bank-root{fill:color-mix(in srgb,var(--near) 65%,var(--mid));opacity:.7}
 .city-landscape .city-tree-shade{fill:color-mix(in srgb,var(--season-leaf) 75%,var(--near));opacity:.5}
+
+/* Selective neighborhood grain: clipped fragments arranged as local groups, not individual buildings. */
+.city-landscape .city-grain-face{fill:color-mix(in srgb,var(--district-face) 85%,var(--far))}
+.city-landscape .city-grain-edge{fill:color-mix(in srgb,var(--district-face) 74%,var(--near))}
+.city-landscape .city-grain-roof{fill:color-mix(in srgb,var(--district-face) 67%,var(--roof))}
+.city-landscape .city-grain-window{fill:color-mix(in srgb,var(--district-face) 72%,var(--far))}
+.world[data-time-scene="night"] .city-landscape .city-grain-window,
+.world[data-time-scene="deepNight"] .city-landscape .city-grain-window{fill:var(--window);opacity:calc(var(--window-opacity) * .48)}
+.city-landscape .city-grain-recess{fill:color-mix(in srgb,var(--district-face) 63%,var(--far))}
+.city-landscape .city-far-grain{fill:var(--mid);opacity:.3}
+.city-landscape .city-bank-seam{fill:color-mix(in srgb,var(--season-leaf) 40%,var(--mid));opacity:.65}
