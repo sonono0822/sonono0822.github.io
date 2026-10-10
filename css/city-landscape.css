@@ -107,3 +107,6 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-band-gap{fill:color-mix(in srgb,var(--far) 80%,var(--horizon))}
 .city-landscape .city-central-distance{fill:color-mix(in srgb,var(--far) 72%,var(--horizon));opacity:.72}
 .city-landscape .city-tree-foot{fill:color-mix(in srgb,var(--near) 75%,var(--mid))}
+
+/* Two broader near-bank masses establish foreground scale without closing central water gaps. */
+.city-landscape .city-front-scale{--district-face:color-mix(in srgb,var(--near) 88%,var(--mid));--district-roof:color-mix(in srgb,var(--near) 65%,var(--roof))}
