@@ -121,3 +121,8 @@ html[data-scene-paused="true"] .world[data-time-scene] .night-city .city-landsca
 .city-landscape .city-river-deep{fill:color-mix(in srgb,var(--sky-mid) 48%,var(--mid));opacity:.48}
 .city-landscape .city-river-near-bank{fill:color-mix(in srgb,var(--near) 65%,var(--mid))}
 .city-landscape .city-river-sheen{fill:var(--horizon);opacity:.2}
+
+/* Landmark rear city and exposed right edge; restrained structural bridge contrast. */
+.city-landscape .city-tower-distance{fill:color-mix(in srgb,var(--far) 82%,var(--horizon));opacity:.8}
+.city-landscape .city-right-plane{fill:color-mix(in srgb,var(--mid) 64%,var(--roof))}
+.city-landscape .city-bridge-under{fill:color-mix(in srgb,var(--near) 84%,var(--sky-top))}
